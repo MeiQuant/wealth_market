@@ -1,0 +1,28 @@
+{
+    "config" : {
+        "secure-http" : false
+    },
+
+    "require": {
+        "illuminate/database": "5.0.*",
+        "illuminate/events": "5.0.*",
+        "symfony/debug": "2.6.*",
+        "symfony/var-dumper": "2.6.*",
+        "guzzlehttp/guzzle": "5.*"
+    },
+
+    "autoload" : {
+        "classmap": [
+            "application/library",
+            "application/controllers",
+            "application/views"
+        ]
+    },
+
+    "repositories": {
+        "packagist": {
+            "type": "composer",
+            "url": "https://packagist.phpcomposer.com"
+        }
+    }
+}

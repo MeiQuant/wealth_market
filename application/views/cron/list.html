@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="utf-8" />
+    <title><?php echo $title?></title>
+    <meta name="description" content="Restyling jQuery UI Widgets and Elements" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <?php include VIEW_PATH . '/header.html' ?>
+    <style type="text/css">
+        .CSSearchTbl{ border:1px #008CD4 solid;}
+        .CSSearchTbl thead{}
+        .CSSearchTbl thead tr{}
+        .CSSearchTbl thead tr th{  text-align:left; padding-left:10px;}
+        .CSSearchTbl tbody{}
+        .CSSearchTbl tbody tr{}
+        .CSSearchTbl tbody tr td{  padding: 10px;}
+        .CSSearchTbl tbody tr td.right{ text-align: left;}
+        .CSSearchTbl tbody tr td.left{ text-align: right;}
+        .table-responsive{ display: none;}
+    </style>
+</head>
+
+<body class="no-skin">
+<?php include VIEW_PATH . '/top.html' ?>
+
+<!-- /section:basics/navbar.layout -->
+<div class="main-container" id="main-container">
+
+    <?php include VIEW_PATH . '/sidebar.html' ?>
+
+    <!-- /section:basics/sidebar -->
+    <div class="main-content">
+        <div class="breadcrumbs" id="breadcrumbs">
+            <ul class="breadcrumb">
+                <li>
+                    <i class="ace-icon fa fa-home home-icon"></i>
+                    <a href="index.html">cron</a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">cron列表</a>
+                </li>
+            </ul><!-- /.breadcrumb -->
+
+            <!-- #section:basics/content.searchbox -->
+            <div class="nav-search" id="nav-search">
+                <form class="form-search">
+							<span class="input-icon">
+								<input type="text" placeholder="请输入关键字 ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+								<i class="ace-icon fa fa-search nav-search-icon"></i>
+							</span>
+                </form>
+            </div><!-- /.nav-search -->
+        </div>
+        <div class="page-content">
+
+            <!-- /section:settings.box -->
+            <div class="page-content-area">
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <!-- PAGE CONTENT BEGINS -->
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <table id="sample-table-1" class="table table-striped table-bordered table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th class="center">
+                                            <label class="position-relative">
+                                                <input type="checkbox" class="ace" />
+                                                <span class="lbl"></span>
+                                            </label>
+                                        </th>
+                                        <th>名称</th>
+                                        <th>timer</th>
+                                        <th>参数</th>
+                                        <th>重定向</th>
+                                        <th>服务器</th>
+                                        <th>退出码</th>
+                                        <th>状态</th>
+                                        <th>最后一次执行时间</th>
+                                        <th>结束时间</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+
+                                    <tbody>
+                                    <?php if (empty($list)) { ?>
+                                    <tr><td colspan="11" class="center">暂无数据</td></tr>
+                                    <?php }?>
+                                    <?php foreach ($list as $cron) { ?>
+                                    <tr>
+                                        <td class="center">
+                                            <label class="position-relative">
+                                                <input type="checkbox" class="ace" />
+                                                <span class="lbl"></span>
+                                            </label>
+                                        </td>
+
+                                        <td>
+                                            <a href="#"><?php echo $cron['name'];?></a>
+                                        </td>
+                                        <td><?php echo $cron['timer'];?></td>
+                                        <td><?php echo $cron['args'];?></td>
+                                        <td><?php echo $cron['redirect'];?></td>
+                                        <td><?php echo $cron['server']['ip'];?></td>
+                                        <td><?php echo $cron['exit_code'];?></td>
+                                        <td><?php echo Models_Crontab::get_cron_status($cron);?></td>
+                                        <td><?php echo time_to_date($cron['start_time']);?></td>
+                                        <td><?php echo time_to_date($cron['finish_time']);?></td>
+
+                                        <td>
+                                            <div class="hidden-sm hidden-xs btn-group">
+                                                <button class="btn btn-minier btn-success see_process" cron_id="<?php echo $cron['id'];?>" >查看</button>
+                                                <button class="btn btn-minier btn-primary update_process" update_id="<?php echo $cron['id'];?>" >修改</button>
+
+                                                <?php if(in_array($cron['process_restart_type'], array('auto_restart', 'manual_restart'))){ ?>
+                                                    <button class="btn btn-minier btn-warning manual_restart" cron_id="<?php echo $cron['id'];?>">手动重启</button>
+                                                <?php }else{?>
+                                                    <button class="btn btn-minier btn-warning kill_process" cron_id="<?php echo $cron['id'];?>">杀死</button>
+                                                <?php }?>
+                                                <button class="btn btn-minier btn-danger del_data" del_id="<?php echo $cron['id'];?>">删除</button>
+
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <?php } ?>
+
+                                    </tbody>
+                                </table>
+                            </div><!-- /.span -->
+                        </div><!-- /.row -->
+
+                        <?php include VIEW_PATH . '/paginate.html' ?>
+
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.page-content-area -->
+        </div><!-- /.page-content -->
+    </div><!-- /.main-content -->
+
+    <?php include VIEW_PATH . '/footer-copyright.html' ?>
+
+    <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+        <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+    </a>
+</div><!-- /.main-container -->
+
+<!-- basic scripts -->
+
+<?php include VIEW_PATH . '/footer.html' ?>
+
+<script type="text/javascript">
+
+    // 查看进程和cron的信息
+    jQuery(function($) {
+        $(".see_process").on(ace.click_event, function() {
+            var cron_id = $(this).attr('cron_id');
+            $.ajax({
+                type : 'POST',
+                url : '/daemon/processinfo',
+                data : {cron_id : cron_id},
+                dataType: 'json',
+                success : function (ret) {
+                    if (ret.status) {
+                        var html = '';
+                        html += '<span style="font-weight: bold;">(数据信息)字段名字 ： 字段值</span><br/>';
+                        html += '=======================================<br/>';
+                        for( var item in ret.db_data)
+                        {
+                            html += '<span style="color:green;">' + item + '</span>' + ' : ' + ret.db_data[item] + '<br />';
+                        }
+                        html += '=======================================<br/>';
+                        html += '<span style="font-weight: bold;">(进程信息) 该cron正在运行的所有进程信息</span><br/>';
+                        html += '<br />';
+
+                        if (ret.process_data.length != 0)
+                        {
+                            for (var i = 0; i < ret.process_data.length; i ++)
+                            {
+                                html += '进程号: ' + ret.process_data[i][0] +
+                                        ' | 开始执行时间: ' + '<span style="color:green;">' + ret.process_data[i][2] + '</span>' +
+                                        ' | 已经执行的时间: ' + '<span style="color:green;">' + ret.process_data[i][3] + '</span>' +
+                                        ' | gid : ' + ret.process_data[i][5] + '<br/>';
+                            }
+                        } else {
+                            html += '<span style="color:green;">该进程暂时没有执行</span>';
+                        }
+
+
+                        bootbox.alert(html);
+                    } else {
+                        bootbox.alert("失败：" + ret.msg);
+                    }
+                },
+                error : function() {
+                    bootbox.alert("系统发生错误, 请联系管理员");
+                }
+            });
+        });
+
+    });
+
+
+
+    jQuery(function($) {
+        $(".del_data").on(ace.click_event, function() {
+            var del_id = $(this).attr('del_id');
+            bootbox.dialog({
+                message: "确定要删除吗?删除后无法恢复",
+                buttons:
+                    {
+                        "danger" :
+                            {
+                                "label" : "确定删除",
+                                "className" : "btn-sm btn-danger",
+                                "callback": function() {
+                                    $.ajax({
+                                        type : 'POST',
+                                        url : '/cron/del',
+                                        data : {id : del_id},
+                                        dataType: 'json',
+                                        success : function (ret) {
+                                            if (ret.status) {
+                                                bootbox.alert("删除成功", function(){
+                                                    window.location.href = '/cron/list';
+                                                });
+                                            } else {
+                                                bootbox.alert("删除失败" + ret.msg);
+                                            }
+                                        },
+                                        error : function() {
+                                            bootbox.alert("系统发生错误, 请联系管理员");
+                                        }
+                                    });
+                                }
+                            },
+                        "button" :
+                            {
+                                "label" : "取消",
+                                "className" : "btn-sm"
+                            }
+                    }
+            });
+        });
+
+    });
+
+    // 杀死进程
+    jQuery(function($) {
+        $(".kill_process").on(ace.click_event, function() {
+            var cron_id = $(this).attr('cron_id');
+            bootbox.prompt({
+                title: "<span style='font-size:14px;'>选择杀死进程后选择重启方式<span>",
+                value : 'manual_restart',
+                inputType: 'select',
+                inputOptions: [
+                    {
+                        text: '由管理员通过后台手动重启',
+                        value: 'manual_restart'
+                    },
+                    {
+                        text: '由后台程序自动重启',
+                        value: 'auto_restart'
+                    }
+                ],
+                callback: function (restart_type) {
+                    if (restart_type != null) {
+                        $.ajax({
+                            type : 'POST',
+                            url : '/daemon/killprocess',
+                            data : {cron_id : cron_id, restart_type : restart_type},
+                            dataType: 'json',
+                            success : function (ret) {
+                                if (ret.status) {
+                                    bootbox.alert(ret.msg, function(){
+                                        window.location.href = '/cron/list';
+                                    });
+                                } else {
+                                    bootbox.alert("失败：" + ret.msg);
+                                }
+                            },
+                            error : function() {
+                                bootbox.alert("系统发生错误, 请联系管理员");
+                            }
+                        });
+                    }
+
+                }
+            });
+        });
+
+    });
+
+    // 手动重启
+    jQuery(function($) {
+        $(".manual_restart").on(ace.click_event, function() {
+            var cron_id = $(this).attr('cron_id');
+            bootbox.dialog({
+                message: "确定要重启之<=1min后生效",
+                buttons:
+                    {
+                        "danger" :
+                            {
+                                "label" : "确定重启",
+                                "className" : "btn-sm btn-primary",
+                                "callback": function() {
+                                    $.ajax({
+                                        type : 'POST',
+                                        url : '/cron/restart',
+                                        data : {id : cron_id},
+                                        dataType: 'json',
+                                        success : function (ret) {
+                                            if (ret.status) {
+                                                bootbox.alert("重启成功", function(){
+                                                    window.location.href = '/cron/list';
+                                                });
+                                            } else {
+                                                bootbox.alert("重启失败" + ret.msg);
+                                            }
+                                        },
+                                        error : function() {
+                                            bootbox.alert("系统发生错误, 请联系管理员");
+                                        }
+                                    });
+                                }
+                            },
+                        "button" :
+                            {
+                                "label" : "取消",
+                                "className" : "btn-sm"
+                            }
+                    }
+            });
+        });
+
+    });
+
+
+    // 手动重启
+    jQuery(function($) {
+        $(".update_process").on(ace.click_event, function() {
+            var cron_id = $(this).attr('update_id');
+            bootbox.dialog({
+                message: "<span style='color:red;'> ! 任何修改都会导致之前的cron进程被杀死, 请管理员自己把控是否需要修改</span>",
+                buttons:
+                    {
+                        "danger" :
+                            {
+                                "label" : "确定修改",
+                                "className" : "btn-sm btn-primary",
+                                "callback": function() {
+                                   window.location.href = '/cron/add?cron_id=' + cron_id;
+                                }
+                            },
+                        "button" :
+                            {
+                                "label" : "取消",
+                                "className" : "btn-sm"
+                            }
+                    }
+            });
+        });
+
+    });
+
+
+</script>
+</body>
+</html>
