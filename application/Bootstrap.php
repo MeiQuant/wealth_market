@@ -70,14 +70,14 @@ class Bootstrap extends Yaf_Bootstrap_Abstract
 
     public function _initSession()
     {
-        try {
-            $redis = redisConnect();
-            $redis->ping();
-            $session = new Util_Session();
-            session_set_save_handler($session, true);
-        } catch (Exception $e) {
-            Log_Log::info('[Bootstrap] session init error:' . $e->getMessage(), true, true);
-        }
+//        try {
+//            $redis = redisConnect();
+//            $redis->ping();
+//            $session = new Util_Session();
+//            session_set_save_handler($session, true);
+//        } catch (Exception $e) {
+//            Log_Log::info('[Bootstrap] session init error:' . $e->getMessage(), true, true);
+//        }
     }
 
     public function cleanup()

@@ -21,10 +21,7 @@ class Ldap
 
     private static $_userInfo = null;
     private static $_domains = array(
-        '.sina.com.cn',
-        '.weibo.com',
-        '.weibo.cn',
-        '.sina.cn',
+        '.smallwolf.cn'
     );
 
     public static function logoutUser()
@@ -43,7 +40,7 @@ class Ldap
     public static function loginUser($userName, $password)
     {
         // 测试机不走ldap了
-        if ((Tool::get_server_ip() == '10.210.241.170') && ($userName == 'admin@staff.sina.com.cn') && ($password == 'admin')) {
+        if (DEBUG && ($password == 'admin')) {
             self::_setUserCookie($userName, $password);
             return self::getUser();
         }

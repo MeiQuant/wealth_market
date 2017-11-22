@@ -21,6 +21,7 @@ class ConfigController extends AbstractController
      */
     public function indexAction()
     {
+        echo 1;die;
         $request = $this->getRequest();
         if ($request->isPost())
         {

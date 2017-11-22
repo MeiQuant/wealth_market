@@ -13,8 +13,8 @@ abstract class AbstractController extends Yaf_Controller_Abstract
 
     public $_config = null;
 
-    public $page_members = array(
-         'congcong6', 'wenjun8', 'lilin6', 'wantao', 'chenxi23', 'hongjun6'
+    public $members = array(
+         'admin','wanghongjun', 'maxiaoqi', 'lihao'
     );
 
     /**
@@ -27,12 +27,6 @@ abstract class AbstractController extends Yaf_Controller_Abstract
             $this->redirect('/login/index');
         }
 
-        $config = Models_Config::first();
-
-        if (!empty($config))
-        {
-            $this->_config = $config;
-        }
         $this->user['username'] = Ldap::getUser()['id'];
 
     }

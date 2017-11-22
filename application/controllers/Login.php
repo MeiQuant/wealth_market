@@ -12,14 +12,12 @@ class LoginController extends AbstractController
             $username = Util_Common::post('username');
             $password = Util_Common::post('password');
 
-            if ((Tool::get_server_ip() != '10.210.241.170'))
-            {
-                if (!in_array($username, $this->page_members))
-                {
-                    _error_json_encoder('用户名不在白名单之内');
-                }
 
+            if (!in_array($username, $this->members))
+            {
+                _error_json_encoder('用户名不在白名单之内');
             }
+
 
             if (empty($username) || empty($password)) {
                 _error_json_encoder('用户名或者密码不能为空');

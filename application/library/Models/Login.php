@@ -11,10 +11,8 @@ class Models_Login
             return false;
         }
 
-        if (strpos($username, '@') === false)
-        {
-            $username = "{$username}@staff.sina.com.cn";
-        }
+        $username = trim($username);
+        $password = trim($password);
 
         $userInfo = Ldap::loginUser($username, $password);
 

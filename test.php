@@ -1,9 +1,9 @@
 <?php
 
 
+echo 1;
 function a()
 {
-    echo 111111;
     \Swoole\Timer::after(2000, function() {
         echo "start ....\n";
         echo date('Y-m-d H:i:s');
