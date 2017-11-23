@@ -21,7 +21,8 @@ class Ldap
 
     private static $_userInfo = null;
     private static $_domains = array(
-        '.smallwolf.cn'
+//        '.smallwolf.cn'
+        '123.206.16.207'
     );
 
     public static function logoutUser()

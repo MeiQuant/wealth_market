@@ -1,6 +1,6 @@
 <?php
 
-define("BASE_URL", 'http://static-wealth-market.smallwolf.cn');
+define("BASE_URL", 'http://123.206.16.207:89');
 
 define('EXIT_CODE_4000', 4000); // 由于某一台机器挂掉, 某个cron转换到另外一个server时候的退出码
 define('EXIT_CODE_4001', 4001); // daemon程序判断超过了cron的超时时间杀死的exit_code
