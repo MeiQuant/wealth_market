@@ -57,19 +57,12 @@
         <div class="page-content">
 
             <div class="page-content-area">
-
                 <div class="row">
                     <div class="col-xs-12">
-
-
-
                         <!-- PAGE CONTENT BEGINS -->
                         <form class="form-horizontal" role="form" onsubmit="return false;">
 
-
-
-
-
+                            <h1>顶部区域</h1>
                             <!-- #section:elements.form -->
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="name"> 财经早报语音：</label>
@@ -83,109 +76,98 @@
                                 </div>
                             </div>
 
+
+                            <h1>大盘指数区域</h1>
+
+
                             <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="timer">运行时间： </label>
+                                <label class="col-sm-3 control-label no-padding-right">大盘指数： </label>
+                                <div class="col-sm-9">
+                                    <span class=""><input type="text"  class="col-xs-10 col-sm-5"  placeholder=" 格式: 上证指数/3393.5/+4.91/0.28% "/></span>
+                                    <span><input type="text"  class="col-xs-10 col-sm-5" /></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right">大盘指数： </label>
+                                <div class="col-sm-9">
+                                    <span><input type="text"  class="col-xs-10 col-sm-5" /></span>
+                                    <span><input type="text"  class="col-xs-10 col-sm-5" /></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right">大盘指数： </label>
+                                <div class="col-sm-9">
+                                    <span><input type="text"  class="col-xs-10 col-sm-5" /></span>
+                                    <span><input type="text"  class="col-xs-10 col-sm-5" /></span>
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="space-4"></div>
+
+                            <h1>产品模块</h1>
+
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="company"> 公司名称：</label>
 
                                 <div class="col-sm-9">
-                                    <input type="text" id="timer" name="timer" value="<?php if(!empty($cron_info)) echo $cron_info->timer;?>" placeholder="格式：* * * * * " class=" col-xs-10 col-sm-5" />
+                                    <input type="text" id="company" name="company" placeholder="" class="col-xs-10 col-sm-5" />
                                 </div>
                             </div>
 
-                            <div class="space-4"></div>
 
                             <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="exec_file">可执行文件： </label>
+                                <label class="col-sm-3 control-label no-padding-right" for="strategy"> 资产配置策略：</label>
 
                                 <div class="col-sm-9">
-                                    <input type="text" id="exec_file" name="exec_file" value="<?php if(!empty($cron_info)) echo $cron_info->exec_file;?>" placeholder="默认 : /usr/local/sinasrv2/bin/php" class="col-xs-10 col-sm-5" />
+                                    <input type="text" id="strategy" name="strategy" placeholder="资产配置策略" class="col-xs-10 col-sm-5" />
                                 </div>
                             </div>
 
-                            <div class="space-4"></div>
-
                             <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="args">参数： </label>
+                                <label class="col-sm-3 control-label no-padding-right" for="reason"> 推荐理由：</label>
 
                                 <div class="col-sm-9">
-                                    <input type="text" class="col-xs-10 col-sm-5" value="<?php if(!empty($cron_info)) echo $cron_info->args;?>" id="args" name="args" placeholder="多个参数用英文逗号分隔" id="args" value="" />
+                                    <input type="text" id="reason" name="strategy" placeholder="推荐理由" class="col-xs-10 col-sm-5" />
                                 </div>
                             </div>
 
-                            <div class="space-4"></div>
+
+
+                            <h1>底部区域</h1>
+
 
                             <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="redirect">echo输出的目录： </label>
+                                <label class="col-sm-3 control-label no-padding-right" for="qr_code"> 二维码：</label>
+
+                                <!--dom结构部分-->
+                                <div id="uploader-demo">
+                                    <!--用来存放item-->
+                                    <div id="fileList" class="uploader-list"></div>
+                                    <div id="filePicker">选择图片</div>
+                                </div>
+
 
                                 <div class="col-sm-9">
-                                    <input type="text" class="col-xs-10 col-sm-5" value="<?php if(!empty($cron_info)) echo $cron_info->redirect;?>" id="redirect" name="redirect" placeholder="代码中echo输出的目录" id="redirect" value="" />
+                                    <input type="text" id="qr_code" name="company" placeholder="" class="col-xs-10 col-sm-5" />
                                 </div>
                             </div>
 
-                            <div class="space-4"></div>
 
                             <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="timeout">超时时间： </label>
+                                <label class="col-sm-3 control-label no-padding-right" for="article_link"> 文章链接：</label>
 
                                 <div class="col-sm-9">
-                                    <input type="text" name="timeout" id="timeout" value="<?php if(!empty($cron_info)) echo $cron_info->timeout;?>" class="col-xs-10 col-sm-5" placeholder="以秒为单位" id="timout" value="" />
+                                    <input type="text" id="article_link" name="strategy" placeholder="文章链接" class="col-xs-10 col-sm-5" />
                                 </div>
                             </div>
 
-                            <div class="space-4"></div>
 
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-6">队列机： </label>
-
-                                <div class="col-xs-12 col-sm-9">
-                                    <div class="control-group">
-                                        <?php if (!empty($servers)) { foreach($servers as $server) {?>
-                                        <div class="checkbox">
-                                            <label>
-                                                <input name="server_id" type="checkbox" <?php if(!empty($cron_info)) { if ($server->id == $cron_info->server_id) { echo 'checked="checked"';} }?> value="<?php echo $server->id;?>" class="ace" />
-                                                <span class="lbl"> <?php echo $server->ip;?></span>
-                                            </label>
-                                        </div>
-
-                                        <?php }}?>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="space-4"></div>
-
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="repeat_num">是否允许重启：</label>
-                                <div class="col-sm-2">
-                                    <div class="pos-rel">
-                                        <select name="repeat_num" class="form-control" id="repeat_num">
-                                            <option name="repeat_num" value="1" <?php if (!empty($cron_info)) { if($cron_info->repeat_num == 1) { echo 'selected="selected"';} }?> >是</option>
-                                            <option name="repeat_num" value="0" <?php if (!empty($cron_info)) { if ($cron_info->repeat_num == 0) { echo 'selected="selected"';} }?>  >否</option>
-                                        </select>
-                                        <span style="color:royalblue;">(主要是机器挂掉之后)</span>
-                                    </div>
-                                </div>
-
-                            </div>
-
-
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="timeout_kill_type">超时之后的杀死方式：</label>
-                                <div class="col-sm-2">
-                                    <div class="radio">
-
-                                        <label>
-                                            <input name="timeout_kill_type" value="15" type="radio" class="ace" <?php if (!empty($cron_info) &&($cron_info->timeout_kill_type == 15)) { echo 'checked="checked"';}?> />
-                                            <span class="lbl"> 温柔的杀死</span>
-                                        </label>
-
-                                        <label>
-                                            <input name="timeout_kill_type" value="9" type="radio" class="ace" <?php if (!empty($cron_info) && ($cron_info->timeout_kill_type == 9)) { echo 'checked="checked"';}?> />
-                                            <span class="lbl"> 强制杀死</span>
-                                        </label>
-                                    </div>
-                                </div>
-
-                            </div>
 
                             <div class="clearfix form-actions">
                                 <div class="col-md-offset-3 col-md-9">
@@ -225,10 +207,10 @@
 <script src="<?= BASE_URL ?>/js/webuploader.min.js"></script>
 <script>
 
+    $(".add_stock").on('click', function(){
+        // 最多添加6个
+    });
     var uploader = WebUploader.create({
-
-        // swf文件路径
-//        swf: BASE_URL + '/js/Uploader.swf',
 
         // 文件接收服务端。
         server: 'http://123.206.16.207:88/upload/upload',
@@ -247,8 +229,6 @@
         return ;
     });
 
-
-
     // 当有文件被添加进队列的时候
     uploader.on( 'fileQueued', function( file ) {
         var list = $("#thelist");
@@ -257,8 +237,6 @@
             '<p class="state">等待上传...</p>' +
             '</div>' );
     });
-
-
 
     // 文件上传过程中创建进度条实时显示。
     uploader.on( 'uploadProgress', function( file, percentage ) {
@@ -293,52 +271,102 @@
 
 
 
-    //    $(".btn-info").on('click', function(){
-    //        var hidden_update_id = $("#hidden_update_id").val();
-    //        var name = $("#name").val();
-    //        var timer = $("#timer").val();
-    //        var exec_file = $("#exec_file").val();
-    //        var args = $("#args").val();
-    //        var redirect = $("#redirect").val();
-    //        var timeout = $("#timeout").val();
-    //        var server_id_array = new Array();
-    //        $('input[name="server_id"]:checked').each(function(){
-    //            server_id_array.push($(this).val());
-    //        });
-    //        var server_id = server_id_array.join(',');
-    //        var repeat_num = $("#repeat_num").val();
-    //        var timeout_kill_type = $("input[name=timeout_kill_type]:checked").val();
-    //        $.ajax({
-    //            type : 'post',
-    //            url : '/cron/add',
-    //            data : {
-    //                hidden_update_id : hidden_update_id,
-    //                name : name,
-    //                timer : timer,
-    //                exec_file : exec_file,
-    //                args : args,
-    //                redirect : redirect,
-    //                timeout : timeout,
-    //                server_id : server_id,
-    //                repeat_num : repeat_num,
-    //                timeout_kill_type : timeout_kill_type
-    //            },
-    //            dataType : 'json',
-    //            success : function(msg){
-    //                if (msg.status) {
-    //                    bootbox.alert(msg.msg, function(){
-    //                        window.location.href = '/cron/list';
-    //                    });
-    //                } else {
-    //                    bootbox.alert("添加失败:" + msg.msg);
-    //                }
-    //            },
-    //            error : function () {
-    //                bootbox.alert("系统发生错误, 请联系管理员");
-    //            }
-    //        });
-    //    });
 
+
+    // 二维码上传
+    var uploader2 = WebUploader.create({
+
+        auto: true,
+
+        // swf文件路径
+//        swf: BASE_URL + '/js/Uploader.swf',
+
+        // 文件接收服务端。
+        server: 'http://123.206.16.207:88/upload/upload',
+
+        // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+        pick: '#filePicker',
+
+        // 只允许选择图片文件。
+        accept: {
+            title: 'Images',
+            extensions: 'gif,jpg,jpeg,bmp,png',
+            mimeTypes: 'image/*'
+        }
+    });
+
+
+    // 当有文件添加进来的时候
+    uploader2.on( 'fileQueued', function( file ) {
+        var $li = $(
+                '<div id="' + file.id + '" class="file-item thumbnail">' +
+                '<img>' +
+                '<div class="info">' + file.name + '</div>' +
+                '</div>'
+            ),
+            $img = $li.find('img');
+
+        $list = $("#fileList");
+        // $list为容器jQuery实例
+        $list.append( $li );
+
+        // 创建缩略图
+        // thumbnailWidth x thumbnailHeight 为 100 x 100
+        var thumbnailWidth = 100;
+        var thumbnailHeight = 100;
+        uploader2.makeThumb( file, function( error, src ) {
+            if ( error ) {
+                $img.replaceWith('<span>不能预览</span>');
+                return;
+            }
+
+            $img.attr( 'src', src );
+        }, thumbnailWidth, thumbnailHeight );
+    });
+
+
+
+    // 文件上传过程中创建进度条实时显示。
+//    uploader2.on( 'uploadProgress', function( file, percentage ) {
+//        var $li = $( '#'+file.id ),
+//            $percent = $li.find('.progress span');
+//
+//        // 避免重复创建
+//        if ( !$percent.length ) {
+//            $percent = $('<p class="progress"><span></span></p>')
+//                .appendTo( $li )
+//                .find('span');
+//        }
+//
+//        $percent.css( 'width', percentage * 100 + '%' );
+//    });
+
+    // 文件上传成功，给item添加成功class, 用样式标记上传成功。
+    uploader2.on( 'uploadSuccess', function( file , response) {
+        var raw = response._raw;
+        raw = JSON.parse(raw);
+        var savename = raw[0].savename;
+        alert('服务器返回的名字为: ' + savename);
+        $( '#'+file.id ).addClass('upload-state-done');
+    });
+
+    // 文件上传失败，显示上传出错。
+    uploader2.on( 'uploadError', function( file ) {
+        var $li = $( '#'+file.id ),
+            $error = $li.find('div.error');
+
+        // 避免重复创建
+        if ( !$error.length ) {
+            $error = $('<div class="error"></div>').appendTo( $li );
+        }
+
+        $error.text('上传失败');
+    });
+
+    // 完成上传完了，成功或者失败，先删除进度条。
+    uploader2.on( 'uploadComplete', function( file, response ) {
+        $( '#'+file.id ).find('.progress').remove();
+    });
 
 </script>
 </body>

@@ -19,12 +19,12 @@ class UploadController extends AbstractController
     public function uploadAction()
     {
         $uploader = new Upload_Upload();
-        $ret = $uploader->upload('/data/upload_file/');
+        $ret = $uploader->upload(UPLOAD_DIR);
         if ($ret)
         {
-            return $uploader->getUploadFileInfo();
+            echo json_encode($uploader->getUploadFileInfo());exit;
         } else {
-            return $uploader->getErrorMsg();
+            return json_encode($uploader->getErrorMsg());
         }
     }
 

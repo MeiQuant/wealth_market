@@ -1,7 +1,7 @@
 <?php
 
 define("BASE_URL", 'http://123.206.16.207:89');
-
+define('UPLOAD_DIR', '/data/upload_file/');
 define('EXIT_CODE_4000', 4000); // 由于某一台机器挂掉, 某个cron转换到另外一个server时候的退出码
 define('EXIT_CODE_4001', 4001); // daemon程序判断超过了cron的超时时间杀死的exit_code
 define('EXIT_CODE_4002', 4002); // 管理界面手动点击按钮杀死cron的exit_code(默认允许daemon脚本重启, 前提是该cron本身允许重启)
