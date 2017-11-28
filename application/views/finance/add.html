@@ -213,7 +213,7 @@
     var uploader = WebUploader.create({
 
         // 文件接收服务端。
-        server: 'http://123.206.16.207:88/upload/upload',
+        server: '<?php echo UPLOAD_URL;?>',
 
         // 选择文件的按钮。可选。
         // 内部根据当前运行是创建，可能是input元素，也可能是flash.
@@ -257,8 +257,11 @@
     });
 
 
-    uploader.on( 'uploadSuccess', function( file ) {
-        $( '#'+file.id ).find('p.state').text('已上传');
+    uploader.on( 'uploadSuccess', function( file , response) {
+        var raw = response._raw;
+        raw = JSON.parse(raw);
+        var savename = raw[0].savename;
+        $( '#'+file.id ).find('p.state').text('已上传, 前端加载路径为: ' + '<?php echo IMG_URL;?>' + savename);
     });
 
     uploader.on( 'uploadError', function( file ) {
@@ -282,7 +285,7 @@
 //        swf: BASE_URL + '/js/Uploader.swf',
 
         // 文件接收服务端。
-        server: 'http://123.206.16.207:88/upload/upload',
+        server: '<?php echo UPLOAD_URL;?>',
 
         // 内部根据当前运行是创建，可能是input元素，也可能是flash.
         pick: '#filePicker',
