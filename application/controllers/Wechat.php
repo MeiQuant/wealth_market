@@ -55,4 +55,39 @@ class WechatController extends AbstractController
     }
 
 
+    /**
+     * 更新微信底部的菜单
+     */
+    public function menuAction()
+    {
+        $app = $this->_app;
+        $menu_api = $app->menu;
+
+        $buttons = [
+            [
+                "type" => "view",
+                "name" => "有恒财富新闻",
+                "url"  => "http://wealth-market.smallwolf.cn/new/index"
+            ],
+//            [
+//                "name"       => "咨询中心",
+//                "sub_button" => [
+//                    [
+//                        "type" => "view",
+//                        "name" => "个人诊所",
+//                        "url"  => "http://221.232.160.226/xygs3/search.html"
+//                    ],
+//                    [
+//                        "type" => "view",
+//                        "name" => "咨询中心",
+//                        "url"  => "http://weixin.xyzq.com.cn/weixinpost/zxzx/index.html"
+//                    ]
+//                ],
+//            ],
+//
+        ];
+        $response = $menu_api->add($buttons);
+        var_dump($response);
+    }
+
 }

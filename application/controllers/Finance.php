@@ -78,23 +78,24 @@ class FinanceController extends AbstractController
         $cron_info = array();
 
         if ($request->isPost()) {
-            $this->_valid->set_fields($_POST);
-            $valid = $this->_valid->valid(
-                'Models_Crontab',
-                array(
-                    'name' => 'is_valid_name',
-                    'timer' => 'is_valid_timer',
-                    'exec_file' => 'is_valid_exec_file',
-                    'args' => 'is_valid_args',
-                    'redirect' => 'is_valid_redirect',
-                    'server_id' => 'is_valid_server',
-                    'timeout_kill_type' => 'is_valid_timeout_kill_type'
-                )
-            );
-            if (!$valid['status']) {
-                _error_json_encoder($valid['msg']);
-            }
-            $datetime = date('Y-m-d H:i:s');
+            print_r($_POST);die;
+//            $this->_valid->set_fields($_POST);
+//            $valid = $this->_valid->valid(
+//                'Models_Crontab',
+//                array(
+//                    'name' => 'is_valid_name',
+//                    'timer' => 'is_valid_timer',
+//                    'exec_file' => 'is_valid_exec_file',
+//                    'args' => 'is_valid_args',
+//                    'redirect' => 'is_valid_redirect',
+//                    'server_id' => 'is_valid_server',
+//                    'timeout_kill_type' => 'is_valid_timeout_kill_type'
+//                )
+//            );
+//            if (!$valid['status']) {
+//                _error_json_encoder($valid['msg']);
+//            }
+//            $datetime = date('Y-m-d H:i:s');
             try {
                 _success_json_encoder('添加成功');
             } catch (Exception $e) {
