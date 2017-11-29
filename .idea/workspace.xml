@@ -2,10 +2,262 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="76573c57-056e-4ef1-8711-8cb641f5e48a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/finance/add.html" afterPath="$PROJECT_DIR$/application/views/finance/add.html" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/asset/js/wangEditor.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/.travis.yml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/BatchResults.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Collection.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Event/AbstractEvent.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Event/AbstractRequestEvent.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Event/AbstractRetryableEvent.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Event/AbstractTransferEvent.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Event/BeforeEvent.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Event/CompleteEvent.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Event/Emitter.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Event/EmitterInterface.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Event/EndEvent.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Event/ErrorEvent.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Event/EventInterface.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Event/HasEmitterInterface.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Event/HasEmitterTrait.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Event/ListenerAttacherTrait.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Event/ProgressEvent.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Event/RequestEvents.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Event/SubscriberInterface.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Exception/CouldNotRewindStreamException.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Exception/ParseException.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Exception/StateException.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Exception/XmlParseException.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/HasDataTrait.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Message/AbstractMessage.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Message/AppliesHeadersInterface.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Message/FutureResponse.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Message/MessageFactory.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Message/MessageFactoryInterface.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Message/MessageInterface.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Message/MessageParser.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Message/Request.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Message/RequestInterface.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Message/Response.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Message/ResponseInterface.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Mimetypes.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Post/MultipartBody.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Post/PostBody.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Post/PostBodyInterface.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Post/PostFile.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Post/PostFileInterface.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Query.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/QueryParser.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/RequestFsm.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/RingBridge.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Subscriber/Cookie.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Subscriber/History.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Subscriber/HttpError.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Subscriber/Mock.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Subscriber/Prepare.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Subscriber/Redirect.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/ToArrayInterface.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Transaction.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Url.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Utils.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/ringphp/.gitignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/ringphp/.travis.yml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/ringphp/CHANGELOG.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/ringphp/LICENSE" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/ringphp/Makefile" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/ringphp/README.rst" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/ringphp/composer.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/ringphp/docs/Makefile" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/ringphp/docs/client_handlers.rst" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/ringphp/docs/client_middleware.rst" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/ringphp/docs/conf.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/ringphp/docs/futures.rst" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/ringphp/docs/index.rst" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/ringphp/docs/requirements.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/ringphp/docs/spec.rst" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/ringphp/docs/testing.rst" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/ringphp/phpunit.xml.dist" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/ringphp/src/Client/ClientUtils.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/ringphp/src/Client/CurlFactory.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/ringphp/src/Client/CurlHandler.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/ringphp/src/Client/CurlMultiHandler.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/ringphp/src/Client/Middleware.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/ringphp/src/Client/MockHandler.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/ringphp/src/Client/StreamHandler.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/ringphp/src/Core.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/ringphp/src/Exception/CancelledException.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/ringphp/src/Exception/CancelledFutureAccessException.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/ringphp/src/Exception/ConnectException.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/ringphp/src/Exception/RingException.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/ringphp/src/Future/BaseFutureTrait.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/ringphp/src/Future/CompletedFutureArray.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/ringphp/src/Future/CompletedFutureValue.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/ringphp/src/Future/FutureArray.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/ringphp/src/Future/FutureArrayInterface.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/ringphp/src/Future/FutureInterface.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/ringphp/src/Future/FutureValue.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/ringphp/src/Future/MagicFutureTrait.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/ringphp/tests/Client/CurlFactoryTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/ringphp/tests/Client/CurlHandlerTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/ringphp/tests/Client/CurlMultiHandlerTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/ringphp/tests/Client/MiddlewareTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/ringphp/tests/Client/MockHandlerTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/ringphp/tests/Client/Server.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/ringphp/tests/Client/StreamHandlerTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/ringphp/tests/Client/server.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/ringphp/tests/CoreTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/ringphp/tests/Future/CompletedFutureArrayTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/ringphp/tests/Future/CompletedFutureValueTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/ringphp/tests/Future/FutureArrayTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/ringphp/tests/Future/FutureValueTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/ringphp/tests/bootstrap.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/streams/.gitignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/streams/.travis.yml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/streams/CHANGELOG.rst" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/streams/LICENSE" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/streams/Makefile" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/streams/README.rst" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/streams/composer.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/streams/phpunit.xml.dist" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/streams/src/AppendStream.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/streams/src/AsyncReadStream.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/streams/src/BufferStream.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/streams/src/CachingStream.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/streams/src/DroppingStream.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/streams/src/Exception/CannotAttachException.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/streams/src/Exception/SeekException.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/streams/src/FnStream.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/streams/src/GuzzleStreamWrapper.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/streams/src/InflateStream.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/streams/src/LazyOpenStream.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/streams/src/LimitStream.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/streams/src/MetadataStreamInterface.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/streams/src/NoSeekStream.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/streams/src/NullStream.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/streams/src/PumpStream.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/streams/src/Stream.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/streams/src/StreamDecoratorTrait.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/streams/src/StreamInterface.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/streams/src/Utils.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/streams/tests/AppendStreamTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/streams/tests/AsyncReadStreamTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/streams/tests/BufferStreamTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/streams/tests/CachingStreamTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/streams/tests/DroppingStreamTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/streams/tests/Exception/SeekExceptionTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/streams/tests/FnStreamTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/streams/tests/GuzzleStreamWrapperTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/streams/tests/InflateStreamTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/streams/tests/LazyOpenStreamTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/streams/tests/LimitStreamTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/streams/tests/NoSeekStreamTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/streams/tests/NullStreamTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/streams/tests/PumpStreamTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/streams/tests/StreamDecoratorTraitTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/streams/tests/StreamTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/streams/tests/UtilsTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/react/promise/.gitignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/react/promise/.travis.yml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/react/promise/CHANGELOG.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/react/promise/LICENSE" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/react/promise/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/react/promise/composer.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/react/promise/phpunit.xml.dist" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/react/promise/src/CancellablePromiseInterface.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/react/promise/src/CancellationQueue.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/react/promise/src/Deferred.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/react/promise/src/Exception/LengthException.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/react/promise/src/ExtendedPromiseInterface.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/react/promise/src/FulfilledPromise.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/react/promise/src/LazyPromise.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/react/promise/src/Promise.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/react/promise/src/PromiseInterface.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/react/promise/src/PromisorInterface.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/react/promise/src/RejectedPromise.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/react/promise/src/UnhandledRejectionException.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/react/promise/src/functions.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/react/promise/src/functions_include.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/react/promise/tests/CancellationQueueTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/react/promise/tests/DeferredTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/react/promise/tests/FulfilledPromiseTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/react/promise/tests/FunctionAllTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/react/promise/tests/FunctionAnyTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/react/promise/tests/FunctionCheckTypehintTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/react/promise/tests/FunctionMapTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/react/promise/tests/FunctionRaceTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/react/promise/tests/FunctionReduceTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/react/promise/tests/FunctionRejectTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/react/promise/tests/FunctionResolveTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/react/promise/tests/FunctionSomeTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/react/promise/tests/LazyPromiseTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/react/promise/tests/PromiseAdapter/CallbackPromiseAdapter.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/react/promise/tests/PromiseAdapter/PromiseAdapterInterface.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/react/promise/tests/PromiseTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/react/promise/tests/PromiseTest/CancelTestTrait.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/react/promise/tests/PromiseTest/FullTestTrait.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/react/promise/tests/PromiseTest/NotifyTestTrait.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/react/promise/tests/PromiseTest/PromiseFulfilledTestTrait.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/react/promise/tests/PromiseTest/PromisePendingTestTrait.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/react/promise/tests/PromiseTest/PromiseRejectedTestTrait.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/react/promise/tests/PromiseTest/PromiseSettledTestTrait.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/react/promise/tests/PromiseTest/RejectTestTrait.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/react/promise/tests/PromiseTest/ResolveTestTrait.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/react/promise/tests/RejectedPromiseTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/react/promise/tests/Stub/CallableStub.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/react/promise/tests/TestCase.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/react/promise/tests/bootstrap.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/react/promise/tests/fixtures/SimpleFulfilledTestPromise.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/react/promise/tests/fixtures/SimpleFulfilledTestThenable.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/react/promise/tests/fixtures/SimpleRejectedTestPromise.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/react/promise/tests/fixtures/SimpleTestCancellable.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/react/promise/tests/fixtures/SimpleTestCancellableThenable.php" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/application/controllers/Server.php" afterPath="$PROJECT_DIR$/application/controllers/Wechat.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/Abstract.php" afterPath="$PROJECT_DIR$/application/controllers/Abstract.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/finance/article.html" afterPath="$PROJECT_DIR$/application/views/finance/article.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/header.html" afterPath="$PROJECT_DIR$/application/views/header.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/common.php" afterPath="$PROJECT_DIR$/public/common.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.json" afterPath="$PROJECT_DIR$/composer.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.lock" afterPath="$PROJECT_DIR$/composer.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/composer/autoload_files.php" afterPath="$PROJECT_DIR$/vendor/composer/autoload_files.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/composer/autoload_namespaces.php" afterPath="$PROJECT_DIR$/vendor/composer/autoload_namespaces.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" afterPath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/composer/installed.json" afterPath="$PROJECT_DIR$/vendor/composer/installed.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/CHANGELOG.md" afterPath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/CHANGELOG.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/LICENSE" afterPath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/LICENSE" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/README.md" afterPath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/UPGRADING.md" afterPath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/UPGRADING.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/composer.json" afterPath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/composer.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Client.php" afterPath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Client.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/ClientInterface.php" afterPath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/ClientInterface.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Cookie/CookieJar.php" afterPath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Cookie/CookieJar.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Cookie/CookieJarInterface.php" afterPath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Cookie/CookieJarInterface.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Cookie/FileCookieJar.php" afterPath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Cookie/FileCookieJar.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Cookie/SessionCookieJar.php" afterPath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Cookie/SessionCookieJar.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Cookie/SetCookie.php" afterPath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Cookie/SetCookie.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Exception/BadResponseException.php" afterPath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Exception/BadResponseException.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Exception/ConnectException.php" afterPath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Exception/ConnectException.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php" afterPath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Exception/TransferException.php" afterPath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Exception/TransferException.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Pool.php" afterPath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Pool.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/UriTemplate.php" afterPath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/UriTemplate.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/symfony/translation/Catalogue/AbstractOperation.php" afterPath="$PROJECT_DIR$/vendor/symfony/translation/Catalogue/AbstractOperation.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/symfony/translation/DataCollector/TranslationDataCollector.php" afterPath="$PROJECT_DIR$/vendor/symfony/translation/DataCollector/TranslationDataCollector.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/symfony/translation/DataCollectorTranslator.php" afterPath="$PROJECT_DIR$/vendor/symfony/translation/DataCollectorTranslator.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/symfony/translation/Dumper/CsvFileDumper.php" afterPath="$PROJECT_DIR$/vendor/symfony/translation/Dumper/CsvFileDumper.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/symfony/translation/Extractor/AbstractFileExtractor.php" afterPath="$PROJECT_DIR$/vendor/symfony/translation/Extractor/AbstractFileExtractor.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/symfony/translation/Extractor/ExtractorInterface.php" afterPath="$PROJECT_DIR$/vendor/symfony/translation/Extractor/ExtractorInterface.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/symfony/translation/Loader/CsvFileLoader.php" afterPath="$PROJECT_DIR$/vendor/symfony/translation/Loader/CsvFileLoader.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/symfony/translation/Loader/IcuResFileLoader.php" afterPath="$PROJECT_DIR$/vendor/symfony/translation/Loader/IcuResFileLoader.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/symfony/translation/Loader/MoFileLoader.php" afterPath="$PROJECT_DIR$/vendor/symfony/translation/Loader/MoFileLoader.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/symfony/translation/Loader/PoFileLoader.php" afterPath="$PROJECT_DIR$/vendor/symfony/translation/Loader/PoFileLoader.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/symfony/translation/LoggingTranslator.php" afterPath="$PROJECT_DIR$/vendor/symfony/translation/LoggingTranslator.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/symfony/translation/MessageCatalogueInterface.php" afterPath="$PROJECT_DIR$/vendor/symfony/translation/MessageCatalogueInterface.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/symfony/translation/PluralizationRules.php" afterPath="$PROJECT_DIR$/vendor/symfony/translation/PluralizationRules.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/symfony/translation/Tests/PluralizationRulesTest.php" afterPath="$PROJECT_DIR$/vendor/symfony/translation/Tests/PluralizationRulesTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/symfony/translation/Tests/TranslatorTest.php" afterPath="$PROJECT_DIR$/vendor/symfony/translation/Tests/TranslatorTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/symfony/translation/Tests/Writer/TranslationWriterTest.php" afterPath="$PROJECT_DIR$/vendor/symfony/translation/Tests/Writer/TranslationWriterTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/symfony/translation/Translator.php" afterPath="$PROJECT_DIR$/vendor/symfony/translation/Translator.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/symfony/translation/Writer/TranslationWriter.php" afterPath="$PROJECT_DIR$/vendor/symfony/translation/Writer/TranslationWriter.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -23,65 +275,53 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="add.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/application/views/finance/add.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="524">
-              <caret line="263" column="61" lean-forward="false" selection-start-line="263" selection-start-column="61" selection-end-line="263" selection-end-column="61" />
-              <folding>
-                <marker date="1511841007000" expanded="true" signature="10097:10106" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="header.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/views/header.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
-              <caret line="5" column="84" lean-forward="false" selection-start-line="5" selection-start-column="84" selection-end-line="5" selection-end-column="84" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Admin.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/controllers/Admin.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Finance.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/controllers/Finance.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="577">
-              <caret line="48" column="51" lean-forward="true" selection-start-line="48" selection-start-column="51" selection-end-line="48" selection-end-column="51" />
+            <state relative-caret-position="648">
+              <caret line="48" column="51" lean-forward="false" selection-start-line="48" selection-start-column="51" selection-end-line="48" selection-end-column="51" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="article.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/views/finance/article.html">
+      <file leaf-file-name="Wechat.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/application/controllers/Wechat.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="436">
-              <caret line="117" column="0" lean-forward="false" selection-start-line="117" selection-start-column="0" selection-end-line="117" selection-end-column="0" />
+            <state relative-caret-position="396">
+              <caret line="43" column="56" lean-forward="true" selection-start-line="43" selection-start-column="56" selection-end-line="43" selection-end-column="56" />
               <folding>
-                <element signature="n#style#0;n#p#0;n#form#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="e#8#54#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="common.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/common.php">
+      <file leaf-file-name="User.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/controllers/User.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="66">
-              <caret line="3" column="15" lean-forward="false" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="15" />
+            <state relative-caret-position="110">
+              <caret line="5" column="39" lean-forward="false" selection-start-line="5" selection-start-column="39" selection-end-line="5" selection-end-column="39" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Upload.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/controllers/Upload.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="528">
+              <caret line="24" column="60" lean-forward="false" selection-start-line="24" selection-start-column="60" selection-end-line="24" selection-end-column="60" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Abstract.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/controllers/Abstract.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-66">
+              <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -96,6 +336,11 @@
       <find>error</find>
       <find>editor</find>
       <find>fileList</find>
+      <find>Zindex</find>
+      <find>customConfig</find>
+      <find>this.config</find>
+      <find>wang</find>
+      <find>height</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -113,17 +358,20 @@
         <option value="$PROJECT_DIR$/application/controllers/Login.php" />
         <option value="$PROJECT_DIR$/application/library/Models/Login.php" />
         <option value="$PROJECT_DIR$/application/library/Util/Common.php" />
-        <option value="$PROJECT_DIR$/application/controllers/Abstract.php" />
         <option value="$PROJECT_DIR$/conf/application.ini" />
         <option value="$PROJECT_DIR$/application/controllers/Upload.php" />
         <option value="$PROJECT_DIR$/application/views/sidebar.html" />
         <option value="$PROJECT_DIR$/application/controllers/Finance.php" />
-        <option value="$PROJECT_DIR$/public/asset/js/wangEditor.js" />
         <option value="$PROJECT_DIR$/application/library/Ldap.php" />
-        <option value="$PROJECT_DIR$/application/views/finance/article.html" />
         <option value="$PROJECT_DIR$/application/views/header.html" />
         <option value="$PROJECT_DIR$/public/common.php" />
         <option value="$PROJECT_DIR$/application/views/finance/add.html" />
+        <option value="$PROJECT_DIR$/public/asset/js/wangEditor.js" />
+        <option value="$PROJECT_DIR$/application/views/finance/article.html" />
+        <option value="$PROJECT_DIR$/public/asset/js/wangEditor.min.js" />
+        <option value="$PROJECT_DIR$/composer.json" />
+        <option value="$PROJECT_DIR$/application/controllers/Abstract.php" />
+        <option value="$PROJECT_DIR$/application/controllers/Wechat.php" />
       </list>
     </option>
   </component>
@@ -158,6 +406,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -205,7 +454,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -219,6 +467,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public/asset/js" />
       <recent name="$PROJECT_DIR$/application/views/finance" />
       <recent name="$PROJECT_DIR$/application/controllers" />
     </key>
@@ -294,26 +543,26 @@
       <workItem from="1511247457989" duration="1020000" />
       <workItem from="1511255136771" duration="8909000" />
       <workItem from="1511412009733" duration="7087000" />
-      <workItem from="1511512315981" duration="17754000" />
+      <workItem from="1511512315981" duration="24708000" />
+      <workItem from="1511929468790" duration="2754000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34792000" />
+    <option name="totallyTimeSpent" value="44500000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1651" height="1027" extended-state="0" />
+    <frame x="0" y="23" width="1651" height="1027" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18210068" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18396519" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22994652" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22994652" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32941177" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.06631016" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -321,6 +570,7 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
@@ -336,28 +586,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/public/nginx.conf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/library/Util/Session.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1121">
-          <caret line="6" column="6" lean-forward="false" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/Config.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="23" column="19" lean-forward="false" selection-start-line="23" selection-start-column="19" selection-end-line="23" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/library/Cache/Driver/Redis.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="132">
@@ -377,7 +605,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="302">
           <caret line="212" column="20" lean-forward="false" selection-start-line="212" selection-start-column="20" selection-end-line="212" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -401,7 +628,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="308">
           <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -425,7 +651,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="352">
           <caret line="16" column="29" lean-forward="true" selection-start-line="16" selection-start-column="29" selection-end-line="16" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -441,7 +666,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
           <caret line="23" column="23" lean-forward="false" selection-start-line="23" selection-start-column="23" selection-end-line="23" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -456,7 +680,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="352">
           <caret line="16" column="32" lean-forward="true" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -586,14 +809,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/Abstract.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-132">
-          <caret line="5" column="15" lean-forward="false" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/index.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="132">
@@ -606,7 +821,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="110">
           <caret line="64" column="24" lean-forward="true" selection-start-line="64" selection-start-column="24" selection-end-line="80" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -614,7 +828,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="578">
           <caret line="318" column="45" lean-forward="false" selection-start-line="318" selection-start-column="36" selection-end-line="318" selection-end-column="45" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -622,40 +835,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="412">
           <caret line="36" column="33" lean-forward="false" selection-start-line="36" selection-start-column="24" selection-end-line="36" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/asset/js/wangEditor.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="3" column="42" lean-forward="false" selection-start-line="3" selection-start-column="42" selection-end-line="3" selection-end-column="42" />
-          <folding>
-            <marker date="1511758643000" expanded="true" signature="4771:4783" ph="..." />
-            <marker date="1511758643000" expanded="true" signature="5182:5194" ph="..." />
-            <marker date="1511758643000" expanded="true" signature="20840:20848" ph="..." />
-            <marker date="1511758643000" expanded="true" signature="25302:25316" ph="..." />
-            <marker date="1511758643000" expanded="true" signature="27313:27344" ph="..." />
-            <marker date="1511758643000" expanded="true" signature="27456:27485" ph="..." />
-            <marker date="1511758643000" expanded="true" signature="27596:27625" ph="..." />
-            <marker date="1511758643000" expanded="true" signature="28243:28249" ph=" " />
-            <marker date="1511758643000" expanded="true" signature="28285:28291" ph=" " />
-            <marker date="1511758643000" expanded="true" signature="28691:28760" ph="..." />
-            <marker date="1511758643000" expanded="true" signature="30232:30238" ph=" " />
-            <marker date="1511758643000" expanded="true" signature="32206:32275" ph="..." />
-            <marker date="1511758643000" expanded="true" signature="32316:32374" ph="..." />
-            <marker date="1511758643000" expanded="true" signature="33660:33673" ph="..." />
-            <marker date="1511758643000" expanded="true" signature="42582:42589" ph="..." />
-            <marker date="1511758643000" expanded="true" signature="43891:43906" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/Upload.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="24" column="60" lean-forward="false" selection-start-line="24" selection-start-column="60" selection-end-line="24" selection-end-column="60" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -663,15 +842,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
           <caret line="12" column="25" lean-forward="false" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/Server.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-308">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -687,7 +857,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="419">
           <caret line="27" column="33" lean-forward="false" selection-start-line="27" selection-start-column="33" selection-end-line="27" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -695,41 +864,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="352">
           <caret line="16" column="31" lean-forward="false" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/Finance.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="577">
-          <caret line="48" column="51" lean-forward="true" selection-start-line="48" selection-start-column="51" selection-end-line="48" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/Admin.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/finance/article.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="436">
-          <caret line="117" column="0" lean-forward="false" selection-start-line="117" selection-start-column="0" selection-end-line="117" selection-end-column="0" />
-          <folding>
-            <element signature="n#style#0;n#p#0;n#form#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/header.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="5" column="84" lean-forward="false" selection-start-line="5" selection-start-column="84" selection-end-line="5" selection-end-column="84" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -741,12 +875,95 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/header.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="5" column="84" lean-forward="false" selection-start-line="5" selection-start-column="84" selection-end-line="5" selection-end-column="84" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/Admin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="5" column="43" lean-forward="false" selection-start-line="5" selection-start-column="43" selection-end-line="5" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/asset/js/wangEditor.js" />
+    <entry file="file://$PROJECT_DIR$/public/asset/js/wangEditor.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9768">
+          <caret line="1" column="14297" lean-forward="false" selection-start-line="1" selection-start-column="14297" selection-end-line="1" selection-end-column="14297" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/application/views/finance/add.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="524">
-          <caret line="263" column="61" lean-forward="false" selection-start-line="263" selection-start-column="61" selection-end-line="263" selection-end-column="61" />
+        <state relative-caret-position="4510">
+          <caret line="205" column="0" lean-forward="false" selection-start-line="205" selection-start-column="0" selection-end-line="205" selection-end-column="0" />
           <folding>
             <marker date="1511841007000" expanded="true" signature="10097:10106" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/finance/article.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="159" column="35" lean-forward="false" selection-start-line="159" selection-start-column="35" selection-end-line="159" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/composer.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="17" column="20" lean-forward="true" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/Finance.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="648">
+          <caret line="48" column="51" lean-forward="false" selection-start-line="48" selection-start-column="51" selection-end-line="48" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/Abstract.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-66">
+          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="5" column="39" lean-forward="false" selection-start-line="5" selection-start-column="39" selection-end-line="5" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/Upload.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="528">
+          <caret line="24" column="60" lean-forward="false" selection-start-line="24" selection-start-column="60" selection-end-line="24" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/Wechat.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="43" column="56" lean-forward="true" selection-start-line="43" selection-start-column="56" selection-end-line="43" selection-end-column="56" />
+          <folding>
+            <element signature="e#8#54#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>

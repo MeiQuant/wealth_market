@@ -8,10 +8,13 @@ class ComposerStaticInit048cf42ad8b7fab5ce5a23bb36d16ad6
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
+        'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
+        'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         '65fec9ebcfbb3cbb4fd0d519687aea01' => __DIR__ . '/..' . '/danielstjules/stringy/src/Create.php',
+        '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         '72579e7bd17821bb1321b87411366eae' => __DIR__ . '/..' . '/illuminate/support/helpers.php',
-        'ad155f8f1cf0d418fe49e248db8c661b' => __DIR__ . '/..' . '/react/promise/src/functions_include.php',
         '9f7f3f9b1f82484e76bcd07b985a2d2f' => __DIR__ . '/..' . '/symfony/var-dumper/Symfony/Component/VarDumper/Resources/functions/dump.php',
+        '9e090711773bfc38738f5dbaee5a7f14' => __DIR__ . '/..' . '/overtrue/wechat/src/Payment/helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -19,15 +22,23 @@ class ComposerStaticInit048cf42ad8b7fab5ce5a23bb36d16ad6
         array (
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Component\\Translation\\' => 30,
+            'Symfony\\Component\\HttpFoundation\\' => 33,
+            'Symfony\\Bridge\\PsrHttpMessage\\' => 30,
             'Stringy\\' => 8,
-        ),
-        'R' => 
-        array (
-            'React\\Promise\\' => 14,
         ),
         'P' => 
         array (
             'Psr\\Log\\' => 8,
+            'Psr\\Http\\Message\\' => 17,
+            'Psr\\Container\\' => 14,
+        ),
+        'O' => 
+        array (
+            'Overtrue\\Socialite\\' => 19,
+        ),
+        'M' => 
+        array (
+            'Monolog\\' => 8,
         ),
         'I' => 
         array (
@@ -39,9 +50,17 @@ class ComposerStaticInit048cf42ad8b7fab5ce5a23bb36d16ad6
         ),
         'G' => 
         array (
-            'GuzzleHttp\\Stream\\' => 18,
-            'GuzzleHttp\\Ring\\' => 16,
+            'GuzzleHttp\\Psr7\\' => 16,
+            'GuzzleHttp\\Promise\\' => 19,
             'GuzzleHttp\\' => 11,
+        ),
+        'E' => 
+        array (
+            'EasyWeChat\\' => 11,
+        ),
+        'D' => 
+        array (
+            'Doctrine\\Common\\Cache\\' => 22,
         ),
         'C' => 
         array (
@@ -58,17 +77,37 @@ class ComposerStaticInit048cf42ad8b7fab5ce5a23bb36d16ad6
         array (
             0 => __DIR__ . '/..' . '/symfony/translation',
         ),
+        'Symfony\\Component\\HttpFoundation\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/http-foundation',
+        ),
+        'Symfony\\Bridge\\PsrHttpMessage\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/psr-http-message-bridge',
+        ),
         'Stringy\\' => 
         array (
             0 => __DIR__ . '/..' . '/danielstjules/stringy/src',
         ),
-        'React\\Promise\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/react/promise/src',
-        ),
         'Psr\\Log\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
+        ),
+        'Psr\\Http\\Message\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/http-message/src',
+        ),
+        'Psr\\Container\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/container/src',
+        ),
+        'Overtrue\\Socialite\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/overtrue/socialite/src',
+        ),
+        'Monolog\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
         ),
         'Illuminate\\Support\\' => 
         array (
@@ -90,17 +129,25 @@ class ComposerStaticInit048cf42ad8b7fab5ce5a23bb36d16ad6
         array (
             0 => __DIR__ . '/..' . '/illuminate/container',
         ),
-        'GuzzleHttp\\Stream\\' => 
+        'GuzzleHttp\\Psr7\\' => 
         array (
-            0 => __DIR__ . '/..' . '/guzzlehttp/streams/src',
+            0 => __DIR__ . '/..' . '/guzzlehttp/psr7/src',
         ),
-        'GuzzleHttp\\Ring\\' => 
+        'GuzzleHttp\\Promise\\' => 
         array (
-            0 => __DIR__ . '/..' . '/guzzlehttp/ringphp/src',
+            0 => __DIR__ . '/..' . '/guzzlehttp/promises/src',
         ),
         'GuzzleHttp\\' => 
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
+        ),
+        'EasyWeChat\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/overtrue/wechat/src',
+        ),
+        'Doctrine\\Common\\Cache\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/doctrine/cache/lib/Doctrine/Common/Cache',
         ),
         'Carbon\\' => 
         array (
@@ -120,6 +167,13 @@ class ComposerStaticInit048cf42ad8b7fab5ce5a23bb36d16ad6
                 0 => __DIR__ . '/..' . '/symfony/debug',
             ),
         ),
+        'P' => 
+        array (
+            'Pimple' => 
+            array (
+                0 => __DIR__ . '/..' . '/pimple/pimple/src',
+            ),
+        ),
         'D' => 
         array (
             'Doctrine\\Common\\Inflector\\' => 
@@ -137,10 +191,12 @@ class ComposerStaticInit048cf42ad8b7fab5ce5a23bb36d16ad6
         'CholeskyDecomposition' => __DIR__ . '/../..' . '/application/library/Phpexcel/PHPExcel/Shared/JAMA/CholeskyDecomposition.php',
         'Cli' => __DIR__ . '/../..' . '/application/library/Cli.php',
         'Config' => __DIR__ . '/../..' . '/application/library/Config.php',
+        'ConfigController' => __DIR__ . '/../..' . '/application/controllers/Config.php',
         'CronController' => __DIR__ . '/../..' . '/application/controllers/Cron.php',
         'DaemonController' => __DIR__ . '/../..' . '/application/controllers/Daemon.php',
         'EigenvalueDecomposition' => __DIR__ . '/../..' . '/application/library/Phpexcel/PHPExcel/Shared/JAMA/EigenvalueDecomposition.php',
         'ErrorController' => __DIR__ . '/../..' . '/application/controllers/Error.php',
+        'FinanceController' => __DIR__ . '/../..' . '/application/controllers/Finance.php',
         'Http\\CaseInsensitiveArray' => __DIR__ . '/../..' . '/application/library/Http/CaseInsensitiveArray.php',
         'Http\\Curl' => __DIR__ . '/../..' . '/application/library/Http/Curl.php',
         'Http\\MultiCurl' => __DIR__ . '/../..' . '/application/library/Http/MultiCurl.php',
@@ -151,7 +207,10 @@ class ComposerStaticInit048cf42ad8b7fab5ce5a23bb36d16ad6
         'LoginController' => __DIR__ . '/../..' . '/application/controllers/Login.php',
         'Mail_mail' => __DIR__ . '/../..' . '/application/library/Mail/Mail_mail.php',
         'Memcache' => __DIR__ . '/../..' . '/application/library/Cache/Driver/Memcache.php',
+        'Models_Config' => __DIR__ . '/../..' . '/application/library/Models/Config.php',
         'Models_Crontab' => __DIR__ . '/../..' . '/application/library/Models/Crontab.php',
+        'Models_Daemon' => __DIR__ . '/../..' . '/application/library/Models/Daemon.php',
+        'Models_Daemonrecord' => __DIR__ . '/../..' . '/application/library/Models/Daemonrecord.php',
         'Models_Eloquent' => __DIR__ . '/../..' . '/application/library/Models/Eloquent.php',
         'Models_Login' => __DIR__ . '/../..' . '/application/library/Models/Login.php',
         'Models_Server' => __DIR__ . '/../..' . '/application/library/Models/Server.php',
@@ -337,19 +396,20 @@ class ComposerStaticInit048cf42ad8b7fab5ce5a23bb36d16ad6
         'POP3' => __DIR__ . '/../..' . '/application/library/Mail/class.pop3.php',
         'PclZip' => __DIR__ . '/../..' . '/application/library/Phpexcel/PHPExcel/Shared/PCLZip/pclzip.lib.php',
         'Proc' => __DIR__ . '/../..' . '/application/library/Proc.php',
+        'Process' => __DIR__ . '/../..' . '/application/library/Process.php',
         'PublicController' => __DIR__ . '/../..' . '/application/controllers/Public.php',
         'Redis' => __DIR__ . '/../..' . '/application/library/Cache/Redis.php',
         'RedisArray' => __DIR__ . '/../..' . '/application/library/Cache/Redis.php',
         'RedisException' => __DIR__ . '/../..' . '/application/library/Cache/Redis.php',
         'SMS_Send' => __DIR__ . '/../..' . '/application/library/SMS/Send.php',
-        'SMS_Sender' => __DIR__ . '/../..' . '/application/library/SMS/Sender.php',
-        'SMS_Weibo' => __DIR__ . '/../..' . '/application/library/SMS/Weibo.php',
         'SMTP' => __DIR__ . '/../..' . '/application/library/Mail/class.smtp.php',
         'ServerController' => __DIR__ . '/../..' . '/application/controllers/Server.php',
         'SingularValueDecomposition' => __DIR__ . '/../..' . '/application/library/Phpexcel/PHPExcel/Shared/JAMA/SingularValueDecomposition.php',
         'Tool' => __DIR__ . '/../..' . '/application/library/Tool.php',
+        'UploadController' => __DIR__ . '/../..' . '/application/controllers/Upload.php',
         'Upload_Image' => __DIR__ . '/../..' . '/application/library/Upload/Image.php',
         'Upload_Upload' => __DIR__ . '/../..' . '/application/library/Upload/Upload.php',
+        'UserController' => __DIR__ . '/../..' . '/application/controllers/User.php',
         'UserEloquentModel' => __DIR__ . '/../..' . '/application/library/Models/User.php',
         'Util_Common' => __DIR__ . '/../..' . '/application/library/Util/Common.php',
         'Util_CryptAES' => __DIR__ . '/../..' . '/application/library/Util/CryptAES.php',
