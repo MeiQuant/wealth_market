@@ -1,16 +1,4 @@
 <?php
 
-
-echo 1;
-function a()
-{
-    \Swoole\Timer::after(2000, function() {
-        echo "start ....\n";
-        echo date('Y-m-d H:i:s');
-        echo PHP_EOL;
-        a();
-        sleep(1);
-    });
-}
-
-a();
+$a = [['name' => '我的', 'author' => '小王'], ['name' => '我的1', 'author' => '小王111']];
+var_dump(json_encode($a));

@@ -19,6 +19,7 @@
         .CSSearchTbl tbody tr td.right{ text-align: left;}
         .CSSearchTbl tbody tr td.left{ text-align: right;}
         .table-responsive{ display: none;}
+        #WU_FILE_0{width: 31%;margin-left: 25%;}
     </style>
 </head>
 
@@ -67,12 +68,13 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="name"> 财经早报语音：</label>
                                 <div id="uploader" class="wu-example">
-                                    <!--用来存放文件信息-->
-                                    <div id="thelist" class="uploader-list"></div>
+
                                     <div class="btns">
                                         <div id="picker">选择文件</div>
-                                        <span id="ctlBtn" class="btn btn-default">开始上传</span>
+                                        <div id="ctlBtn" class="btn btn-default" style="position: absolute;margin-left:31%;margin-top:-46px;">开始上传</div>
                                     </div>
+                                    <!--用来存放文件信息-->
+                                    <div id="thelist" class="uploader-list"></div>
                                 </div>
                             </div>
 
@@ -83,24 +85,24 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right">大盘指数： </label>
                                 <div class="col-sm-9">
-                                    <span class=""><input type="text"  class="col-xs-10 col-sm-5"  placeholder=" 格式: 上证指数/3393.5/+4.91/0.28% "/></span>
-                                    <span><input type="text"  class="col-xs-10 col-sm-5" /></span>
+                                    <input type="text"  class="col-xs-10 col-sm-5"  placeholder=" 格式: 上证指数/3393.5/+4.91/0.28% "/>
+                                    <input type="text"  class="col-xs-10 col-sm-5" style="margin-left:20px;" />
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right">大盘指数： </label>
                                 <div class="col-sm-9">
-                                    <span><input type="text"  class="col-xs-10 col-sm-5" /></span>
-                                    <span><input type="text"  class="col-xs-10 col-sm-5" /></span>
+                                    <input type="text"  class="col-xs-10 col-sm-5" />
+                                    <input type="text"  class="col-xs-10 col-sm-5" style="margin-left:20px;" />
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right">大盘指数： </label>
                                 <div class="col-sm-9">
-                                    <span><input type="text"  class="col-xs-10 col-sm-5" /></span>
-                                    <span><input type="text"  class="col-xs-10 col-sm-5" /></span>
+                                    <input type="text"  class="col-xs-10 col-sm-5" />
+                                    <input type="text"  class="col-xs-10 col-sm-5" style="margin-left:20px;" />
                                 </div>
                             </div>
 
@@ -149,11 +151,9 @@
                                 <div id="uploader-demo">
                                     <!--用来存放item-->
                                     <div id="fileList" class="uploader-list"></div>
-                                    <div id="filePicker">选择图片</div>
                                 </div>
-
-
-                                <div class="col-sm-9">
+                                <div class="col-sm-9" style="margin-left:25%;margin-top:-1px;">
+                                    <div id="filePicker">选择图片</div>
                                     <input type="text" id="qr_code" name="company" placeholder="" class="col-xs-10 col-sm-5" />
                                 </div>
                             </div>
@@ -207,9 +207,11 @@
 <script src="<?= BASE_URL ?>/js/webuploader.min.js"></script>
 <script>
 
+
     $(".add_stock").on('click', function(){
         // 最多添加6个
     });
+
     var uploader = WebUploader.create({
 
         // 文件接收服务端。
@@ -330,26 +332,27 @@
 
 
     // 文件上传过程中创建进度条实时显示。
-//    uploader2.on( 'uploadProgress', function( file, percentage ) {
-//        var $li = $( '#'+file.id ),
-//            $percent = $li.find('.progress span');
-//
-//        // 避免重复创建
-//        if ( !$percent.length ) {
-//            $percent = $('<p class="progress"><span></span></p>')
-//                .appendTo( $li )
-//                .find('span');
-//        }
-//
-//        $percent.css( 'width', percentage * 100 + '%' );
-//    });
+    //    uploader2.on( 'uploadProgress', function( file, percentage ) {
+    //        var $li = $( '#'+file.id ),
+    //            $percent = $li.find('.progress span');
+    //
+    //        // 避免重复创建
+    //        if ( !$percent.length ) {
+    //            $percent = $('<p class="progress"><span></span></p>')
+    //                .appendTo( $li )
+    //                .find('span');
+    //        }
+    //
+    //        $percent.css( 'width', percentage * 100 + '%' );
+    //    });
 
     // 文件上传成功，给item添加成功class, 用样式标记上传成功。
     uploader2.on( 'uploadSuccess', function( file , response) {
         var raw = response._raw;
         raw = JSON.parse(raw);
         var savename = raw[0].savename;
-        alert('服务器返回的名字为: ' + savename);
+//        alert('服务器返回的名字为: ' + savename);
+        $('#qr_code').val('服务器返回的名字为: ' + savename);
         $( '#'+file.id ).addClass('upload-state-done');
     });
 

@@ -137,15 +137,14 @@
 <script src="<?= BASE_URL ?>/js/wangEditor.min.js"></script>
 
 <script>
-    var E = window.wangEditor
+    var E = window.wangEditor;
 
-    var editor1 = new E('#editor1')
-    editor1.create()
-
-    //    var editor2 = new E('#editor2')
-    //    editor2.create()
+    var editor1 = new E('#editor1');
+    editor1.create();
 
     var num= 0, array_str=[];
+    var editor_arr = [];
+    editor_arr.push(editor1);
     array_str[0]='editor1';
     $('.add_new').on('click',function(){
         var _this = $(this);
@@ -165,6 +164,7 @@
         var new_name = array_str[num];
         new_name = new E('#'+array_str[num]);
         new_name.create();
+        editor_arr.push(new_name);
     });
 
 
@@ -172,34 +172,38 @@
         var _sub_this = $(this);
         var _parent_div = _sub_this.parent().parent().parent();
         _parent_div.remove();
-    })
+    });
 
 
-</script>
-<script>
     $(".btn-info").on('click', function(){
         var module_name = $("input[name=module]").val();
         var _input_title = $("input[name=title]");
         var _input_author = $("input[name=author]");
 
+        var _editor = $("div[id^='editor']");
 
-        _input_title[0].val();
-
-
-
-
+        var jsonstr = '[';
         _input_title.each(function(index, ele){
-            console.log(index);
             var _this = $(this);
-            var one_title = _this.val();  // 每个标题的值
-//            var one_author =
+            var title = _this.val();  // 每个标题的值
+            var author = _input_author.eq(index).val();
+            var editor_content = editor_arr[index].txt.html();
+
+            jsonstr += '{';
+            jsonstr += '"title":' + '"' + title + '",';
+            jsonstr += '"author":' + '"' + author+ '",';
+            jsonstr += '"editor_content":' + '"' + editor_content + '"';
+            jsonstr += '}';
+            jsonstr += ',';
+
+
         });
-//        console.log(_input_title.length);
-        return ;
+        jsonstr = jsonstr.substring(0, jsonstr.length - 1);
+        jsonstr += ']';
         $.ajax({
             type : 'post',
-            url : '/server/add',
-            data : $("form").serialize(),
+            url : '/finance/article',
+            data : {module_name : module_name, content : jsonstr},
             dataType : 'json',
             success : function(msg){
                 if (msg.status) {
@@ -217,6 +221,8 @@
     });
 
 
+
 </script>
+
 </body>
 </html>

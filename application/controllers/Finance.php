@@ -18,8 +18,10 @@ class FinanceController extends AbstractController
 
     public function testAction()
     {
-        die(json_encode(array('sucess' => true, )));
-        print_r($_FILES);
+        $ret = DB::table('finance_article')->insert([
+            ['module' => 1, 'content' => 2]
+        ]);
+        print_r($ret);die;
     }
 
     /**
@@ -75,33 +77,25 @@ class FinanceController extends AbstractController
     {
         $request = $this->getRequest();
         $finance_id = Util_Common::get('finance_id');
-        $cron_info = array();
 
         if ($request->isPost()) {
-            print_r($_POST);die;
-//            $this->_valid->set_fields($_POST);
-//            $valid = $this->_valid->valid(
-//                'Models_Crontab',
-//                array(
-//                    'name' => 'is_valid_name',
-//                    'timer' => 'is_valid_timer',
-//                    'exec_file' => 'is_valid_exec_file',
-//                    'args' => 'is_valid_args',
-//                    'redirect' => 'is_valid_redirect',
-//                    'server_id' => 'is_valid_server',
-//                    'timeout_kill_type' => 'is_valid_timeout_kill_type'
-//                )
-//            );
-//            if (!$valid['status']) {
-//                _error_json_encoder($valid['msg']);
-//            }
-//            $datetime = date('Y-m-d H:i:s');
+            $module = trim($_POST['module_name']);
+            $content_json = trim($_POST['content']);
+            $content_array = json_decode($content_json, true);
+            if (empty($content_array)) {
+                _error_json_encoder('数据不合法');
+            }
             try {
-                _success_json_encoder('添加成功');
-            } catch (Exception $e) {
+                // @todo, 数据校验
+                $ret = DB::table('finance_article')->insert([
+                    ['module' => $module, 'content' => $content_json]
+                ]);
+                if ($ret !== false) {
+                    _success_json_encoder('添加成功');
+                }
+            } catch (\Exception $e) {
                 _error_json_encoder('添加失败' . $e->getMessage());
             }
-
         }
 
         $this->getView()->assign(
