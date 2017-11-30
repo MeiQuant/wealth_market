@@ -230,13 +230,13 @@ function _json_encoder($data, $option = 0)
     echo json_encode($data, $option);
 }
 
-function _error_json_encoder($message = '', $option = 0)
+function _error_json_encoder($message = '', $option = true)
 {
     _json_encoder(array('msg' => $message, 'status' => false), $option);
     exit(0);
 }
 
-function _success_json_encoder($message = '', $option = 0)
+function _success_json_encoder($message = '', $option = true)
 {
     _json_encoder(array('msg' => $message, 'status' => true), $option);
     exit(0);

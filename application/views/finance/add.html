@@ -66,8 +66,9 @@
                             <h1>顶部区域</h1>
                             <!-- #section:elements.form -->
                             <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="name"> 财经早报语音：</label>
+                                <label class="col-sm-3 control-label no-padding-right"> 语音上传：</label>
                                 <div id="uploader" class="wu-example">
+
 
                                     <div class="btns">
                                         <div id="picker">选择文件</div>
@@ -76,8 +77,21 @@
                                     <!--用来存放文件信息-->
                                     <div id="thelist" class="uploader-list"></div>
                                 </div>
+
                             </div>
 
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="company"> 语音路径：</label>
+
+                                <div class="col-sm-9">
+                                    <input type="text" id="audio" value="<?php if(isset($page['audio'])) {echo $page['audio'];}?>" name="audio" readonly="readonly" placeholder="" class="col-xs-10 col-sm-5" />
+                                </div>
+                            </div>
+
+
+                            <!--<div class="col-sm-9" style="margin-left:355px;">-->
+                                <!--<input type="text" id="audio" name="audio" placeholder="" class="col-xs-10 col-sm-5" />-->
+                            <!--</div>-->
 
                             <h1>大盘指数区域</h1>
 
@@ -85,24 +99,24 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right">大盘指数： </label>
                                 <div class="col-sm-9">
-                                    <input type="text"  class="col-xs-10 col-sm-5"  placeholder=" 格式: 上证指数/3393.5/+4.91/0.28% "/>
-                                    <input type="text"  class="col-xs-10 col-sm-5" style="margin-left:20px;" />
+                                    <input type="text"  name="stock_market[]" value="<?php if(isset($page['stock_market'][0])) {echo $page['stock_market'][0];}?>" class="col-xs-10 col-sm-5"  placeholder=" 格式: 上证指数/3393.5/+4.91/0.28% "/>
+                                    <input type="text"   name="stock_market[]" value="<?php if(isset($page['stock_market'][1])) {echo $page['stock_market'][1];}?>" class="col-xs-10 col-sm-5" style="margin-left:20px;" />
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right">大盘指数： </label>
                                 <div class="col-sm-9">
-                                    <input type="text"  class="col-xs-10 col-sm-5" />
-                                    <input type="text"  class="col-xs-10 col-sm-5" style="margin-left:20px;" />
+                                    <input type="text"  name="stock_market[]" value="<?php if(isset($page['stock_market'][2])) {echo $page['stock_market'][2];}?>" class="col-xs-10 col-sm-5" />
+                                    <input type="text" name="stock_market[]"  value="<?php if(isset($page['stock_market'][3])) {echo $page['stock_market'][3];}?>" class="col-xs-10 col-sm-5" style="margin-left:20px;" />
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right">大盘指数： </label>
                                 <div class="col-sm-9">
-                                    <input type="text"  class="col-xs-10 col-sm-5" />
-                                    <input type="text"  class="col-xs-10 col-sm-5" style="margin-left:20px;" />
+                                    <input type="text" name="stock_market[]"  value="<?php if(isset($page['stock_market'][4])) {echo $page['stock_market'][4];}?>" class="col-xs-10 col-sm-5" />
+                                    <input type="text" name="stock_market[]"  value="<?php if(isset($page['stock_market'][5])) {echo $page['stock_market'][5];}?>" class="col-xs-10 col-sm-5" style="margin-left:20px;" />
                                 </div>
                             </div>
 
@@ -118,7 +132,7 @@
                                 <label class="col-sm-3 control-label no-padding-right" for="company"> 公司名称：</label>
 
                                 <div class="col-sm-9">
-                                    <input type="text" id="company" name="company" placeholder="" class="col-xs-10 col-sm-5" />
+                                    <input type="text" id="company" value="<?php if(isset($page['company'])) {echo $page['company'];}?>" name="company" placeholder="" class="col-xs-10 col-sm-5" />
                                 </div>
                             </div>
 
@@ -127,15 +141,15 @@
                                 <label class="col-sm-3 control-label no-padding-right" for="strategy"> 资产配置策略：</label>
 
                                 <div class="col-sm-9">
-                                    <input type="text" id="strategy" name="strategy" placeholder="资产配置策略" class="col-xs-10 col-sm-5" />
+                                    <input type="text" id="strategy" value="<?php if(isset($page['asset_strategy'])) {echo $page['asset_strategy'];}?>" name="strategy" placeholder="资产配置策略" class="col-xs-10 col-sm-5" />
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="reason"> 推荐理由：</label>
+                                <label class="col-sm-3 control-label no-padding-right" for="introduce"> 推荐理由：</label>
 
                                 <div class="col-sm-9">
-                                    <input type="text" id="reason" name="strategy" placeholder="推荐理由" class="col-xs-10 col-sm-5" />
+                                    <input type="text" id="introduce" name="introduce" value="<?php if(isset($page['introduce'])) {echo $page['introduce'];}?>" placeholder="推荐理由" class="col-xs-10 col-sm-5" />
                                 </div>
                             </div>
 
@@ -154,24 +168,24 @@
                                 </div>
                                 <div class="col-sm-9" style="margin-left:25%;margin-top:-1px;">
                                     <div id="filePicker">选择图片</div>
-                                    <input type="text" id="qr_code" name="company" placeholder="" class="col-xs-10 col-sm-5" />
+                                    <input type="text" id="qr_code" readonly="readonly"  value="<?php if(isset($page['qr_code'])) {echo $page['qr_code'];}?>" name="qr_code" placeholder="" class="col-xs-10 col-sm-5" />
                                 </div>
                             </div>
 
 
                             <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="article_link"> 文章链接：</label>
+                                <label class="col-sm-3 control-label no-padding-right" for="link"> 文章链接：</label>
 
                                 <div class="col-sm-9">
-                                    <input type="text" id="article_link" name="strategy" placeholder="文章链接" class="col-xs-10 col-sm-5" />
+                                    <input type="text" id="link" value="<?php if(isset($page['link'])) {echo $page['link'];}?>" name="link" placeholder="文章链接" class="col-xs-10 col-sm-5" />
                                 </div>
                             </div>
 
-
+                            <input type="hidden" value="<?php if(isset($page['id'])) {echo $page['id'];}?>" name="hidden_page_id"/>
 
                             <div class="clearfix form-actions">
                                 <div class="col-md-offset-3 col-md-9">
-                                    <button class="btn btn-info" type="button">
+                                    <button class="btn btn-info add_article" type="button">
                                         <i class="ace-icon fa fa-check bigger-110"></i>
                                         立即提交
                                     </button>
@@ -184,7 +198,6 @@
                                 </div>
                             </div>
 
-                            <input type="hidden" value="<?php echo $finance_id;?>" id="hidden_update_id" />
                         </form>
 
                     </div><!-- /.col -->
@@ -206,11 +219,6 @@
 
 <script src="<?= BASE_URL ?>/js/webuploader.min.js"></script>
 <script>
-
-
-    $(".add_stock").on('click', function(){
-        // 最多添加6个
-    });
 
     var uploader = WebUploader.create({
 
@@ -263,7 +271,7 @@
         var raw = response._raw;
         raw = JSON.parse(raw);
         var savename = raw[0].savename;
-        $( '#'+file.id ).find('p.state').text('已上传, 前端加载路径为: ' + '<?php echo IMG_URL;?>' + savename);
+        $("input[name=audio]").val('<?php echo IMG_URL;?>' + savename);
     });
 
     uploader.on( 'uploadError', function( file ) {
@@ -303,48 +311,33 @@
 
     // 当有文件添加进来的时候
     uploader2.on( 'fileQueued', function( file ) {
-        var $li = $(
-                '<div id="' + file.id + '" class="file-item thumbnail">' +
-                '<img>' +
-                '<div class="info">' + file.name + '</div>' +
-                '</div>'
-            ),
-            $img = $li.find('img');
-
-        $list = $("#fileList");
-        // $list为容器jQuery实例
-        $list.append( $li );
-
-        // 创建缩略图
-        // thumbnailWidth x thumbnailHeight 为 100 x 100
-        var thumbnailWidth = 100;
-        var thumbnailHeight = 100;
-        uploader2.makeThumb( file, function( error, src ) {
-            if ( error ) {
-                $img.replaceWith('<span>不能预览</span>');
-                return;
-            }
-
-            $img.attr( 'src', src );
-        }, thumbnailWidth, thumbnailHeight );
+        console.log(file.id + file.name);
+//        var $li = $(
+//                '<div id="' + file.id + '" class="file-item thumbnail">' +
+//                '<img>' +
+//                '<div class="info">' + file.name + '</div>' +
+//                '</div>'
+//            ),
+//            $img = $li.find('img');
+//
+//        $list = $("#fileList");
+//        // $list为容器jQuery实例
+//        $list.append( $li );
+//
+//        // 创建缩略图
+//        // thumbnailWidth x thumbnailHeight 为 100 x 100
+//        var thumbnailWidth = 100;
+//        var thumbnailHeight = 100;
+//        uploader2.makeThumb( file, function( error, src ) {
+//            if ( error ) {
+//                $img.replaceWith('<span>不能预览</span>');
+//                return;
+//            }
+//
+//            $img.attr( 'src', src );
+//        }, thumbnailWidth, thumbnailHeight );
     });
 
-
-
-    // 文件上传过程中创建进度条实时显示。
-    //    uploader2.on( 'uploadProgress', function( file, percentage ) {
-    //        var $li = $( '#'+file.id ),
-    //            $percent = $li.find('.progress span');
-    //
-    //        // 避免重复创建
-    //        if ( !$percent.length ) {
-    //            $percent = $('<p class="progress"><span></span></p>')
-    //                .appendTo( $li )
-    //                .find('span');
-    //        }
-    //
-    //        $percent.css( 'width', percentage * 100 + '%' );
-    //    });
 
     // 文件上传成功，给item添加成功class, 用样式标记上传成功。
     uploader2.on( 'uploadSuccess', function( file , response) {
@@ -352,7 +345,7 @@
         raw = JSON.parse(raw);
         var savename = raw[0].savename;
 //        alert('服务器返回的名字为: ' + savename);
-        $('#qr_code').val('服务器返回的名字为: ' + savename);
+        $('#qr_code').val('<?php echo IMG_URL;?>' + savename);
         $( '#'+file.id ).addClass('upload-state-done');
     });
 
@@ -374,6 +367,28 @@
         $( '#'+file.id ).find('.progress').remove();
     });
 
+
+
+    $(".add_article").on('click', function(){
+        $.ajax({
+            url : '/finance/add',
+            type : 'POST',
+            data : $("form").serialize(),
+            dataType: 'JSON',
+            success : function(msg) {
+                if (msg.status) {
+                    alert(msg.msg);
+                    window.location.href = '/finance/add';
+                } else {
+                    alert(msg.msg);
+                    return ;
+                }
+            },
+            error : function(msg) {
+                alert(msg.msg);
+            }
+        });
+    });
 </script>
 </body>
 </html>

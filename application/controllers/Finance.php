@@ -30,31 +30,44 @@ class FinanceController extends AbstractController
     public function addAction()
     {
         $request = $this->getRequest();
-        $finance_id = Util_Common::get('finance_id');
-        $cron_info = array();
-
+        $page = DB::table('finance_page')->first();
+        $page_id = '';
+        if (!empty($page)) {
+            $page['stock_market'] = json_decode($page['stock_market'], true);
+            $page_id = $page['id'];
+        }
         if ($request->isPost()) {
-            $this->_valid->set_fields($_POST);
-            $valid = $this->_valid->valid(
-                'Models_Crontab',
-                array(
-                    'name' => 'is_valid_name',
-                    'timer' => 'is_valid_timer',
-                    'exec_file' => 'is_valid_exec_file',
-                    'args' => 'is_valid_args',
-                    'redirect' => 'is_valid_redirect',
-                    'server_id' => 'is_valid_server',
-                    'timeout_kill_type' => 'is_valid_timeout_kill_type'
-                )
-            );
-            if (!$valid['status']) {
-                _error_json_encoder($valid['msg']);
-            }
-            $datetime = date('Y-m-d H:i:s');
             try {
-                _success_json_encoder('添加成功');
+                $data = $_POST;
+                $id = isset($data['hidden_page_id']) ? $data['hidden_page_id'] : '';
+
+                $data['stock_market'] = json_encode($data['stock_market']);
+                $insert_data = [
+                    'audio' => trim($data['audio']),
+                    'stock_market' => trim($data['stock_market']),
+                    'company' => trim($data['company']),
+                    'asset_strategy' => trim($data['strategy']),
+                    'introduce' => trim($data['introduce']),
+                    'qr_code' => trim($data['qr_code']),
+                    'link' => trim($data['link']),
+                ];
+                if (empty($id)) {
+                    $insert = Models_Page::create($insert_data);
+                    $ret = $insert->id;
+                } else {
+                    $update = DB::table('finance_page')
+                        ->where('id', $id)
+                        ->update($insert_data);
+
+                    $ret = $update;
+                }
+                if (!empty($ret)) {
+                    _success_json_encoder('保存成功');
+                } else {
+                    throw new Exception('暂无更改信息');
+                }
             } catch (Exception $e) {
-                _error_json_encoder('添加失败' . $e->getMessage());
+                _error_json_encoder($e->getMessage());
             }
 
         }
@@ -62,7 +75,8 @@ class FinanceController extends AbstractController
         $this->getView()->assign(
             array(
                 'title' => '今日财经文章',
-                'finance_id' => $finance_id
+                'page_id' => $page_id,
+                'page' => $page
             )
         );
         $this->getView()->display('finance/add.html');
