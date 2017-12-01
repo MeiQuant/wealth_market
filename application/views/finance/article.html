@@ -66,37 +66,67 @@
                                 <label class="col-sm-3 control-label no-padding-right" for="module"> 模块名称：</label>
 
                                 <div class="col-sm-9">
-                                    <input type="text" id="module" name="module" placeholder="请输入server的真实hostname" class="col-xs-10 col-sm-5" />
+                                    <input type="text" id="module" value="<?php if(isset($article['module']) && !empty($article['module'])) {echo $article['module'];}?>"  name="module" placeholder="请输入唯一的模块名称" class="col-xs-10 col-sm-5" />
                                 </div>
                             </div>
 
 
-                            <div class="change-content">
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label no-padding-right" > 标题：</label>
+                            <?php if(empty($article)){ ?>
+                                <div class="change-content">
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label no-padding-right" > 标题：</label>
 
-                                    <div class="col-sm-9">
-                                        <input type="text" name="title" placeholder="标题" class="col-xs-10 col-sm-5" />
+                                        <div class="col-sm-9">
+                                            <input type="text" name="title" placeholder="标题" class="col-xs-10 col-sm-5" />
+                                        </div>
                                     </div>
-                                </div>
 
 
 
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label no-padding-right"> 作者：</label>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label no-padding-right"> 作者：</label>
 
-                                    <div class="col-sm-9">
-                                        <input type="text"  name="author" placeholder="作者" class="col-xs-10 col-sm-5" />
-                                        <span class="col-sm-3 add_new" style="font-size:40px;">&#43;</span>
+                                        <div class="col-sm-9">
+                                            <input type="text"  name="author" placeholder="作者" class="col-xs-10 col-sm-5" />
+                                            <span class="col-sm-3 add_new" style="font-size:40px;">&#43;</span>
+                                        </div>
                                     </div>
+
+                                    <div id="editor1">
+                                    </div>
+
                                 </div>
+                            <?php } else { foreach ($article['content'] as $key => $one_article) {?>
 
-                                <div id="editor1">
+                                <div class="change-content">
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label no-padding-right" > 标题：</label>
+
+                                        <div class="col-sm-9">
+                                            <input type="text" name="title" value="<?php echo $one_article['title'];?>" placeholder="标题" class="col-xs-10 col-sm-5" />
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label no-padding-right"> 作者：</label>
+
+                                        <div class="col-sm-9">
+                                            <input type="text"  name="author" value="<?php echo $one_article['author'];?>" placeholder="作者" class="col-xs-10 col-sm-5" />
+                                            <?php if ($key ==0) {?>
+                                                <span class="col-sm-3 add_new" style="font-size:40px;">&#43;</span>
+                                            <?php } else {?>
+                                                <span class="col-sm-3 sub_new" style="font-size:40px;">-</span>'
+                                            <?php }?>
+                                        </div>
+                                    </div>
+
+                                    <div id="editor<?php echo $key + 1;?>">
+                                    </div>
+
                                 </div>
-
-                            </div>
-
-
+                            <?php } }?>
 
 
 
@@ -136,43 +166,51 @@
 
 <script src="<?= BASE_URL ?>/js/wangEditor.min.js"></script>
 
+
 <script>
-    var E = window.wangEditor;
 
-    var editor1 = new E('#editor1');
-    editor1.create();
+    var is_update = '<?php echo !empty($article);?>';
+    if (is_update) {
+        // 修改的时候
+        
+    } else {
+        // 新增的时候(只有新增一个模块的时候执行一次)
+        var E = window.wangEditor;
+        var editor1 = new E('#editor1');
+        editor1.create();
+        var num= 0, array_str=[];
+        var editor_arr = [];
+        editor_arr.push(editor1);
+        array_str[0]='editor1';
+        $('.add_new').on('click',function(){
+            var _this = $(this);
+            var _parent_div = _this.parent().parent().parent();
+            num += 1;
+            array_str[num] = 'editor' + (num+1);
+            var str_html='<div class="change-content"><div class="form-group" style="margin-top:20px;">' +
+                '<label class="col-sm-3 control-label no-padding-right" > 标题：</label>' +
+                '<div class="col-sm-9"><input type="text" name="title" placeholder="标题" class="col-xs-10 col-sm-5" />' +
+                '</div></div>' +
+                '<div class="form-group"><label class="col-sm-3 control-label no-padding-right"> 作者：</label>' +
+                '<div class="col-sm-9"><input type="text"  name="author" placeholder="作者" class="col-xs-10 col-sm-5" />' +
+                '<span class="col-sm-3 sub_new" style="font-size:40px;">-</span>'+
+                '</div></div><div id="'+array_str[num]+'"></div></div>';
+            var old_name = array_str[num-1];
+            _parent_div.append(str_html);
+            var new_name = array_str[num];
+            new_name = new E('#'+array_str[num]);
+            new_name.create();
+            editor_arr.push(new_name);
+        });
 
-    var num= 0, array_str=[];
-    var editor_arr = [];
-    editor_arr.push(editor1);
-    array_str[0]='editor1';
-    $('.add_new').on('click',function(){
-        var _this = $(this);
-        var _parent_div = _this.parent().parent().parent();
-        num += 1;
-        array_str[num] = 'editor' + (num+1);
-        var str_html='<div class="change-content"><div class="form-group" style="margin-top:20px;">' +
-            '<label class="col-sm-3 control-label no-padding-right" > 标题：</label>' +
-            '<div class="col-sm-9"><input type="text" name="title" placeholder="标题" class="col-xs-10 col-sm-5" />' +
-            '</div></div>' +
-            '<div class="form-group"><label class="col-sm-3 control-label no-padding-right"> 作者：</label>' +
-            '<div class="col-sm-9"><input type="text"  name="author" placeholder="作者" class="col-xs-10 col-sm-5" />' +
-            '<span class="col-sm-3 sub_new" style="font-size:40px;">-</span>'+
-            '</div></div><div id="'+array_str[num]+'"></div></div>';
-        var old_name = array_str[num-1];
-        _parent_div.append(str_html);
-        var new_name = array_str[num];
-        new_name = new E('#'+array_str[num]);
-        new_name.create();
-        editor_arr.push(new_name);
-    });
 
+        $(document).on('click', '.sub_new', function(){
+            var _sub_this = $(this);
+            var _parent_div = _sub_this.parent().parent().parent();
+            _parent_div.remove();
+        });
+    }
 
-    $(document).on('click', '.sub_new', function(){
-        var _sub_this = $(this);
-        var _parent_div = _sub_this.parent().parent().parent();
-        _parent_div.remove();
-    });
 
 
     $(".btn-info").on('click', function(){

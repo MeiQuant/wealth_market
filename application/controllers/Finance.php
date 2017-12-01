@@ -90,11 +90,18 @@ class FinanceController extends AbstractController
     public function articleAction()
     {
         $request = $this->getRequest();
-        $finance_id = Util_Common::get('finance_id');
-
+        $module_id = Util_Common::get('id');
+        $article = DB::table('finance_article')->where('id', $module_id)->first();
+        if (!empty($article)) {
+            $article['content'] = json_decode($article['content'], true);
+        }
         if ($request->isPost()) {
-            $module = trim($_POST['module_name']);
-            $content_json = trim($_POST['content']);
+            $module = trim(Util_Common::post('module_name'));
+            $module_article = DB::table('finance_article')->where('module', $module)->select('id')->first();
+            if (!empty($module_article)) {
+                _error_json_encoder(' 模块名字重复');
+            }
+            $content_json = trim(Util_Common::post('content'));
             $content_array = json_decode($content_json, true);
             if (empty($content_array)) {
                 _error_json_encoder('数据不合法');
@@ -112,10 +119,12 @@ class FinanceController extends AbstractController
             }
         }
 
+
         $this->getView()->assign(
             array(
                 'title' => '今日财经文章',
-                'finance_id' => $finance_id
+                'article' => $article,
+                'module_id' => $module_id
             )
         );
         $this->getView()->display('finance/article.html');
