@@ -16,12 +16,25 @@ class FinanceController extends AbstractController
         parent::init();
     }
 
-    public function testAction()
+    public function indexAction()
     {
-        $ret = DB::table('finance_article')->insert([
-            ['module' => 1, 'content' => 2]
-        ]);
-        print_r($ret);die;
+        $data = Models_Articleindex::all();
+        if (!empty($data)) {
+            $data = $data->toArray();
+            foreach ($data as &$article) {
+                $article['content'] = json_decode($article['content']);
+                $article['article_count']= count($article['content']);
+                unset($article['content']);
+            }
+        }
+
+        $this->getView()->assign(
+            array(
+                'title' => '模块列表',
+                'list' => $data
+            )
+        );
+        $this->getView()->display('finance/index.html');
     }
 
     /**
@@ -108,12 +121,12 @@ class FinanceController extends AbstractController
                 // @todo, 数据校验
                 if (empty($module_article)) {
                     $ret = DB::table('finance_article')->insert([
-                        ['module' => $module, 'content' => $content_json]
+                        ['module' => $module, 'content' => $content_json, 'update_time' => date('Y-m-d H:i:s')]
                     ]);
                 } else {
                     $ret = DB::table('finance_article')
                         ->where('module', $module)
-                        ->update(['content' => $content_json]);
+                        ->update(['content' => $content_json, 'update_time' => date('Y-m-d H:i:s')]);
                 }
                 if ($ret !== false) {
                     _success_json_encoder('添加成功');
@@ -135,6 +148,23 @@ class FinanceController extends AbstractController
     }
 
 
+
+    public function delmoduleAction()
+    {
+        $request = $this->getRequest();
+        if ($request->isPost()) {
+            $id = trim(Util_Common::post('id'));
+            if (empty($id)) {
+                _error_json_encoder('参数错误');
+            }
+
+            $del_ret = Models_Articleindex::where('id', $id)->delete();
+            if ($del_ret != false)
+            {
+                _success_json_encoder('删除成功');
+            }
+        }
+    }
 
     private function _handlefont($str)
     {

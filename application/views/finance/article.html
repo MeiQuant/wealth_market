@@ -255,7 +255,7 @@
             success : function(msg){
                 if (msg.status) {
                     bootbox.alert("添加成功", function(){
-                        window.location.href = '/server/list';
+                        window.location.href = '/finance/index';
                     });
                 } else {
                     bootbox.alert("添加失败:" + msg.msg);
