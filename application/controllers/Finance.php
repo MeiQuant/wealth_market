@@ -98,19 +98,23 @@ class FinanceController extends AbstractController
         if ($request->isPost()) {
             $module = trim(Util_Common::post('module_name'));
             $module_article = DB::table('finance_article')->where('module', $module)->select('id')->first();
-            if (!empty($module_article)) {
-                _error_json_encoder(' 模块名字重复');
-            }
             $content_json = trim(Util_Common::post('content'));
+            $content_json = $this->_handlefont($content_json);
             $content_array = json_decode($content_json, true);
             if (empty($content_array)) {
                 _error_json_encoder('数据不合法');
             }
             try {
                 // @todo, 数据校验
-                $ret = DB::table('finance_article')->insert([
-                    ['module' => $module, 'content' => $content_json]
-                ]);
+                if (empty($module_article)) {
+                    $ret = DB::table('finance_article')->insert([
+                        ['module' => $module, 'content' => $content_json]
+                    ]);
+                } else {
+                    $ret = DB::table('finance_article')
+                        ->where('module', $module)
+                        ->update(['content' => $content_json]);
+                }
                 if ($ret !== false) {
                     _success_json_encoder('添加成功');
                 }
@@ -132,5 +136,17 @@ class FinanceController extends AbstractController
 
 
 
+    private function _handlefont($str)
+    {
+        $pattern = '/<font color=\"#(.*?)\">(.*?)<\/font>/';
+        preg_match_all($pattern, $str, $matches);
+        if (isset($matches[0]) && !empty($matches[0])) {
+            foreach ($matches[0] as $sort => $font_str) {
+                $replace = "<font color='#{$matches[1][$sort]}'>{$matches[2][$sort]}</font>";
+                $str = str_replace($font_str, $replace, $str);
+            }
+        }
+        return $str;
+    }
 
 }
