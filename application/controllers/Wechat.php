@@ -1,20 +1,20 @@
 <?php
 
-
 use Illuminate\Database\Capsule\Manager as DB;
 use EasyWeChat\Foundation\Application;
 
 
-class WechatController extends AbstractController
+class WechatController extends Yaf_Controller_Abstract
 {
 
     public $_valid = null;
 
-    public $_app;
+    public $_options = array();
+
 
     public function init()
     {
-        parent::init();
+        header("Content-Type:text/html;charset=utf-8");
         $options = [
             'debug'  => true,
             'app_id' => 'wx40d7d5323c90b1b1',
@@ -27,13 +27,14 @@ class WechatController extends AbstractController
             ],
             'oauth' => [
                 'scopes'   => ['snsapi_userinfo'],
-                'callback' => 'http://wxxncf.xyzq.cn/index/user/index'
+                'callback' => 'http://wealth-market.smallwolf.cn/wechat/oauthcallback'
             ],
         ];
 
-        $this->_app = new Application($options);
-    }
+        $this->_options = $options;
 
+
+    }
 
     public function validAction()
     {
@@ -67,7 +68,7 @@ class WechatController extends AbstractController
             [
                 "type" => "view",
                 "name" => "有恒财富新闻",
-                "url"  => "http://wealth-market.smallwolf.cn/new/index"
+                "url"  => "http://wealth-market.smallwolf.cn/index/show"
             ],
 //            [
 //                "name"       => "咨询中心",
@@ -88,6 +89,26 @@ class WechatController extends AbstractController
         ];
         $response = $menu_api->add($buttons);
         var_dump($response);
+    }
+
+
+    public function oauthcallbackAction()
+    {
+        $cache = new Cache_Cache();
+        $memcache = $cache->connect('Memcache');
+        $this->_app = new Application($this->_options);
+        $oauth = $this->_app->oauth;
+        $user = $oauth->user();
+        $info = $user->getOriginal();
+        if (!empty($info) && is_array($info)) {
+            $ret = $memcache->set('user_info', json_encode($info));
+            if ($ret == false) {
+                $memcache->set('user_info', json_encode($info));
+                // @todo, 保存到数据库的user表中
+                // $info格式 array('openid' , nickname, language, city, province, country, headimgurl)
+            }
+            header('location:'. '/index/show?id=' . $info['openid']);
+        }
     }
 
 }

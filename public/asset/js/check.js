@@ -1,0 +1,9 @@
+$(document).ready(function(){
+	$("input[name='describe']").click(function(){
+		$('.mask').show();
+		$('.ok_btn').click(function(){
+			$('.mask').hide();
+			window.location.href=window.location.href;
+		})
+	})
+})

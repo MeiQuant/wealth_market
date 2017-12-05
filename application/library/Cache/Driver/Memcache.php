@@ -2,7 +2,7 @@
 /**
  * membercache缓存类
  */
-class Memcache extends Cache_Cache
+class Cache_Driver_Memcache extends Cache_Cache
 {
 
     /**
@@ -27,10 +27,11 @@ class Memcache extends Cache_Cache
         $this->options['prefix'] =  isset($options['prefix'])?  $options['prefix']  :   getConfig('cache', 'prefix');
         $this->options['length'] =  isset($options['length'])?  $options['length']  :   0;        
         $func               =   $options['persistent'] ? 'pconnect' : 'connect';
-        $this->handler      =   new Memcache;
+        $this->handler      =   new \Memcache();
         $options['timeout'] === false ?
             $this->handler->$func($options['host'], $options['port']) :
             $this->handler->$func($options['host'], $options['port'], $options['timeout']);
+
     }
 
     /**
