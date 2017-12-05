@@ -41,16 +41,6 @@
                     <a href="javascript:void(0)">文章列表</a>
                 </li>
             </ul><!-- /.breadcrumb -->
-
-            <!-- #section:basics/content.searchbox -->
-            <div class="nav-search" id="nav-search">
-                <form class="form-search">
-							<span class="input-icon">
-								<input type="text" placeholder="请输入关键字 ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
-								<i class="ace-icon fa fa-search nav-search-icon"></i>
-							</span>
-                </form>
-            </div><!-- /.nav-search -->
         </div>
 
         <p style="padding-left: 20px;padding-top:10px;padding-bottom: 10px;"><button class="btn btn-primary add_new_module">添加新模块</button></p>
@@ -162,7 +152,7 @@
                                         success : function (ret) {
                                             if (ret.status) {
                                                 bootbox.alert("删除成功", function(){
-                                                    window.location.href = '/server/list';
+                                                    window.location.href = '/finance/index';
                                                 });
                                             } else {
                                                 bootbox.alert("删除失败" + ret.msg);
