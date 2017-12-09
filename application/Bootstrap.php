@@ -58,6 +58,7 @@ class Bootstrap extends Yaf_Bootstrap_Abstract
 
     public function _initRoute(Yaf_Dispatcher $dispatcher)
     {
+//        print_r($request->getControllerName());die;
         $router = $dispatcher->getRouter();
         $router->addRoute('404', new Yaf_Route_Rewrite(
             '/404$',
@@ -67,6 +68,12 @@ class Bootstrap extends Yaf_Bootstrap_Abstract
             )
         ));
     }
+
+
+    public function _initPlugin (Yaf_Dispatcher $dispatcher) {
+        $dispatcher->registerPlugin(new RouterPlugin());;
+    }
+
 
     public function _initSession()
     {

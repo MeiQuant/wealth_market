@@ -181,6 +181,11 @@ i{
 	width:1.5rem;
 	display: inline-block;
 }
+
+.half_in_v2{
+	width:3rem;
+	display: inline-block;
+}
 .code{
 	right:0;
 	line-height: 0.99rem;
@@ -191,7 +196,7 @@ i{
 	height:0.36rem;
 	display: inline-block;
 	margin-top:0.3rem;
-	background: url(images/QR_code3@2x.png) no-repeat left center;
+	background: url(../images/index/QR_code3@2x.png) no-repeat left center;
 	background-size: contain;
 }
 .arr_icon{
@@ -437,7 +442,7 @@ i{
 }
 .redio_tit{
 	font-family: PingFangSC-Regular;
-	font-size: 0.36rem;
+	font-size: 0.32rem;
 	line-height: 0.5rem;
 	color: #3E3E3E;
 }
@@ -677,7 +682,7 @@ i{
 .code1{
 	width:4.1rem;
 	height:4.1rem;
-	background: url(images/QR_code2@2x.png) no-repeat center;
+	background: url(../images/index/QR_code2@2x.png) no-repeat center;
 	background-size: contain;
 	margin:0 auto;
 }
@@ -700,3 +705,31 @@ i{
 .mt73{
 	margin-top:0.73rem;
 }
+
+.add_blue{
+	width:70%;
+	height:0.76rem;
+	display: block;
+	background: #12B1ED;
+	border-radius: 4px;
+	margin-top:0.5rem;
+	margin-left:15%;
+}
+.add_blue span{
+	padding-top:0.27rem;
+	display: inline-block;
+	line-height: 0.32rem;
+	font-family: PingFangSC-Regular;
+	font-size: 0.32rem;
+	color: #FFFFFF;
+	padding-left: 0.55rem;
+}
+.add_icon{
+	width:0.42rem;
+	height:0.42rem;
+	display: inline-block;
+	background: url('../images/index/Button@2x.png') no-repeat center;
+	background-size: contain;
+	margin-top:0.21rem;
+}
+

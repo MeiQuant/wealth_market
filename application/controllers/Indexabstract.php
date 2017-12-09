@@ -1,6 +1,7 @@
 <?php
 
 use EasyWeChat\Foundation\Application;
+use Illuminate\Database\Capsule\Manager as DB;
 
 /**
  * Class AbstractController
@@ -14,11 +15,16 @@ abstract class IndexabstractController extends Yaf_Controller_Abstract
 
     public $_memcache = null;
 
+    public $_uid = '';
     /**
      * 微信端基类控制器, 定时获取用户open_id, 暂时未进行加密处理
      */
     public function init()
     {
+        if (DEBUG) {
+            $this->_uid = 'oQt5h03tsXD7Wn6wWqzYDJ0umbEk';
+            return ;
+        }
         header("Content-Type:text/html;charset=utf-8");
         $options = [
             'debug'  => true,
@@ -39,22 +45,28 @@ abstract class IndexabstractController extends Yaf_Controller_Abstract
 
         $cache = new Cache_Cache();
         $memcache = $cache->connect('Memcache');
-        $user_info = $memcache->get('user_info');
-
         $this->_memcache = $memcache;
-        if (empty($user_info))
+        $open_id = isset($_COOKIE['uid']) ? $_COOKIE['uid'] : false;
+        if (!empty($open_id)) {
+            $user = DB::table('finance_user')->where('open_id', $open_id)->first();
+            if (empty($user)) {
+                // 容错处理, 防止微信客户端有cookie, 但是数据库没信息
+                $open_id = false;
+            }
+        }
+        if (empty($open_id))
         {
             $this->_app = new Application($options);
             $oauth = $this->_app->oauth;
             // 发起微信端的授权
             echo $oauth->redirect()->send();
-        } else {
-            if (strpos($_SERVER['QUERY_STRING'], 'id=') === false) {
-                $user_info = json_decode($user_info, true);
-                $id = $user_info['openid'];
-                header('Location: /index/show?id=' . $id);
+        }
+        else
+        {
+            $this->_uid = $open_id;
+            if (strpos($_SERVER['REQUEST_URI'], '%23mp.weixin.qq.com') === false && strpos($_SERVER['REQUEST_URI'], '#mp.weixin.qq.com') === false) {
+                header("location: ". $_SERVER['REQUEST_URI'] . urlencode("#mp.weixin.qq.com"));
             }
-
         }
 
     }

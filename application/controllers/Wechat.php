@@ -94,20 +94,29 @@ class WechatController extends Yaf_Controller_Abstract
 
     public function oauthcallbackAction()
     {
-        $cache = new Cache_Cache();
-        $memcache = $cache->connect('Memcache');
         $this->_app = new Application($this->_options);
         $oauth = $this->_app->oauth;
         $user = $oauth->user();
         $info = $user->getOriginal();
+        $open_id = $info['openid'];
         if (!empty($info) && is_array($info)) {
-            $ret = $memcache->set('user_info', json_encode($info));
-            if ($ret == false) {
-                $memcache->set('user_info', json_encode($info));
-                // @todo, 保存到数据库的user表中
-                // $info格式 array('openid' , nickname, language, city, province, country, headimgurl)
+            // 不设计到交易， 登录等敏感信息， 不用加密了
+            $ret = setcookie('uid', $open_id, time() + 24 * 3600, '/');
+            $is_register_user = DB::table('finance_user')->where('open_id', $info['openid'])->select('id')->first();
+            if (empty($is_register_user)) {
+                $datetime = date('Y-m-d H:i:s', time());
+                $ret = DB::table('finance_user')->insert([
+                    ['nickname' => $info['nickname'], 'province' => $info['province'], 'city' => $info['city'], 'headimgurl' => $info['headimgurl'] ,'open_id' => $info['openid'], 'create_time' => $datetime, 'update_time' => $datetime]
+                ]);
+
+                if ($ret === false) {
+                    DB::table('finance_user')->insert([
+                        ['nickname' => $info['nickname'], 'province' => $info['province'], 'city' => $info['city'], 'headimgurl' => $info['headimgurl'] ,'open_id' => $info['openid'], 'create_time' => $datetime, 'update_time' => $datetime]
+                    ]);
+                }
             }
-            header('location:'. '/index/show?id=' . $info['openid']);
+
+            header('location:'. '/index/show?id=' . $info['openid'] . '#mp.weixin.qq.com');
         }
     }
 

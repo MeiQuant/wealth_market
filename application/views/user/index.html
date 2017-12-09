@@ -1,101 +1,231 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta charset="utf-8" />
-    <title><?php echo $title;?></title>
-
-
-    <?php include VIEW_PATH . '/header.html' ?>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, maximum-scale=2, minimum-scale=1, user-scalable=no">
+    <meta name="full-screen" content="yes">
+    <meta name="browsermode" content="application">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="x5-page-mode" content="app">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="screen-orientation" content="portrait">
+    <link href='<?= BASE_URL ?>/css/form.css' rel='stylesheet' type='text/css'>
+    <link href='<?= BASE_URL ?>/css/dialog.css' rel='stylesheet' type='text/css'>
+    <link href='<?= BASE_URL ?>/css/LArea.min.css' rel='stylesheet' type='text/css'>
+    <title>个人资料</title>
 </head>
-
-<body class="no-skin">
-
-<?php include VIEW_PATH . '/top.html' ?>
-<!-- /section:basics/navbar.layout -->
-<div class="main-container" id="main-container">
-
-    <?php include VIEW_PATH . '/sidebar.html' ?>
-
-    <!-- /section:basics/sidebar -->
-    <div class="main-content">
-        <!-- #section:basics/content.breadcrumbs -->
-        <div class="breadcrumbs" id="breadcrumbs">
-            <ul class="breadcrumb">
-                <li>
-                    <i class="ace-icon fa fa-home home-icon"></i>
-                    <a href="index.html">管理员</a>
-                </li>
-            </ul><!-- /.breadcrumb -->
-
-            <!-- #section:basics/content.searchbox -->
-            <div class="nav-search" id="nav-search">
-                <form class="form-search">
-							<span class="input-icon">
-								<input type="text" placeholder="请输入关键字 ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
-								<i class="ace-icon fa fa-search nav-search-icon"></i>
-							</span>
-                </form>
-            </div><!-- /.nav-search -->
-
-            <!-- /section:basics/content.searchbox -->
-        </div>
-
-        <div class="page-content">
-            <!-- /section:settings.box -->
-            <div class="page-content-area">
-
-                <div class="row">
-                    <div class="col-xs-12">
-                        <!-- PAGE CONTENT BEGINS -->
-                        <div class="alert alert-block alert-info">
-                            <button type="button" class="close" data-dismiss="alert">
-                                <i class="ace-icon fa fa-times"></i>
-                            </button>
-
-                            <i class="ace-icon fa fa-check green"></i>
-
-                            <strong class="green">管理员：</strong>
-                            正式环境请使用ldap统一认证的邮箱前缀和密码登录, 170测试环境用户名密码 admin , admin
-                        </div>
-
-                        <div class="alert alert-block alert-info">
-                            <button type="button" class="close" data-dismiss="alert">
-                                <i class="ace-icon fa fa-times"></i>
-                            </button>
-
-                            <i class="ace-icon fa fa-check green"></i>
-
-                            <strong class="green">白名单：</strong>
-                            <?php echo $page_users; ?>
-                        </div>
-
-                        <!-- PAGE CONTENT ENDS -->
-                    </div><!-- /.col -->
-                </div><!-- /.row -->
-            </div><!-- /.page-content-area -->
-        </div><!-- /.page-content -->
-    </div><!-- /.main-content -->
-
-    <div class="footer">
-        <div class="footer-inner">
-            <!-- #section:basics/footer -->
-            <div class="footer-content">
-						<span class="bigger-120">
-							 统一开发平台-UI库 &copy; 2014
-						</span>
+<body  class="font_to_normal">
+<header class="header tc">
+    <article class="header_container por">
+        <i class="home_r poa">
+            <a href="javascript:;" id="save_info" class="ml20" title="保存">保存</a>
+        </i>
+    </article>
+</header>
+<section>
+    <div class="top_ban">
+        <div class="person_icon"></div>
+        <div class="mt22 person_name tc"><?php echo $user['nickname'];?></div>
+    </div>
+    <div class="main_content">
+        <div class="form_in">
+            <div class="form_bor">
+                <label><i class="red_icon">*</i><span class="ml20">姓名</span></label>
+                <input class="ml41 full_in" type="text" value="<?php if (!empty($user['username'])) {echo $user['username'];}?>" name="username" placeholder="请输入您的姓名" value="" />
             </div>
-
-            <!-- /section:basics/footer -->
+            <div class="form_bor">
+                <label><i class="red_icon">*</i><span class="ml20">手机</span></label>
+                <input class="ml41 full_in" type="number" name="phone" maxlength="11" value="<?php if (!empty($user['phone'])) {echo $user['phone'];}?>" placeholder="请输入您的手机号码" value="" />
+            </div>
+            <div class="form_bor">
+                <label><span class="ml20">邮箱</span></label>
+                <input class="ml41 full_in" name="email" type="email" value="<?php if (!empty($user['email'])) {echo $user['email'];}?>" placeholder="请输入您的邮箱" value="" />
+            </div>
+            <div class="form_bor">
+                <label><span class="ml20">自我介绍</span></label>
+                <input class="ml41 full_in" name="introduce" type="text" placeholder="请输入您的自我介绍" value="<?php if (!empty($user['introduce'])) {echo $user['introduce'];} else {echo '请输入自我介绍';} ?>" />
+            </div>
+            <div class="form_bor">
+                <label><i class="red_icon">*</i><span class="ml20">公司</span></label>
+                <input class="ml41 full_in" type="text" name="company" value="<?php if (!empty($user['company'])) {echo $user['company'];}?>" placeholder="请输入您的公司／机构" value="" />
+            </div>
+            <div class="form_bor">
+                <label><span class="ml20">职位</span></label>
+                <input class="ml41 full_in" name="job" type="text" value="<?php if (!empty($user['job'])) {echo $user['job'];}?>" placeholder="请输入您的职位" value="" />
+            </div>
+            <div class="form_bor">
+                <label><span class="ml20">所在地</span></label>
+                <input class="ml41 half_in_v2" type="text" id="province" name="province" placeholder="请选择省市区" value="<?php if (!empty($user['province'])) {echo $user['province'] . ', ' . $user['city'];}?>" />
+                <input class="ml20 half_in_v2" type="hidden" id="city" name="city" placeholder="请选择城市" value="" />
+            </div>
+            <div class="form_bor">
+                <label><span class="ml20">二维码</span></label>
+                <i class="poa code"><i class="code_bg"></i><sup class="arr_icon"><a class="arr_icon" href="/user/upload">&nbsp;&gt;&nbsp;&nbsp;</a></sup></i>
+            </div>
         </div>
     </div>
 
-    <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
-        <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
-    </a>
-</div><!-- /.main-container -->
+</section>
+<div class="mask dis-n">
+    <div class="pop_window">
+        <div class="text_box">
+            <textarea class="text_in" id="pop_introduct" rows="10" placeholder="请输入您的自我介绍……"></textarea>
+        </div>
+        <div class="text_hr"></div>
+        <a href="javascript:;" class="tc ok_btn">确定</a>
+    </div>
+</div>
+<script>
+    (function (doc, win) {
+        var docEl = doc.documentElement,
+            resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+            recalc = function () {
+                var clientWidth = docEl.clientWidth;
+                if (!clientWidth) return;
+                if(clientWidth>=640){
+                    docEl.style.fontSize = '100px';
+                }else{
+                    docEl.style.fontSize = 100 * (clientWidth / 640) + 'px';
+                }
+            };
 
-<?php include VIEW_PATH . '/footer.html' ?>
+        if (!doc.addEventListener) return;
+        win.addEventListener(resizeEvt, recalc, false);
+        doc.addEventListener('DOMContentLoaded', recalc, false);
+    })(document, window);
+</script>
+<script src="<?= BASE_URL ?>/js/jquery.min.js"></script>
+<script src="<?= BASE_URL ?>/js/zepto.min.js"></script>
+<script src="<?= BASE_URL ?>/js/dialog.min.js"></script>
 
+<script src="<?= BASE_URL ?>/js/LAreaData1.js"></script>
+<script src="<?= BASE_URL ?>/js/LAreaData2.js"></script>
+<script src="<?= BASE_URL ?>/js/LArea.min.js"></script>
+
+
+
+
+
+<script>
+
+    $(function(){
+        $(document).ready(function(){
+            $("input[name='introduce']").click(function(){
+                var _this = $(this);
+                $('.mask').show();
+                $('.ok_btn').click(function(){
+                    _this.val($("#pop_introduct").val());
+                    $('.mask').hide();
+                })
+            })
+        });
+
+
+
+        $("#province").focus(function(){
+            document.activeElement.blur();
+        });
+
+        $("#introduce").focus(function(){
+            document.activeElement.blur();
+        });
+
+
+
+        var area1 = new LArea();
+        area1.init({
+            'trigger': '#province', //触发选择控件的文本框，同时选择完毕后name属性输出到该位置
+            'valueTo': '#city', //选择完毕后id属性输出到该位置
+            'keys': {
+                id: 'value',
+                name: 'text'
+            }, //绑定数据源相关字段 id对应valueTo的value属性输出 name对应trigger的value属性输出
+            'type': 2, //数据源类型
+            'data': [provs_data, citys_data, dists_data] //数据源
+        });
+
+    });
+
+
+
+    $("#save_info").on('click', function(){
+        var username = $("input[name=username]").val();
+        var phone = $("input[name=phone]").val();
+        var company = $("input[name=company]").val();
+        var email = $("input[name=email]").val();
+        var introduce = $("input[name=introduce]").val();
+        var job = $("input[name=job]").val();
+        var province_city = $("input[name=province]").val();
+        var code = $("input[name=code]").val();
+
+        if (!username) {
+            _alert('姓名不能为空');
+            return ;
+        }
+
+        if (!phone) {
+            _alert('手机号码不能为空');
+            return ;
+        }
+
+        if(!(/^1[3|4|5|8][0-9]\d{4,8}$/.test(phone))) {
+            _alert('手机号码格式不对');
+            return ;
+        }
+
+        if (!company) {
+            _alert('公司机构不能为空');
+            return ;
+        }
+        $.ajax({
+            type : 'post',
+            url : '/user/index',
+            data : {
+                username : username,
+                phone : phone,
+                email : email,
+                introduce : introduce,
+                company : company,
+                job : job,
+                province_city : province_city,
+                code : code
+            },
+            dataType : 'json',
+            success : function(msg){
+                if (msg.status) {
+                    _success('保存成功', '/index/show');
+                } else {
+                    _alert(msg.msg);
+                }
+            },
+            error : function () {
+                _alert('系统发生错误, 请联系管理员');
+            }
+        });
+
+    });
+
+    function _success(msg, url)
+    {
+        $(document).dialog({
+            autoClose: 1500,
+            content: msg,
+            onClickConfirmBtn: function(){
+                window.location.href = url;
+            }
+        });
+    }
+    function _alert(msg)
+    {
+        $(document).dialog({
+            titleShow: false,
+            content: msg
+        });
+
+    }
+</script>
 </body>
 </html>

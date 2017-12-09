@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, maximum-scale=2, minimum-scale=1, user-scalable=no">
+    <meta name="full-screen" content="yes">
+    <meta name="browsermode" content="application">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="x5-page-mode" content="app">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="screen-orientation" content="portrait">
+    <link href='<?= BASE_URL ?>/css/form.css' rel='stylesheet' type='text/css'>
+    <link href='<?= BASE_URL ?>/css/dialog.css' rel='stylesheet' type='text/css'>
+    <title><?php echo $title;?></title>
+</head>
+<body  class="font_to_normal gray_bg">
+<header class="header tc">
+    <article class="header_container por">
+        <i class="home poa">
+            <a href="javascript:history.go(-1)" title="返回">&lt; 返回</a>
+            <a href="javascript:;" class="ml20" title="关闭">关闭</a>
+        </i>
+        <i class="home_r poa">
+            <a href="javascript:;" class="ml20" title="清空">清空</a>
+        </i>
+        <h1>添加信息</h1>
+    </article>
+</header>
+<section>
+    <div class="content">
+        <div class="form_in">
+            <div class="form_bor">
+                <label>公司名称</label>
+                <textarea class="text_in1" id="company"  placeholder="请输入公司名称"><?php echo $product['company'];?></textarea>
+            </div>
+            <div class="form_bor">
+                <div>资产配置策略</div>
+                <textarea class="text_in1" id="asset_strategy" placeholder="请输入资产配置"><?php echo $product['asset_strategy'];?></textarea>
+            </div>
+            <div>
+                <div>推荐理由</div>
+                <textarea class="text_in1" id="introduce" placeholder="请输入推荐理由"><?php echo $product['introduce'];?></textarea>
+            </div>
+        </div>
+    </div>
+</section>
+<a class="mt50 blue_btn tc save_product" href="javascript:;">保存</a>
+<script>
+    (function (doc, win) {
+        var docEl = doc.documentElement,
+            resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+            recalc = function () {
+                var clientWidth = docEl.clientWidth;
+                if (!clientWidth) return;
+                if(clientWidth>=640){
+                    docEl.style.fontSize = '100px';
+                }else{
+                    docEl.style.fontSize = 100 * (clientWidth / 640) + 'px';
+                }
+            };
+
+        if (!doc.addEventListener) return;
+        win.addEventListener(resizeEvt, recalc, false);
+        doc.addEventListener('DOMContentLoaded', recalc, false);
+    })(document, window);
+</script>
+<script src="<?= BASE_URL ?>/js/jquery.min.js"></script>
+<script src="<?= BASE_URL ?>/js/zepto.min.js"></script>
+<script src="<?= BASE_URL ?>/js/dialog.min.js"></script>
+<script>
+
+
+    $(".save_product").on('click', function(){
+        var company = $("#company").val();
+        var asset_strategy = $("#asset_strategy").val();
+        var introduce = $("#introduce").val();
+
+        if (!company) {
+            _alert('公司名称不能为空');
+            return ;
+        }
+
+        if (!asset_strategy) {
+            _alert('资产配置策略不能为空');
+            return ;
+        }
+
+        if (!introduce) {
+            _alert('推荐理由不能为空');
+            return ;
+        }
+        $.ajax({
+            type : 'post',
+            url : '/product/index',
+            data : {
+                company : company,
+                asset_strategy : asset_strategy,
+                introduce : introduce
+            },
+            dataType : 'json',
+            success : function(msg){
+                if (msg.status) {
+                    _success('保存成功', '/index/show');
+                } else {
+                    _alert(msg.msg);
+                }
+            },
+            error : function () {
+                _alert('系统发生错误, 请联系管理员');
+            }
+        });
+
+    });
+
+    function _success(msg, url)
+    {
+        $(document).dialog({
+            autoClose: 1500,
+            content: msg,
+            onClickConfirmBtn: function(){
+                window.location.href = url;
+            }
+        });
+    }
+    function _alert(msg)
+    {
+        $(document).dialog({
+            titleShow: false,
+            content: msg
+        });
+
+    }
+
+</script>
+</body>
+</html>

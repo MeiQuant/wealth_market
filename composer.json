@@ -16,6 +16,7 @@
         "classmap": [
             "application/library",
             "application/controllers",
+            "application/plugins",
             "application/views"
         ]
     },
