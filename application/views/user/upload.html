@@ -13,24 +13,37 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="screen-orientation" content="portrait">
     <link href='<?= BASE_URL ?>/css/form.css' rel='stylesheet' type='text/css'>
+    <link href='<?= BASE_URL ?>/css/webuploader_v2.css' rel='stylesheet' type='text/css'>
+    <!--引入JS-->
+    <script src="<?= BASE_URL ?>/js/jquery.min.js"></script>
+    <script type="text/javascript" src="<?= BASE_URL ?>/js/webuploader.min.js"></script>
     <title>个人资料</title>
 </head>
 <body  class="font_to_normal gray_bg">
-<header class="header tc">
-    <article class="header_container por">
-        <i class="home poa">
-            <a href="javascript:history.go(-1)" title="返回">&lt; 返回</a>
-        </i>
-        <h1>微信二维码</h1>
-    </article>
-</header>
+<!--<header class="header tc">-->
+    <!--<article class="header_container por">-->
+        <!--<i class="home poa">-->
+            <!--<a href="javascript:history.go(-1)" title="返回">&lt; 返回</a>-->
+        <!--</i>-->
+        <!--<h1>微信二维码</h1>-->
+    <!--</article>-->
+<!--</header>-->
 <section>
+    <!--dom结构部分-->
     <div class="code_area">
         <div class="code1"></div>
     </div>
-    <input type="file" accept="image/*" />
-    <div class="mt73 sub_btn tc">上传照片</div>
+    <div id="uploader-demo">
+        <!--用来存放item-->
+        <!--<div id="fileList" class="uploader-list"></div>-->
+        <!-- <div id="filePicker">选择图片</div> -->
+        <div class="error"></div>
+        <div id="filePicker" class="mt73 sub_btn tc">上传照片</div>
+
+    </div>
 </section>
+</body>
+
 <script>
     (function (doc, win) {
         var docEl = doc.documentElement,
@@ -50,7 +63,130 @@
         doc.addEventListener('DOMContentLoaded', recalc, false);
     })(document, window);
 </script>
-<script src="<?= BASE_URL ?>/js/jquery.min.js"></script>
-<!--<script src="check.js"></script>-->
-</body>
+
+<script>
+    // 初始化Web Uploader
+    var uploader = WebUploader.create({
+
+        // 选完文件后，是否自动上传。
+        auto: true,
+
+        // swf文件路径
+        swf: '<?= BASE_URL ?>/css/Uploader.swf',
+
+        // 文件接收服务端。
+        server: 'http://wealth-market.smallwolf.cn/upload/upload?flag=profile_upload',
+
+        // 选择文件的按钮。可选。
+        // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+        pick: '#filePicker',
+
+        // 只允许选择图片文件。
+        accept: {
+            title: 'Images',
+            extensions: 'gif,jpg,jpeg,bmp,png',
+            mimeTypes: 'image/*'
+        }
+
+
+    });
+
+    uploader.option('thumb', {
+            width: 110,
+            height: 110,
+
+            // 图片质量，只有type为`image/jpeg`的时候才有效。
+            quality: 70,
+
+            // 是否允许放大，如果想要生成小图的时候不失真，此选项应该设置为false.
+            allowMagnify: true,
+
+            // 是否允许裁剪。
+            crop: true,
+
+            // 为空的话则保留原有图片格式。
+            // 否则强制转换成指定的类型。
+            type: 'image/jpeg'
+        }
+    );
+
+    // 当有文件添加进来的时候
+    uploader.on( 'fileQueued', function( file ) {
+        var $li = $(
+                '<div id="' + file.id + '" class="file-item thumbnail">' +
+                '<div class="code1"><img style="width:100%">' +
+                // '<div class="info">' + file.name + '</div>' +
+                '</div></div>'
+            ),
+            $img = $li.find('img');
+
+
+        // $list为容器jQuery实例
+        // $('#fileList').before( $li );
+        $('.code_area').children('.code1').remove();
+        $('.code_area').append( $li );
+
+//        // 创建缩略图
+        // 如果为非图片文件，可以不用调用此方法。
+        // thumbnailWidth x thumbnailHeight 为 100 x 100
+        thumbnailWidth = 300;
+        thumbnailHeight = 300;
+        uploader.makeThumb( file, function( error, src ) {
+            if ( error ) {
+                $img.replaceWith('<span>不能预览</span>');
+                return;
+            }
+
+            $img.attr( 'src', src );
+        }, thumbnailWidth, thumbnailHeight );
+    });
+    // 文件上传过程中创建进度条实时显示。
+    uploader.on( 'uploadProgress', function( file, percentage ) {
+        console.log('上传中' + percentage);
+//        var $li = $( '#'+file.id ),
+//            $percent = $li.find('.progress span');
+//
+//        // 避免重复创建
+//
+//
+//        if ( !$percent.length ) {
+//            $percent = $('<p class="progress"><span></span></p>')
+//                .appendTo( $li )
+//                .find('span');
+//        }
+//        // percentage = 0.5;
+//        $percent.css( 'width', percentage * 100 + '%' );
+    });
+
+    // 文件上传成功，给item添加成功class, 用样式标记上传成功。
+    uploader.on( 'uploadSuccess', function( file, response ) {
+        var code1 = $(".code1");
+        var raw = response._raw;
+        raw = JSON.parse(raw);
+        var savename = raw[0].savename;
+        console.log('<?php echo IMG_URL;?>' + savename);
+        code1.attr('src', '<?php echo IMG_URL;?>' + savename);
+        $( '#'+file.id ).addClass('upload-state-done');
+    });
+
+    // 文件上传失败，显示上传出错。
+    uploader.on( 'uploadError', function( file ) {
+        // return null;
+        var $li = $( '#'+file.id ),
+            $error = $li.find('div.error');
+
+        // 避免重复创建
+        if ( !$error.length ) {
+            $error = $('<div class="error"></div>').appendTo( $('#uploader-demo'));
+        }
+
+        $error.text('上传失败');
+    });
+
+    // 完成上传完了，成功或者失败，先删除进度条。
+    uploader.on( 'uploadComplete', function( file ) {
+        $( '#'+file.id ).find('.progress').remove();
+    });
+
+</script>
 </html>

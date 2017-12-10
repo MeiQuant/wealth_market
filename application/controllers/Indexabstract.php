@@ -16,16 +16,18 @@ abstract class IndexabstractController extends Yaf_Controller_Abstract
     public $_memcache = null;
 
     public $_uid = '';
+
+    public $_js_sdk;
+
+    public $_is_from_share = false; // 是否通过分享出来的链接
+
     /**
      * 微信端基类控制器, 定时获取用户open_id, 暂时未进行加密处理
      */
     public function init()
     {
-        if (DEBUG) {
-            $this->_uid = 'oQt5h03tsXD7Wn6wWqzYDJ0umbEk';
-            return ;
-        }
         header("Content-Type:text/html;charset=utf-8");
+
         $options = [
             'debug'  => true,
             'app_id' => 'wx40d7d5323c90b1b1',
@@ -42,6 +44,11 @@ abstract class IndexabstractController extends Yaf_Controller_Abstract
             ],
         ];
 
+        $this->_app = new Application($options);
+        if (DEBUG) {
+            $this->_uid = 'oQt5h03tsXD7Wn6wWqzYDJ0umbEk';
+            return ;
+        }
 
         $cache = new Cache_Cache();
         $memcache = $cache->connect('Memcache');
@@ -56,7 +63,6 @@ abstract class IndexabstractController extends Yaf_Controller_Abstract
         }
         if (empty($open_id))
         {
-            $this->_app = new Application($options);
             $oauth = $this->_app->oauth;
             // 发起微信端的授权
             echo $oauth->redirect()->send();
@@ -64,11 +70,26 @@ abstract class IndexabstractController extends Yaf_Controller_Abstract
         else
         {
             $this->_uid = $open_id;
-            if (strpos($_SERVER['REQUEST_URI'], '%23mp.weixin.qq.com') === false && strpos($_SERVER['REQUEST_URI'], '#mp.weixin.qq.com') === false) {
-                header("location: ". $_SERVER['REQUEST_URI'] . urlencode("#mp.weixin.qq.com"));
-            }
+//            if (strpos($_SERVER['REQUEST_URI'], '%23mp.weixin.qq.com') === false && strpos($_SERVER['REQUEST_URI'], '#mp.weixin.qq.com') === false) {
+//                header("location: ". $_SERVER['REQUEST_URI'] . urlencode("#mp.weixin.qq.com"));
+//            }
         }
 
+    }
+
+
+    public function filter_param($field, $type = 'get')
+    {
+
+
+        $param = isset($_GET[$field]) ? $_GET[$field] : '';
+        $param = trim($param);
+        if (!empty($param)) {
+            if (strpos(urldecode($param), '#') !== false) {
+                $param = explode('#', urldecode($param))[0];
+            }
+        }
+        return $param;
     }
 
 

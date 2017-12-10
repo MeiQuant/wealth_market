@@ -733,3 +733,10 @@ i{
 	margin-top:0.21rem;
 }
 
+/*个人资料上传二维码*/
+.error{
+	text-align:center;
+	font-size:8px;
+	color:#cc3333;
+}
+

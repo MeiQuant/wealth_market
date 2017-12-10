@@ -5,8 +5,7 @@
 
 3 在网站根目录下执行 composer install (切记不要执行 composer update, 因为最新的包不太兼容php的版本)
 
-
-
+4 代码中没有对sql的`delete`, `admin`等敏感词进行过滤, 请运维自己过滤敏感词汇
 
 
 

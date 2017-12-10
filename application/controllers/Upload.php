@@ -3,7 +3,7 @@
 
 use Illuminate\Database\Capsule\Manager as DB;
 
-class UploadController extends AbstractController
+class UploadController extends IndexabstractController
 {
 
     public $_valid = null;
@@ -18,13 +18,34 @@ class UploadController extends AbstractController
 
     public function uploadAction()
     {
+        $open_id = $this->_uid;
         $uploader = new Upload_Upload();
         $ret = $uploader->upload(UPLOAD_DIR);
         if ($ret)
         {
-            echo json_encode($uploader->getUploadFileInfo());exit;
+            $upload_info = $uploader->getUploadFileInfo();
+            $ret = true;
+            try {
+                if (!empty($upload_info) && isset($upload_info[0])) {
+                    if (trim($_GET['flag'] == 'profile_upload')) {
+                        $name = $upload_info[0]['savename'];
+                        $code = IMG_URL . $name;
+                        $ret = Models_User::where('open_id', $open_id)->update(['code' => $code]);
+                    }
+                    if ($ret !== false) {
+                        echo json_encode($upload_info);exit;
+                    } else {
+                        print_r('error');exit;
+                    }
+
+                }
+
+            } catch (\Exception $e) {
+                // exception
+                print_r('error');exit;
+            }
         } else {
-            return json_encode($uploader->getErrorMsg());
+            echo json_encode($uploader->getErrorMsg());exit;
         }
     }
 

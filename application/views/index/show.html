@@ -52,34 +52,25 @@
     <title>财经早知道</title>
 </head>
 <body  class="font_to_normal">
-<!--<header class="header tc">-->
-    <!--<article class="header_container por">-->
-        <!--<i class="home poa">-->
-            <!--<a href="javascript:history.go(-1)" title="返回">&lt; 返回</a>-->
-        <!--</i>-->
-        <!--<i class="home_r poa">-->
-            <!--<a href="javascript:;" class="ml20" title="…">…</a>-->
-        <!--</i>-->
-        <!--<h1>财经早知道</h1>-->
-    <!--</article>-->
-<!--</header>-->
 <section>
-    <div class="top_fixed">
-        <div class="person_img fl mt15 ml30">
-            <img src="<?php echo $user['headimgurl'];?>" class="person_img">
+    <?php if ($is_share) {?>
+        <div class="top_fixed">
+            <div class="person_img fl mt15 ml30">
+                <img src="<?php echo $user['headimgurl'];?>" class="person_img">
+            </div>
+            <div class="want_to_do fl ml20">想投资，咨询我？</div>
+            <div class="fr contact mr20">
+                <?php if (!empty($user['phone'])) {?>
+                    <a href="tel:<?php echo $user['phone'];?>"><span class="contact_way ml20">电话</span></a>
+                <?php  }?>
+                <?php if (!empty($user['code'])) {?>
+                    <span class="contact_way pop_wechat ml20">微信</span>
+                <?php }?>
+            </div>
+            <div class="cf"></div>
         </div>
-        <div class="want_to_do fl ml20">想投资，咨询我？</div>
-        <div class="fr contact mr20">
-            <?php if (!empty($user['phone'])) {?>
-                <a href="tel:<?php echo $user['phone'];?>"><span class="contact_way ml20">电话</span></a>
-            <?php  }?>
-            <?php if (!empty($user['code'])) {?>
-                <span class="contact_way pop_wechat ml20">微信</span>
-            <?php }?>
-        </div>
-        <div class="cf"></div>
-    </div>
-    <div class="top_space"></div>
+        <div class="top_space"></div>
+    <?php }?>
     <div class="middle_box">
         <div class="inner_box1">
             <div class="pt90 fl">
@@ -99,16 +90,17 @@
         <div class="inner_box2 pt26 pb45">
             <div>签名:</div>
             <div class="mt7"><?php echo $user['introduce'];?></div>
-            <div class="tr">
-                <i class="edit_icon"></i>
-                <a class="edit_text" href="/user/index">编辑个人资料</a>
-            </div>
+            <?php if (!$is_share) { ?>
+                <div class="tr">
+                    <i class="edit_icon"></i>
+                    <a class="edit_text" href="/user/index">编辑个人资料</a>
+                </div>
 
-            <a class="add_blue tc add_user">
-                <i class="add_icon poa"></i>
-                <span>添加信息</span>
-            </a>
-
+                <a class="add_blue tc add_user">
+                    <i class="add_icon poa"></i>
+                    <span>添加信息</span>
+                </a>
+            <?php } ?>
         </div>
     </div>
     <div class="middle_box pb26">
@@ -249,6 +241,50 @@
 </script>
 <script src="<?= BASE_URL ?>/js/jquery.min.js"></script>
 <script src="<?= BASE_URL ?>/js/check.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8">
+
+    wx.config(<?php echo $js_sdk->config(array('onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo'), false) ?>);
+
+    wx.ready(function(){
+        var ouid = '<?php echo $ouid;?>';
+        var wx_domain = '<?php echo urlencode("#mp.weixin.qq.com");?>';
+        var link = 'http://wealth-market.smallwolf.cn/index/show?ouid=' + ouid + wx_domain; // 分享链接
+        var title = '财经早知道';
+        wx.onMenuShareTimeline({
+            title: title, // 分享标题
+            link:  link,
+            imgUrl: '', // 分享图标
+            success: function () {
+                // 用户确认分享后执行的回调函数
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+        wx.onMenuShareAppMessage({
+
+            title: title, // 分享标题
+
+            desc: '', // 分享描述
+
+            link: link, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+
+            imgUrl: '', // 分享图标
+
+            type: '', // 分享类型,music、video或link，不填默认为link
+
+            dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+
+            success: function () {},
+
+            cancel: function () {}
+
+        });
+    });
+    wx.error(function(res){
+    });
+</script>
 
 <script>
     $(".add_user").on('click', function(){
@@ -261,8 +297,10 @@
     });
 
     $(".ok_btn").on('click', function(){
-        $('.wx_mask').hide();
+        $('.wx_mask').hide();g
     });
+
+
 </script>
 </body>
 </html>
