@@ -47,6 +47,7 @@ class UserController extends IndexabstractController
                     $city = isset($province_city_arr[1]) ? $province_city_arr[1] : '';
                 }
                 $code = Util_Common::post('code');
+                $introduce = empty($introduce) ? '有多年金融行业经验，具有丰富的理财业务知识，熟知各项理财产品，能根据市场变化，和客户个人情况，为其提供个性化服务。' : $introduce;
                 $ret = Models_User::where('open_id', $open_id)->update(
                     array(
                         'username' => $username,

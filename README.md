@@ -1,5 +1,5 @@
 ### 部署文档
-1 将 public/common.php 中的 DEBUG 变量更改为 false, 否则的话所有的接口都不会走缓存, 包括微信接口， 并且有些功能不能用
+1 将 public/common.php 中的 DEBUG 变量更改为 false, 否则有些功能是错误的
 
 2 安装php的yaf扩展
 

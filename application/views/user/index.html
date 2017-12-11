@@ -27,7 +27,7 @@
 </header>
 <section>
     <div class="top_ban">
-        <div class="person_icon"></div>
+        <div class="person_icon"><img src="<?php echo $user['headimgurl'];?>" class="person_icon"></div>
         <div class="mt22 person_name tc"><?php echo $user['nickname'];?></div>
     </div>
     <div class="main_content">
@@ -46,7 +46,7 @@
             </div>
             <div class="form_bor">
                 <label><span class="ml20">自我介绍</span></label>
-                <input class="ml41 full_in" name="introduce" type="text" placeholder="请输入您的自我介绍" value="<?php if (!empty($user['introduce'])) {echo $user['introduce'];} else {echo '请输入自我介绍';} ?>" />
+                <input class="ml41 full_in" id="introduce" name="introduce" type="text" placeholder="请输入您的自我介绍" value="<?php if (!empty($user['introduce'])) {echo $user['introduce'];} else {echo '有多年金融行业经验，具有丰富的理财业务知识，熟知各项理财产品，能根据市场变化，和客户个人情况，为其提供个性化服务。';} ?>" />
             </div>
             <div class="form_bor">
                 <label><i class="red_icon">*</i><span class="ml20">公司</span></label>

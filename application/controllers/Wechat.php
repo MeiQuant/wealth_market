@@ -11,7 +11,7 @@ class WechatController extends Yaf_Controller_Abstract
 
     public $_options = array();
 
-
+    public $app;
     public function init()
     {
         header("Content-Type:text/html;charset=utf-8");
@@ -33,7 +33,7 @@ class WechatController extends Yaf_Controller_Abstract
 
         $this->_options = $options;
 
-
+        $this->app = new Application($options);
     }
 
     public function validAction()
@@ -61,31 +61,34 @@ class WechatController extends Yaf_Controller_Abstract
      */
     public function menuAction()
     {
-        $app = $this->_app;
+        $app = $this->app;
         $menu_api = $app->menu;
 
         $buttons = [
+
             [
                 "type" => "view",
-                "name" => "有恒财富新闻",
+                "name" => "免费制作",
                 "url"  => "http://wealth-market.smallwolf.cn/index/show"
             ],
-//            [
-//                "name"       => "咨询中心",
-//                "sub_button" => [
-//                    [
-//                        "type" => "view",
-//                        "name" => "个人诊所",
-//                        "url"  => "http://221.232.160.226/xygs3/search.html"
-//                    ],
-//                    [
-//                        "type" => "view",
-//                        "name" => "咨询中心",
-//                        "url"  => "http://weixin.xyzq.com.cn/weixinpost/zxzx/index.html"
-//                    ]
-//                ],
-//            ],
-//
+            [
+                "name"       => "有恒推荐",
+                "sub_button" => [
+                    [
+                        "type" => "view",
+                        "name" => "理财师必读",
+                        "url"  => "http://mp.weixin.qq.com/s/RoY-4XhOXmTVbzfh20z9WA"
+                    ],
+                    [
+                        "type" => "view",
+                        "name" => "财富峰会",
+                        "url"  => "https://h5.xiaoeknow.com/content_page/eyJ0eXBlIjozLCJyZXNvdXJjZV90eXBlIjoiIiwicmVzb3VyY2VfaWQiOiIiLCJwcm9kdWN0X2lkIjoicF81OWRlY2MwMmU1MjkzXzNNRjlQYWhhIiwiYXBwX2lkIjoiYXBwRU5SNEFGNWoyNzQxIn0"
+                    ]
+                ],
+            ],
+
+
+
         ];
         $response = $menu_api->add($buttons);
         var_dump($response);
