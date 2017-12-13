@@ -49,7 +49,7 @@
         }
 
     </style>
-    <title>财经早知道</title>
+    <title>有恒财富早餐</title>
 </head>
 <body  class="font_to_normal">
 <section>
@@ -76,8 +76,12 @@
             <div class="pt90 fl">
                 <h1 class="text_name"><?php echo $user['name'];?></h1>
                 <div class="text_index">
-                    <div>职位：<?php echo $user['job'];?></div>
-                    <div>城市：<?php echo $user['city'];?></div>
+                    <?php if (!empty($user['job'])) { ?>
+                    <div>职位：<?=$user['job']?></div>
+                    <?php } ?>
+                    <?php if (!empty($user['city'])) { ?>
+                        <div>城市：<?=$user['city']?></div>
+                    <?php } ?>
                     <div>公司：<?php echo $user['company'];?></div>
                     <div>电话：<?php echo $user['phone'];?></div>
                 </div>

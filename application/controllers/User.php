@@ -44,7 +44,7 @@ class UserController extends IndexabstractController
                 if (!empty($province_city)) {
                     $province_city_arr = explode(',', $province_city);
                     $province = isset($province_city_arr[0]) ? $province_city_arr[0] : '';
-                    $city = isset($province_city_arr[1]) ? $province_city_arr[1] : '';
+                    $city = (isset($province_city_arr[1]) && $province_city_arr[1] != '市辖区') ? $province_city_arr[1] : (isset($province_city_arr[2]) ? $province_city_arr[2] : '');
                 }
                 $code = Util_Common::post('code');
                 $introduce = empty($introduce) ? '有多年金融行业经验，具有丰富的理财业务知识，熟知各项理财产品，能根据市场变化，和客户个人情况，为其提供个性化服务。' : $introduce;

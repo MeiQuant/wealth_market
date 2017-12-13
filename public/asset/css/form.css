@@ -358,14 +358,14 @@ i{
 	padding-top:0.9rem;
 }
 .text_name{
-	font-size: 0.44rem;
+	font-size: 0.38rem;
 	color: #000000;
 	line-height: 0.62rem;
 	padding:0;
 	margin:0;
 }
 .text_index{
-	font-size: 0.26rem;
+	font-size: 0.24rem;
 	color: #3C3C3C;
 	line-height: 0.36rem;
 	margin-top:0.07rem;
@@ -406,7 +406,7 @@ i{
 }
 .inner_box2{
 	font-family: PingFangSC-Medium;
-	font-size: 0.26rem;
+	font-size: 0.24rem;
 	color: #3C3C3C;
 	line-height: 0.34rem;
 }

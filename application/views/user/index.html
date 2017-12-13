@@ -72,7 +72,7 @@
 <div class="mask dis-n">
     <div class="pop_window">
         <div class="text_box">
-            <textarea class="text_in" id="pop_introduct" rows="10" placeholder="请输入您的自我介绍……"></textarea>
+            <textarea class="text_in" id="pop_introduct" rows="10" placeholder="请输入您的自我介绍……"><?php if (!empty($user['introduce'])) {echo $user['introduce'];} else {echo '有多年金融行业经验，具有丰富的理财业务知识，熟知各项理财产品，能根据市场变化，和客户个人情况，为其提供个性化服务。';} ?></textarea>
         </div>
         <div class="text_hr"></div>
         <a href="javascript:;" class="tc ok_btn">确定</a>
@@ -117,6 +117,10 @@
                 var _this = $(this);
                 $('.mask').show();
                 $('.ok_btn').click(function(){
+                    if ($("#pop_introduct").val().length > 80) {
+                        _alert('字数不能超过80字');
+                        return ;
+                    }
                     _this.val($("#pop_introduct").val());
                     $('.mask').hide();
                 })
