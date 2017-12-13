@@ -72,7 +72,11 @@ class IndexController extends IndexabstractController
                 $article['content'] = json_decode($article['content'], true);
             }
         }
-        $this->getView()->assign(['user' => $user, 'page_info' => $page_info, 'product' => $product,  'articles' => $articles, 'js_sdk' => $this->_app->js, 'ouid' => $user_id, 'is_share' => $is_share]);
+
+        // 分享文案
+        $wx_share = DB::table('finance_wechat')->first();
+
+        $this->getView()->assign(['wx_share' => $wx_share, 'user' => $user, 'page_info' => $page_info, 'product' => $product,  'articles' => $articles, 'js_sdk' => $this->_app->js, 'ouid' => $user_id, 'is_share' => $is_share]);
         $this->getView()->display('index/show.html');
     }
 

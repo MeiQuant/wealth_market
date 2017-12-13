@@ -179,4 +179,45 @@ class FinanceController extends AbstractController
         return $str;
     }
 
+
+    /**
+     * 微信的一些相关设置
+     */
+    public function wechatAction()
+    {
+        $request = $this->getRequest();
+        $wechat = DB::table('finance_wechat')->first();
+        if ($request->isPost()) {
+            $title = trim(Util_Common::post('title'));
+            $description = trim(Util_Common::post('desc'));
+            try {
+                $datetime = date('Y-m-d H:i:s', time());
+                // @todo, 数据校验
+                if (empty($wechat)) {
+                    $ret = DB::table('finance_wechat')->insert([
+                        ['title' => $title, 'description' => $description, 'update_time' => $datetime, 'create_time' => $datetime]
+                    ]);
+                } else {
+                    $ret = DB::table('finance_wechat')
+                        ->where('id', $wechat['id'])
+                        ->update(['title' => $title, 'description' => $description, 'update_time' => $datetime]);
+                }
+                if ($ret !== false) {
+                    _success_json_encoder('保存成功');
+                }
+            } catch (\Exception $e) {
+                _error_json_encoder('保存失败' . $e->getMessage());
+            }
+        }
+
+        $this->getView()->assign(
+            array(
+                'title' => '微信分享设置',
+                'wechat' => $wechat
+            )
+        );
+        $this->getView()->display('finance/wechat.html');
+
+    }
+
 }

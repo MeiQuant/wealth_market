@@ -20,14 +20,6 @@
     <title>个人资料</title>
 </head>
 <body  class="font_to_normal gray_bg">
-<!--<header class="header tc">-->
-    <!--<article class="header_container por">-->
-        <!--<i class="home poa">-->
-            <!--<a href="javascript:history.go(-1)" title="返回">&lt; 返回</a>-->
-        <!--</i>-->
-        <!--<h1>微信二维码</h1>-->
-    <!--</article>-->
-<!--</header>-->
 <section>
     <!--dom结构部分-->
     <div class="code_area">
@@ -142,7 +134,7 @@
     });
     // 文件上传过程中创建进度条实时显示。
     uploader.on( 'uploadProgress', function( file, percentage ) {
-        console.log('上传中' + percentage);
+        console.log('上传中' + percentage + '====' + file.id);
 //        var $li = $( '#'+file.id ),
 //            $percent = $li.find('.progress span');
 //

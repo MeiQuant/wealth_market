@@ -254,36 +254,25 @@
         var ouid = '<?php echo $ouid;?>';
         var wx_domain = '<?php echo urlencode("#mp.weixin.qq.com");?>';
         var link = 'http://wealth-market.smallwolf.cn/index/show?ouid=' + ouid + wx_domain; // 分享链接
-        var title = '财经早知道';
+        var title = "<?php if (isset($wx_share['title'])){echo $wx_share['title'];}?>";
+        var imgUrl = "<?php echo $user['headimgurl']; ?>";
+        var desc = "<?php if (isset($wx_share['description'])){echo $wx_share['description'];}?>";
         wx.onMenuShareTimeline({
-            title: title, // 分享标题
+            title: title,
             link:  link,
-            imgUrl: '', // 分享图标
-            success: function () {
-                // 用户确认分享后执行的回调函数
-            },
-            cancel: function () {
-                // 用户取消分享后执行的回调函数
-            }
+            imgUrl: imgUrl,
+            success: function () {},
+            cancel: function () {}
         });
         wx.onMenuShareAppMessage({
-
-            title: title, // 分享标题
-
-            desc: '', // 分享描述
-
-            link: link, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-
-            imgUrl: '', // 分享图标
-
-            type: '', // 分享类型,music、video或link，不填默认为link
-
-            dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
-
+            title: title,
+            desc: desc,
+            link: link,
+            imgUrl: imgUrl,
+            type: '',
+            dataUrl: '',
             success: function () {},
-
             cancel: function () {}
-
         });
     });
     wx.error(function(res){
