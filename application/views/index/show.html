@@ -16,15 +16,16 @@
     <style type="text/css">
         .audio_box{
             padding:0;
-            margin:0;
-            width:4rem;
+            overflow: hidden;
+            width: 95%;
+            height: 0.6rem;
         }
-
         .wx_window{
-            width:80%;
-            margin-top:2rem;
-            margin-left:auto;
-            margin-right:auto;
+            width: 90%;
+            position: absolute;
+            top: 1.4rem;
+            left: 50%;
+            margin-left: -45%;
             background: #ffffff;
             border-radius: 0.08rem;
         }
@@ -36,7 +37,7 @@
             top:0.4rem;
         }
         .wx_text{
-            margin-top:0.2rem;
+            margin-top:0.05rem;
             color:#dcdcdc;
             font-size: 0.32rem
         }
@@ -113,9 +114,10 @@
             <div class="fl ml20 mt32">
                 <div class="redio_tit full_in1"><?php echo date('Y.m.d', time());?> 财经早餐播报</div>
                 <div class="redio_text full_in1">来自有恒财富管理研究院</div>
-                <audio controls="controls" class="audio_box poa">
+                <audio controls="controls" class="audio_box mt10 dis-b">
                     <source src="<?php echo $page_info['audio'];?>" type="audio/mpeg" />
                 </audio>
+
                 <!--<div class="process_box"></div>-->
                 <!--<div class="process_text">-->
                     <!--<div class="fl">00:00</div>-->
@@ -131,8 +133,25 @@
 						<span class="line line-l"></span>大盘指数<span class="line line-r"></span>
 					</span>
         </div>
-        <ul class="flex-ul tc inner_box1">
-            <?php if (!empty($page_info['stock'])) {  foreach ($page_info['stock'] as $key => $val) { if ($key <= 2) {?>
+        <div style="border:1px solid #ececec;padding:5px;">
+            <ul class="flex-ul tc inner_box1">
+                <?php if (!empty($page_info['stock'])) {  foreach ($page_info['stock'] as $key => $val) { if ($key <= 2) {?>
+                    <li>
+                        <div class="li_tit"><?php echo $val[0];?></div>
+                        <div class="<?php if ($val[2] < 0) {echo 'li_num1';} else {echo 'li_num3';}?>">
+                            <span><?php echo $val[1][0];?>.</span>
+                            <span class="li_small"><?php echo $val[1][1];?></span><!--此处需要截取小数点后面2位显示-->
+                        </div>
+                        <div class="li_num2">
+                            <div class="fl ml10"><?php echo $val[2];?></div>
+                            <div class="fr mr10"><?php echo $val[3];?></div>
+                            <div class="cf"></div>
+                        </div>
+                    </li>
+                <?php }}}?>
+            </ul>
+            <ul class="flex-ul tc">
+                <?php if (!empty($page_info['stock'])) {  foreach ($page_info['stock'] as $key => $val) { if ($key > 2) {?>
                 <li>
                     <div class="li_tit"><?php echo $val[0];?></div>
                     <div class="<?php if ($val[2] < 0) {echo 'li_num1';} else {echo 'li_num3';}?>">
@@ -145,24 +164,9 @@
                         <div class="cf"></div>
                     </div>
                 </li>
-            <?php }}}?>
-        </ul>
-        <ul class="flex-ul tc">
-            <?php if (!empty($page_info['stock'])) {  foreach ($page_info['stock'] as $key => $val) { if ($key > 2) {?>
-            <li>
-                <div class="li_tit"><?php echo $val[0];?></div>
-                <div class="<?php if ($val[2] < 0) {echo 'li_num1';} else {echo 'li_num3';}?>">
-                    <span><?php echo $val[1][0];?>.</span>
-                    <span class="li_small"><?php echo $val[1][1];?></span><!--此处需要截取小数点后面2位显示-->
-                </div>
-                <div class="li_num2">
-                    <div class="fl ml10"><?php echo $val[2];?></div>
-                    <div class="fr mr10"><?php echo $val[3];?></div>
-                    <div class="cf"></div>
-                </div>
-            </li>
-            <?php }}}?>
-        </ul>
+                <?php }}}?>
+            </ul>
+        </div>
         <div class="bottom_text1 tc">截止昨天收盘报价</div>
     </div>
 
@@ -176,7 +180,7 @@
             <ul class="ul_text">
                 <?php if (!empty($article['content'])) { foreach ($article['content'] as $val) {?>
                  <li>
-                    <div><h2 class="second_tit"><i class="blue_dot"></i><?php echo $val['title'];?></h2></div>
+                    <div><h2 class="second_tit"><i class="blue_dot"></i>&nbsp;<?php echo $val['title'];?></h2></div>
                     <div class="mt19">
                         <span class="tag_icon"><?php echo $val['author'];?></span>
 
@@ -280,6 +284,10 @@
 </script>
 
 <script>
+//    var wx_height=$('.wx_window').height();
+//    var window_height=parseInt($(window).height())*0.5;
+//    wx_height=window_height-parseInt(wx_height)*0.5;
+//    $('.wx_window').css('marginTop',wx_height);
     $(".add_user").on('click', function(){
        window.location.href = '/product/index';
     });

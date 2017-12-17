@@ -35,7 +35,7 @@ class UploadController extends IndexabstractController
                     if ($ret !== false) {
                         echo json_encode($upload_info);exit;
                     } else {
-                        print_r('error');exit;
+                        echo json_encode($uploader->getErrorMsg());exit;
                     }
 
                 }

@@ -4,6 +4,7 @@ define('DOMAIN_URL', 'http://wealth-market.smallwolf.cn');
 define("BASE_URL", 'http://static-wealth-market.smallwolf.cn/');
 define("IMG_URL", 'http://img-wealth-market.smallwolf.cn/');
 define('UPLOAD_URL', 'http://wealth-market.smallwolf.cn/upload/upload');
+define('UPLOAD_ADMIN_URL', 'http://wealth-market.smallwolf.cn/uploadadmin/upload');
 define('UPLOAD_DIR', '/data/upload_file/');
 
 
@@ -18,4 +19,5 @@ define('EXIT_CODE_4003', 4003); // 管理界面手动点击按钮杀死cron的ex
 
 define('SEND_SMS_SWITCH', false);
 
-define('DEBUG', true);
+define('DEBUG', false);
+define('DEBUG_ADMIN', true); // 后台

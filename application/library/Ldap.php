@@ -41,7 +41,7 @@ class Ldap
     public static function loginUser($userName, $password)
     {
         // 测试机不走ldap了
-        if (DEBUG && ($password == 'admin')) {
+        if (DEBUG_ADMIN && ($password == 'admin')) {
             self::_setUserCookie($userName, $password);
             return self::getUser();
         }
