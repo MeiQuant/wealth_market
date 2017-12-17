@@ -43,7 +43,7 @@ class FinanceController extends AbstractController
     public function addAction()
     {
         $request = $this->getRequest();
-        $page = DB::table('finance_page')->first();
+        $page = DB::table('finance_page')->orderBy('id', 'desc')->first();
         $page_id = '';
         if (!empty($page)) {
             $page['stock_market'] = json_decode($page['stock_market'], true);
@@ -53,7 +53,7 @@ class FinanceController extends AbstractController
             try {
                 $data = $_POST;
                 $id = isset($data['hidden_page_id']) ? $data['hidden_page_id'] : '';
-
+                $flag = trim($data['flag']);
                 $data['stock_market'] = json_encode($data['stock_market']);
                 $insert_data = [
                     'audio' => trim($data['audio']),
@@ -63,8 +63,21 @@ class FinanceController extends AbstractController
                     'introduce' => trim($data['introduce']),
                     'qr_code' => trim($data['qr_code']),
                     'link' => trim($data['link']),
+                    'is_publish' => strpos($flag, 'publish') !== false ? 1 : 0
                 ];
-                if (empty($id)) {
+
+
+                if (strpos($flag, 'add') !== false) {
+                    $type = 'add';
+                } elseif (strpos($flag, 'update') !== false) {
+                    $type = 'update';
+                } elseif (empty($id)) {
+                    $type = 'add';
+                } else {
+                    $type = 'add';
+                }
+
+                if ($type == 'add') {
                     $insert = Models_Page::create($insert_data);
                     $ret = $insert->id;
                 } else {
@@ -74,10 +87,17 @@ class FinanceController extends AbstractController
 
                     $ret = $update;
                 }
+
+                $msg = array(
+                    'update_preview' => '修改内容预览成功,等待发布',
+                    'update_publish' => '修改内容发布成功',
+                    'add_preview' => '新增内容预览成功, 等待发布',
+                    'add_publish' => '新增内容发布成功'
+                 );
                 if (!empty($ret)) {
-                    _success_json_encoder('保存成功');
+                    _success_json_encoder($msg[$flag]);
                 } else {
-                    throw new Exception('暂无更改信息');
+                    throw new Exception('系统错误, 请联系管理员');
                 }
             } catch (Exception $e) {
                 _error_json_encoder($e->getMessage());
@@ -110,8 +130,16 @@ class FinanceController extends AbstractController
         }
         if ($request->isPost()) {
             $module = trim(Util_Common::post('module_name'));
-            $module_article = DB::table('finance_article')->where('module', $module)->select('id')->first();
+            $module_id = trim(Util_Common::post('module_id'));
+            $flag = trim(Util_Common::post('flag'));
             $content_json = trim(Util_Common::post('content'));
+            if (strpos($flag, 'add') !== false) {
+                $type = 'add';
+            } elseif (strpos($flag, 'update') !== false) {
+                $type = 'update';
+            } else {
+                $type = 'add';
+            }
             $content_json = $this->_handlefont($content_json);
             $content_array = json_decode($content_json, true);
             if (empty($content_array)) {
@@ -119,17 +147,22 @@ class FinanceController extends AbstractController
             }
             try {
                 // @todo, 数据校验
-                if (empty($module_article)) {
+                if ($type == 'add') {
                     $ret = DB::table('finance_article')->insert([
-                        ['module' => $module, 'content' => $content_json, 'update_time' => date('Y-m-d H:i:s')]
+                        ['module' => $module, 'content' => $content_json, 'update_time' => date('Y-m-d H:i:s'), 'is_publish' => strpos($flag, 'publish') !== false ? 1 : 0]
                     ]);
-                } else {
+                } elseif ($type == 'update') {
+                    // 将之前的模块都下线
                     $ret = DB::table('finance_article')
-                        ->where('module', $module)
-                        ->update(['content' => $content_json, 'update_time' => date('Y-m-d H:i:s')]);
+                        ->where('id', $module_id)
+                        ->update(['content' => $content_json, 'update_time' => date('Y-m-d H:i:s'), 'is_publish' => strpos($flag, 'publish') !== false ? 1 : 0]);
+                } else {
+                    $ret = DB::table('finance_article')->insert([
+                        ['module' => $module, 'content' => $content_json, 'update_time' => date('Y-m-d H:i:s'), 'is_publish' => strpos($flag, 'publish') !== false ? 1 : 0]
+                    ]);
                 }
                 if ($ret !== false) {
-                    _success_json_encoder('添加成功');
+                    _success_json_encoder('保存成功');
                 }
             } catch (\Exception $e) {
                 _error_json_encoder('添加失败' . $e->getMessage());

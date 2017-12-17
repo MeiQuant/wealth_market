@@ -119,13 +119,28 @@
                             <?php } }?>
 
 
-
+                            <input type="hidden" value="<?php echo $module_id;?>" name="hidden_id"/>
                             <div class="clearfix form-actions">
                                 <div class="col-md-offset-3 col-md-9">
-                                    <button class="btn btn-info" type="button">
+                                    <button class="btn btn-info" type="button" flag="update_preview">
                                         <i class="ace-icon fa fa-check bigger-110"></i>
-                                        立即提交
+                                        修改预览
                                     </button>
+
+                                    <button class="btn btn-info" type="button" flag="update_publish">
+                                        <i class="ace-icon fa fa-check bigger-110"></i>
+                                        修改发布
+                                    </button>
+                                    <button class="btn btn-info" type="button" flag="add_preview">
+                                        <i class="ace-icon fa fa-check bigger-110"></i>
+                                        新增预览
+                                    </button>
+
+                                    <button class="btn btn-info" type="button" flag="add_publish">
+                                        <i class="ace-icon fa fa-check bigger-110"></i>
+                                        新增发布
+                                    </button>
+
 
                                     <button class="btn" type="reset">
                                         <i class="ace-icon fa fa-undo bigger-110"></i>
@@ -212,6 +227,7 @@
     });
 
     $(".btn-info").on('click', function(){
+        var flag = $(this).attr('flag');
         var module_name = $("input[name=module]").val();
         var _input_title = $("input[name=title]");
         var _input_author = $("input[name=author]");
@@ -241,7 +257,7 @@
         $.ajax({
             type : 'post',
             url : '/finance/article',
-            data : {module_name : module_name, module_id : module_id, content : jsonstr},
+            data : {module_name : module_name, module_id : module_id, content : jsonstr, flag : flag},
             dataType : 'json',
             success : function(msg){
                 if (msg.status) {

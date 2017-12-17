@@ -24,10 +24,16 @@ class IndexController extends IndexabstractController
     {
         $request = $this->getRequest();
         $ouid = $this->filter_param('ouid');
+        $page_id = Util_Common::get('page_id');
+        $article_id = Util_Common::get('article_id');
         $open_id = $this->_uid;
         $is_share = false;
         // 区域部分信息
-        $page_info = DB::table('finance_page')->orderBy('id', 'desc')->first();
+        if (!empty($page_id)) {
+            $page_info = DB::table('finance_page')->where('is_publish', 1)->where('id', $page_id)->orderBy('id', 'desc')->first();
+        } else {
+            $page_info = DB::table('finance_page')->where('is_publish', 1)->orderBy('id', 'desc')->first();
+        }
         if (!empty($page_info)) {
             $stock_market = json_decode($page_info['stock_market'], true);
             foreach ($stock_market as $stock) {
@@ -37,9 +43,6 @@ class IndexController extends IndexabstractController
             }
         }
         unset($page_info['stock_market']);
-
-
-
 
         if (!empty($ouid) && ($ouid != $open_id) && isset($_GET['from']) && trim($_GET['from'] == WX_SHARE)) {
             // 分享过来的链接
@@ -66,7 +69,14 @@ class IndexController extends IndexabstractController
 
 
         // 文章部分
-        $articles  = DB::table('finance_article')->get();
+        $mid  = DB::table('finance_article')->select(DB::raw('max(id) as mid'))->where('is_publish', 1)->groupBy('module')->get();
+        $mid = Tool::filter_by_field($mid, 'mid');
+        $wx_share_article_id = implode(',', $mid);
+        $wx_share_page_id = $page_info['id'];
+        if (!empty($articles)) {
+            $mid = explode(',', $article_id);
+        }
+        $articles = DB::table('finance_article')->whereIn('id', $mid)->get();
         if (!empty($articles)) {
             foreach ($articles as &$article) {
                 $article['content'] = json_decode($article['content'], true);
@@ -76,7 +86,7 @@ class IndexController extends IndexabstractController
         // 分享文案
         $wx_share = DB::table('finance_wechat')->first();
 
-        $this->getView()->assign(['wx_share' => $wx_share, 'user' => $user, 'page_info' => $page_info, 'product' => $product,  'articles' => $articles, 'js_sdk' => $this->_app->js, 'ouid' => $user_id, 'is_share' => $is_share]);
+        $this->getView()->assign(['wx_share_page_id' => $wx_share_page_id, 'wx_share_article_id' => $wx_share_article_id, 'wx_share' => $wx_share, 'user' => $user, 'page_info' => $page_info, 'product' => $product,  'articles' => $articles, 'js_sdk' => $this->_app->js, 'ouid' => $user_id, 'is_share' => $is_share]);
         $this->getView()->display('index/show.html');
     }
 

@@ -10,6 +10,6 @@ class Models_Page extends Models_Eloquent
 
     protected $primaryKey = 'id';
 
-    protected $fillable = ['audio', 'stock_market', 'company', 'asset_strategy', 'introduce', 'qr_code', 'link'];
+    protected $fillable = ['audio', 'stock_market', 'company', 'asset_strategy', 'introduce', 'qr_code', 'link', 'is_publish'];
 
 }

@@ -17,7 +17,7 @@
         .audio_box{
             padding:0;
             overflow: hidden;
-            width: 95%;
+            width: 85%;
             height: 0.6rem;
         }
         .wx_window{
@@ -257,7 +257,9 @@
     wx.ready(function(){
         var ouid = '<?php echo $ouid;?>';
         var wx_domain = '<?php echo urlencode("#mp.weixin.qq.com");?>';
-        var link = 'http://wealth-market.smallwolf.cn/index/show?ouid=' + ouid + wx_domain; // 分享链接
+        var page_id = '<?php echo $wx_share_page_id;?>';
+        var article_id = '<?php echo $wx_share_article_id;?>';
+        var link = 'http://wealth-market.smallwolf.cn/index/show?page_id=' + page_id + '&article_id=' + article_id + 'ouid=' + ouid + wx_domain; // 分享链接
         var title = "<?php if (isset($wx_share['title'])){echo $wx_share['title'];}?>";
         var imgUrl = "<?php echo $user['headimgurl']; ?>";
         var desc = "<?php if (isset($wx_share['description'])){echo $wx_share['description'];}?>";

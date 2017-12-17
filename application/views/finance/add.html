@@ -176,10 +176,26 @@
 
                             <div class="clearfix form-actions">
                                 <div class="col-md-offset-3 col-md-9">
-                                    <button class="btn btn-info add_article" type="button">
+                                    <button class="btn btn-inverse add_article" flag="update_preview" type="button">
                                         <i class="ace-icon fa fa-check bigger-110"></i>
-                                        立即提交
+                                        修改预览
                                     </button>
+
+                                    <button class="btn btn-success add_article" flag="update_publish" type="button">
+                                        <i class="ace-icon fa fa-check bigger-110"></i>
+                                        修改发布
+                                    </button>
+
+                                    <button class="btn btn-inverse add_article" flag="add_preview" type="button">
+                                        <i class="ace-icon fa fa-check bigger-110"></i>
+                                        新增预览
+                                    </button>
+
+                                    <button class="btn btn-success add_article" flag="add_publish" type="button">
+                                        <i class="ace-icon fa fa-check bigger-110"></i>
+                                        新增发布
+                                    </button>
+
 
                                     &nbsp; &nbsp; &nbsp;
                                     <button class="btn" type="reset">
@@ -361,10 +377,11 @@
 
 
     $(".add_article").on('click', function(){
+        var flag = $(this).attr('flag');
         $.ajax({
             url : '/finance/add',
             type : 'POST',
-            data : $("form").serialize(),
+            data : $("form").serialize() + '&flag=' + flag,
             dataType: 'JSON',
             success : function(msg) {
                 if (msg.status) {
