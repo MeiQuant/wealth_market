@@ -114,10 +114,10 @@
             <div class="fl ml20 mt32">
                 <div class="redio_tit full_in1"><?php echo date('Y.m.d', time());?> 财经早餐播报</div>
                 <div class="redio_text full_in1">来自有恒财富管理研究院</div>
-                <audio controls="controls" class="audio_box mt10 dis-b">
-                    <source src="<?php echo $page_info['audio'];?>" type="audio/mpeg" />
-                </audio>
-
+                <!--<audio controls="controls" class="audio_box mt10 dis-b">-->
+                    <!--<source src="<?php echo $page_info['audio'];?>" type="audio/mpeg" />-->
+                <!--</audio>-->
+                <div style="margin-top:5px;"><audio src="http://kolber.github.io/audiojs/demos/mp3/juicy.mp3" preload="auto"></audio></div>
                 <!--<div class="process_box"></div>-->
                 <!--<div class="process_text">-->
                     <!--<div class="fl">00:00</div>-->
@@ -248,6 +248,12 @@
     })(document, window);
 </script>
 <script src="<?= BASE_URL ?>/js/jquery.min.js"></script>
+<script src="<?= BASE_URL ?>/audiojs/audio.min.js"></script>
+<script>
+    audiojs.events.ready(function() {
+        audiojs.createAll();
+    });
+</script>
 <script src="<?= BASE_URL ?>/js/check.js"></script>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" charset="utf-8">
@@ -259,7 +265,7 @@
         var wx_domain = '<?php echo urlencode("#mp.weixin.qq.com");?>';
         var page_id = '<?php echo $wx_share_page_id;?>';
         var article_id = '<?php echo $wx_share_article_id;?>';
-        var link = 'http://wealth-market.smallwolf.cn/index/show?page_id=' + page_id + '&article_id=' + article_id + 'ouid=' + ouid + wx_domain; // 分享链接
+        var link = 'http://wealth-market.smallwolf.cn/index/show?page_id=' + page_id + '&article_id=' + article_id + '&ouid=' + ouid + wx_domain; // 分享链接
         var title = "<?php if (isset($wx_share['title'])){echo $wx_share['title'];}?>";
         var imgUrl = "<?php echo $user['headimgurl']; ?>";
         var desc = "<?php if (isset($wx_share['description'])){echo $wx_share['description'];}?>";
