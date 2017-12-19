@@ -63,8 +63,10 @@
             </div>
             <div class="form_bor">
                 <label><span class="ml20">二维码</span></label>
-                <i class="poa code"><i class="code_bg"></i><sup class="arr_icon"><a class="arr_icon" href="/user/upload">&nbsp;&gt;&nbsp;&nbsp;</a></sup></i>
+                <i class="poa code"><i class="code_bg"></i><sup class="arr_icon"><a class="arr_icon" id="qrcode_link" href="javascript:;">&nbsp;&gt;&nbsp;&nbsp;</a></sup></i>
             </div>
+
+
         </div>
     </div>
 
@@ -210,6 +212,42 @@
             }
         });
 
+    });
+
+
+
+    $("#qrcode_link").on('click', function(){
+        var username = $("input[name=username]").val();
+        var phone = $("input[name=phone]").val();
+        var company = $("input[name=company]").val();
+        var email = $("input[name=email]").val();
+        var introduce = $("input[name=introduce]").val();
+        var job = $("input[name=job]").val();
+        var province_city = $("input[name=province]").val();
+        $.ajax({
+            type : 'post',
+            url : '/user/store',
+            data : {
+                username : username,
+                phone : phone,
+                email : email,
+                introduce : introduce,
+                company : company,
+                job : job,
+                province_city : province_city
+            },
+            dataType : 'json',
+            success : function(msg){
+                if (msg.status) {
+                    window.location.href = '/user/upload';
+                } else {
+                    _alert('系统发生错误, 请联系管理员');
+                }
+            },
+            error : function () {
+                _alert('系统发生错误, 请联系管理员');
+            }
+        });
     });
 
     function _success(msg, url)

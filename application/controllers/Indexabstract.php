@@ -21,6 +21,8 @@ abstract class IndexabstractController extends Yaf_Controller_Abstract
 
     public $_is_from_share = false; // 是否通过分享出来的链接
 
+    public $_redis = null;
+
     /**
      * 微信端基类控制器, 定时获取用户open_id, 暂时未进行加密处理
      */
@@ -45,15 +47,16 @@ abstract class IndexabstractController extends Yaf_Controller_Abstract
         ];
 
         $this->_app = new Application($options);
+
+        $this->_redis = Cache_Cache::getInstance('Redis');
+
         if (DEBUG) {
             $this->_uid = 'oQt5h03tsXD7Wn6wWqzYDJ0umbEk';
             return ;
         }
 
-        $cache = new Cache_Cache();
-        $memcache = $cache->connect('Memcache');
-        $this->_memcache = $memcache;
         $open_id = isset($_COOKIE['uid']) ? $_COOKIE['uid'] : false;
+        $open_id = Tool::cookie_decode($open_id);
         if (!empty($open_id)) {
             $user = DB::table('finance_user')->where('open_id', $open_id)->first();
             if (empty($user)) {

@@ -55,4 +55,21 @@ class Tool
     }
 
 
+
+    public static function cookie_encode($value) {
+        $key =  getConfig('cookie', 'key');
+        $key     = sha1($key);  //随机加密字符，可以多重加密，越复杂越好
+        $temp     = $value ^ $key;
+        return base64_encode($temp);
+    }
+
+    //cookie解密
+    public static function cookie_decode($value) {
+        $key =  getConfig('cookie', 'key');
+        $key     = sha1($key);
+        $temp     = base64_decode($value);
+        return $temp ^ $key;
+    }
+
+
 }

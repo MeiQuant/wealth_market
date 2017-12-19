@@ -103,8 +103,7 @@ class WechatController extends Yaf_Controller_Abstract
         $info = $user->getOriginal();
         $open_id = $info['openid'];
         if (!empty($info) && is_array($info)) {
-            // 不设计到交易， 登录等敏感信息， 不用加密了
-            $ret = setcookie('uid', $open_id, time() + 24 * 3600, '/');
+            $ret = setcookie('uid', Tool::cookie_encode($open_id), time() + 24 * 3600, '/');
             $is_register_user = DB::table('finance_user')->where('open_id', $info['openid'])->select('id')->first();
             if (empty($is_register_user)) {
                 $datetime = date('Y-m-d H:i:s', time());
