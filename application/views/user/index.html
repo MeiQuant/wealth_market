@@ -18,13 +18,13 @@
     <title>个人资料</title>
 </head>
 <body  class="font_to_normal">
-<header class="header tc">
-    <article class="header_container por">
-        <i class="home_r pof" style="right:0.1rem">
-            <a href="javascript:;" id="save_info" class="ml20" title="保存">保存</a>
-        </i>
-    </article>
-</header>
+<!--<header class="header tc">-->
+    <!--<article class="header_container por">-->
+        <!--<i class="home_r pof" style="right:0.1rem">-->
+            <!--<a href="javascript:;" id="save_info" class="ml20" title="保存">保存</a>-->
+        <!--</i>-->
+    <!--</article>-->
+<!--</header>-->
 <section>
     <div class="top_ban">
         <div class="person_icon"><img src="<?php echo $user['headimgurl'];?>" class="person_icon"></div>
@@ -66,6 +66,11 @@
                 <i class="poa code"><i class="code_bg"></i><sup class="arr_icon"><a class="arr_icon" id="qrcode_link" href="javascript:;">&nbsp;&gt;&nbsp;&nbsp;</a></sup></i>
             </div>
 
+            <a class="add_blue tc" id="save_info" style="line-height: 0.76rem;font-family: PingFangSC-Regular;
+ font-size: 0.32rem;
+ color: #FFFFFF;">
+                保存
+            </a >
 
         </div>
     </div>
