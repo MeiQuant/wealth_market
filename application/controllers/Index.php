@@ -44,7 +44,9 @@ class IndexController extends IndexabstractController
         }
         unset($page_info['stock_market']);
 
-        if (!empty($ouid) && ($ouid != $open_id) && isset($_GET['from']) && trim($_GET['from'] == WX_SHARE)) {
+
+
+        if (!empty($ouid) && ($ouid != $open_id) && isset($_GET['from']) && strpos(trim($_GET['from']), 'message') !== false) {
             // 分享过来的链接
             $user_id = $ouid;
             $is_share = true;
@@ -52,6 +54,8 @@ class IndexController extends IndexabstractController
         } else {
             $user_id  = $this->_uid;
         }
+
+
         // 个人信息
         $user = DB::table('finance_user')->where('open_id', $user_id)->first();
         $user['name'] = !empty($user['username']) ? $user['username'] : $user['nickname'];

@@ -55,7 +55,7 @@ abstract class IndexabstractController extends Yaf_Controller_Abstract
             return ;
         }
 
-        $open_id = isset($_COOKIE['uid']) ? $_COOKIE['uid'] : false;
+        $open_id = (isset($_COOKIE['uid']) && !empty($_COOKIE['uid'])) ? $_COOKIE['uid'] : false;
         $open_id = Tool::cookie_decode($open_id);
         if (!empty($open_id)) {
             $user = DB::table('finance_user')->where('open_id', $open_id)->first();
