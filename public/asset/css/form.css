@@ -433,7 +433,7 @@ i{
 }
 .redio_box{
 	width:96%;
-	height:2.16rem;
+	height:1.36rem;
 	background: #FFFFFF;
 	border: 1px solid #E3E3E3;
 	box-shadow: 0 0.05rem 0.3rem 0 rgba(0,0,0,0.16);
@@ -445,7 +445,7 @@ i{
 	width:0.82rem;
 	height:0.82rem;
 	background: url(../images/index/Voice@2x.png) no-repeat center;
-	margin-top:0.672rem;
+	margin-top:0.3rem;
 	margin-left:0.325rem;
 	background-size: contain;
 }
@@ -454,6 +454,7 @@ i{
 	font-size: 0.32rem;
 	line-height: 0.5rem;
 	color: #3E3E3E;
+	padding-top : 0.3rem;
 }
 .redio_text{
 	font-family: PingFangSC-Regular;
