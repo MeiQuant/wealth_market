@@ -104,6 +104,8 @@ class UserController extends IndexabstractController
      */
     public function uploadAction()
     {
+        $user = DB::table('finance_user')->where('open_id', $this->_uid)->first();
+        $this->getView()->assign(['code' => $user['code']]);
         $this->getView()->display('user/upload.html');
     }
 

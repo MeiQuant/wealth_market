@@ -71,6 +71,11 @@
 </script>
 
 <script>
+    $(function () {
+        var code1 = $(".code1");
+        var code_img = '<?php echo $code;?>';
+        code1.attr('src', code_img);
+    });
     // 初始化Web Uploader
     var uploader = WebUploader.create({
 
