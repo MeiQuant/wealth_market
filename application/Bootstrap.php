@@ -32,7 +32,7 @@ class Bootstrap extends Yaf_Bootstrap_Abstract
 
     public function _initDefaultName(Yaf_Dispatcher $dispatcher)
     {
-        $dispatcher->setDefaultModule('Index')->setDefaultController('Index')->setDefaultAction('index');
+//        $dispatcher->setDefaultModule('Index')->setDefaultController('Index')->setDefaultAction('index');
     }
 
     public function _initDatabaseEloquent()

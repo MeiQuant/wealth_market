@@ -38,13 +38,25 @@ class WechatController extends Yaf_Controller_Abstract
 
     public function validAction()
     {
-        $app = $this->_app;
+        $app = $this->app;
         $server = $app->server;
+
+//        $server->push(function($message){
+//            return 12;
+////            if ($message['MsgType'] == 'subscribe') {
+////                return '1111';
+////            }
+//        });
         $server->setMessageHandler(function ($message) {
             $user = $message->FromUserName; //用户的open_id
             if (isset($message->Event) && $message->Event == 'subscribe')
             {
-                return '尊敬的用户您好，123';
+                error_log('123', 3, '/tmp/aaaaaa.log');
+                return '树立个人品牌，定制专属早餐
+
+1.点击下方【免费制作】，每天推送最新财富资讯，分享到朋友圈，让您在客户面前优雅的刷脸。
+
+2.坚持早起 运动 收听财富早餐，请点击 <a href="http://mp.weixin.qq.com/s/vw3xyQgr3x-925N31dXr1Q">"订阅早餐"</a> 每天准时与您相约。';
             }
         });
 
@@ -52,6 +64,7 @@ class WechatController extends Yaf_Controller_Abstract
 
         // 将响应输出
         $response->send();
+        return $response;
 
     }
 

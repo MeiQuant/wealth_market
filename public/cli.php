@@ -1,6 +1,6 @@
 <?php
 require 'common.php';
-// cron调度后台执行程序： demo: php cli.php "request_uri=/daemon/process"
+// cron调度后台执行程序： demo: php public/cli.php "request_uri=/publish/run"
 
 // 程序启动时间
 define('APP_START_TIME', microtime(true));

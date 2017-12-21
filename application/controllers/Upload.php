@@ -30,7 +30,9 @@ class UploadController extends IndexabstractController
                     if (trim($_GET['flag'] == 'profile_upload')) {
                         $name = $upload_info[0]['savename'];
                         $code = IMG_URL . $name;
-                        $ret = Models_User::where('open_id', $open_id)->update(['code' => $code]);
+                        $ret = DB::table('finance_user')
+                            ->where('open_id', $open_id)
+                            ->update(['code' => $code]);
                     }
                     if ($ret !== false) {
                         echo json_encode($upload_info);exit;

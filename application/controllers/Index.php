@@ -9,7 +9,7 @@ class IndexController extends IndexabstractController
 
     public function init()
     {
-        $this->_callback_request_uri = $_SERVER['REQUEST_URI'];
+        $this->_callback_request_uri = isset($_SERVER['REQUEST_URI'])? $_SERVER['REQUEST_URI'] : '';
         parent::init();
     }
 
@@ -73,7 +73,7 @@ class IndexController extends IndexabstractController
 
 
         // 文章部分
-        $mid  = DB::table('finance_article')->select(DB::raw('max(id) as mid'))->where('is_publish', 1)->groupBy('module')->get();
+        $mid  = DB::table('finance_article')->select(DB::raw('max(id) as mid'))->where('is_publish', 2)->groupBy('module')->get();
         $mid = Tool::filter_by_field($mid, 'mid');
         $wx_share_article_id = implode(',', $mid);
         $wx_share_page_id = $page_info['id'];

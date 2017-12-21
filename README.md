@@ -11,6 +11,7 @@
 
 6 代码中没有对sql的`delete`, `admin`等敏感词进行过滤, 请运维自己过滤敏感词汇
 
+7 cron 每天早上6点执行 php public/cli.php "request_uri=/publish/run"
 
 
 
