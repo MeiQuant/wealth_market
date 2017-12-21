@@ -134,7 +134,14 @@ class UserController extends IndexabstractController
                 }
                 $ret = $this->_redis->hmset($open_id . 'user_info', ['username' => $username, 'phone' => $phone, 'email' => $email, 'introduce' => $introduce, 'company' => $company, 'job' => $job, 'province' => $province, 'city' => $city]);
                 if ($ret === false) {
-                    $this->_redis->hmset($open_id . 'user_info', ['username' => $username, 'phone' => $phone, 'email' => $email, 'introduce' => $introduce, 'company' => $company, 'job' => $job, 'province' => $province, 'city' => $city]);
+                    error_log($open_id . ', redis第一次set失败， time : ' . date('Y-m-d H:i:s'), 3, '/tmp/redis.log');
+                    $ret = $this->_redis->hmset($open_id . 'user_info', ['username' => $username, 'phone' => $phone, 'email' => $email, 'introduce' => $introduce, 'company' => $company, 'job' => $job, 'province' => $province, 'city' => $city]);
+                    if ($ret == false) {
+                        error_log($open_id . ', redis第二次set失败， time : ' . date('Y-m-d H:i:s'), 3, '/tmp/redis.log');
+                        _error_json_encoder('系统异常');
+                    } else {
+                        _success_json_encoder('ok');
+                    }
                 } else {
                     _success_json_encoder('ok');
                 }
