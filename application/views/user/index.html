@@ -118,6 +118,13 @@
 
 <script>
 
+    // 解决微信返回按钮页面不自动刷新的问题
+    window.onpageshow = function(event) {
+        if (event.persisted) {
+            window.location.reload()
+        }
+    };
+
     $(function(){
         $(document).ready(function(){
             $("input[name='introduce']").click(function(){
@@ -229,6 +236,7 @@
         var introduce = $("input[name=introduce]").val();
         var job = $("input[name=job]").val();
         var province_city = $("input[name=province]").val();
+        var time_random = Date.parse(new Date());
         $.ajax({
             type : 'post',
             url : '/user/store',
@@ -244,7 +252,7 @@
             dataType : 'json',
             success : function(msg){
                 if (msg.status) {
-                    window.location.href = '/user/upload';
+                    window.location.href = '/user/upload?rd=' + time_random;
                 } else {
                     _alert('系统发生错误, 请联系管理员');
                 }
