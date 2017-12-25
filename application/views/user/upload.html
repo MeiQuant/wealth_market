@@ -76,6 +76,7 @@
         var code_img = '<?php echo $code;?>';
         code1.attr('src', code_img);
     });
+    var rdm = Date.parse(new Date());
     // 初始化Web Uploader
     var uploader = WebUploader.create({
 
@@ -86,7 +87,7 @@
         swf: '<?= BASE_URL ?>/css/Uploader.swf',
 
         // 文件接收服务端。
-        server: 'http://wealth-market.smallwolf.cn/upload/upload?flag=profile_upload',
+        server: 'http://wealth-market.smallwolf.cn/upload/upload?flag=profile_upload&random=' + rdm,
 
         // 选择文件的按钮。可选。
         // 内部根据当前运行是创建，可能是input元素，也可能是flash.

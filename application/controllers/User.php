@@ -22,6 +22,9 @@ class UserController extends IndexabstractController
     {
         $open_id = $this->_uid;
         $request = $this->getRequest();
+        if (strpos($_SERVER['HTTP_REFERER'], 'show') !== false) {
+            $this->_redis->hmset($open_id . 'user_info', ['refer' => '']);
+        }
         if ($request->isPost()) {
             $this->_valid->set_fields($_POST);
             $valid = $this->_valid->valid(
@@ -84,7 +87,7 @@ class UserController extends IndexabstractController
         $http_referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : null;
         $redis_userinfo = $this->_redis->hgetall($open_id . 'user_info');
 
-        if (strpos($http_referer, 'user/upload') !== false && !empty($redis_userinfo)) {
+        if (!empty($redis_userinfo) && isset($redis_userinfo['refer']) && $redis_userinfo['refer'] == 'upload') {
             $user['username'] = empty($user['username']) ? $redis_userinfo['username'] : $user['username'];
             $user['phone'] = empty($user['phone']) ? $redis_userinfo['phone'] : $user['phone'];
             $user['email'] = empty($user['email']) ? $redis_userinfo['email'] : $user['email'];
@@ -132,7 +135,7 @@ class UserController extends IndexabstractController
                     $province = isset($province_city_arr[0]) ? $province_city_arr[0] : '';
                     $city = (isset($province_city_arr[1]) && $province_city_arr[1] != '市辖区') ? $province_city_arr[1] : (isset($province_city_arr[2]) ? $province_city_arr[2] : '');
                 }
-                $ret = $this->_redis->hmset($open_id . 'user_info', ['username' => $username, 'phone' => $phone, 'email' => $email, 'introduce' => $introduce, 'company' => $company, 'job' => $job, 'province' => $province, 'city' => $city]);
+                $ret = $this->_redis->hmset($open_id . 'user_info', ['refer' => 'upload', 'username' => $username, 'phone' => $phone, 'email' => $email, 'introduce' => $introduce, 'company' => $company, 'job' => $job, 'province' => $province, 'city' => $city]);
                 if ($ret === false) {
                     error_log($open_id . ', redis第一次set失败， time : ' . date('Y-m-d H:i:s'), 3, '/tmp/redis.log');
                     $ret = $this->_redis->hmset($open_id . 'user_info', ['username' => $username, 'phone' => $phone, 'email' => $email, 'introduce' => $introduce, 'company' => $company, 'job' => $job, 'province' => $province, 'city' => $city]);

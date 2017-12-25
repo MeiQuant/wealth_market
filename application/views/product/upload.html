@@ -32,6 +32,13 @@
     <div class="mt73 sub_btn tc">上传照片</div>
 </section>
 <script>
+
+    window.onpageshow = function(event) {
+        if (event.persisted) {
+            window.location.reload();
+        }
+    };
+
     (function (doc, win) {
         var docEl = doc.documentElement,
             resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
