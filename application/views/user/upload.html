@@ -17,17 +17,18 @@
     <!--引入JS-->
     <script src="<?= BASE_URL ?>/js/jquery.min.js"></script>
     <script type="text/javascript" src="<?= BASE_URL ?>/js/webuploader.min.js"></script>
-    <title>个人资料</title>
+    <title>上传二维码</title>
 </head>
 <body  class="font_to_normal gray_bg">
-<!--<header class="header tc">-->
-    <!--<article class="header_container por">-->
-        <!--<i class="home poa">-->
-            <!--<a href="javascript:history.go(-1)" title="返回">&lt; 返回</a>-->
-        <!--</i>-->
-        <!--<h1>微信二维码</h1>-->
-    <!--</article>-->
-<!--</header>-->
+<?php if ($is_android) {?>
+    <header class="header tc">
+        <article class="header_container por">
+            <i class="home poa">
+                <a href="/user/index" title="返回">&lt; 返回</a>
+            </i>
+        </article>
+    </header>
+<?php }?>
 <section>
     <!--dom结构部分-->
     <div class="code_area">
@@ -93,6 +94,7 @@
         // 内部根据当前运行是创建，可能是input元素，也可能是flash.
         pick: '#filePicker',
 
+        crop : true,
         // 只允许选择图片文件。
         accept: {
             title: 'Images',

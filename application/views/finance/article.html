@@ -62,7 +62,7 @@
                             </div>
 
 
-                            <?php if(empty($article)){ ?>
+                            <?php if(empty($article['content'])){ ?>
                                 <div class="change-content">
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label no-padding-right" > 标题：</label>
@@ -120,32 +120,22 @@
 
 
                             <input type="hidden" value="<?php echo $module_id;?>" name="hidden_id"/>
+                            <input type="hidden" value="<?php echo $article_id;?>" name="hidden_article_id"/>
                             <div class="clearfix form-actions">
                                 <div class="col-md-offset-3 col-md-9">
-                                    <button class="btn btn-info" type="button" flag="update_preview">
+                                    <button class="btn btn-info article_store" type="button" flag="update">
                                         <i class="ace-icon fa fa-check bigger-110"></i>
-                                        修改预览
+                                        修改
                                     </button>
 
-                                    <button class="btn btn-info" type="button" flag="update_publish">
-                                        <i class="ace-icon fa fa-check bigger-110"></i>
-                                        修改发布
-                                    </button>
-                                    <button class="btn btn-info" type="button" flag="add_preview">
-                                        <i class="ace-icon fa fa-check bigger-110"></i>
-                                        新增预览
-                                    </button>
+                                    &nbsp;&nbsp;&nbsp;
 
-                                    <button class="btn btn-info" type="button" flag="add_publish">
+                                    <button class="btn btn-success article_store" type="button" flag="add">
                                         <i class="ace-icon fa fa-check bigger-110"></i>
-                                        新增发布
+                                        存储
                                     </button>
 
 
-                                    <button class="btn" type="reset">
-                                        <i class="ace-icon fa fa-undo bigger-110"></i>
-                                        重置
-                                    </button>
                                 </div>
                             </div>
 
@@ -175,6 +165,7 @@
 <script type="text/javascript">
     var E = window.wangEditor;
     var module_id = '<?php echo $module_id; ?>';
+    var article_id = '<?php echo $article_id; ?>';
     var is_update = '<?php echo !empty($module_id);?>';
 
     var editor_obj = [];
@@ -226,7 +217,7 @@
         _parent_div.remove();
     });
 
-    $(".btn-info").on('click', function(){
+    $(".article_store").on('click', function(){
         var flag = $(this).attr('flag');
         var module_name = $("input[name=module]").val();
         var _input_title = $("input[name=title]");
@@ -257,15 +248,18 @@
         $.ajax({
             type : 'post',
             url : '/finance/article',
-            data : {module_name : module_name, module_id : module_id, content : jsonstr, flag : flag},
+            data : {module_name : module_name, module_id : module_id, article_id : article_id, content : jsonstr, flag : flag},
             dataType : 'json',
+            beforeSend : function(){
+                bootbox.dialog({ message: '<div class="text-center"><i class="fa fa-spin fa-spinner"></i> Loading...</div>' })
+            },
             success : function(msg){
                 if (msg.status) {
-                    bootbox.alert("添加成功", function(){
+                    bootbox.alert(msg.msg, function(){
                         window.location.href = '/finance/index';
                     });
                 } else {
-                    bootbox.alert("添加失败:" + msg.msg);
+                    bootbox.alert(msg.msg);
                 }
             },
             error : function () {

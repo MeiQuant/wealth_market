@@ -253,6 +253,24 @@ function filter_tag($str)
     return trim(trim(trim($str, '<p>'), '</p>'), '<br>');
 }
 
+function get_device_type()
+{
+    $agent = strtolower($_SERVER['HTTP_USER_AGENT']);
+    $type ='other';
+    //分别进行判断
+    if(strpos($agent,'iphone') || strpos($agent,'ipad'))
+    {
+        $type ='ios';
+    }
+
+    if(strpos($agent,'android'))
+    {
+        $type ='android';
+    }
+
+    return $type;
+}
+
 
 
 

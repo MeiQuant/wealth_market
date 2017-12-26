@@ -43,7 +43,7 @@
             </ul><!-- /.breadcrumb -->
         </div>
 
-        <p style="padding-left: 20px;padding-top:10px;padding-bottom: 10px;"><button class="btn btn-primary add_new_module">添加新模块</button></p>
+
 
         <div class="page-content">
 
@@ -58,45 +58,43 @@
                                 <table id="sample-table-1" class="table table-striped table-bordered table-hover">
                                     <thead>
                                     <tr>
-                                        <th class="center">
-                                            <label class="position-relative">
-                                                <input type="checkbox" class="ace" />
-                                                <span class="lbl"></span>
-                                            </label>
-                                        </th>
-                                        <th>id</th>
-                                        <th>模块名称</th>
-                                        <th>文章数</th>
-                                        <th>创建时间</th>
-                                        <th>操作</th>
+                                        <!--<th class="center">-->
+                                            <!--<label class="position-relative">-->
+                                                <!--<input type="checkbox" class="ace" />-->
+                                                <!--<span class="lbl"></span>-->
+                                            <!--</label>-->
+                                        <!--</th>-->
+                                        <th class="center">id</th>
+                                        <th class="center">模块名称</th>
+                                        <th class="center">创建时间</th>
+                                        <th class="center">操作</th>
                                     </tr>
                                     </thead>
 
                                     <tbody>
                                     <?php if (empty($list)) { ?>
-                                    <tr><td colspan="5" class="center">暂无数据</td></tr>
+                                    <tr><td colspan="4" class="center">暂无数据</td></tr>
                                     <?php }?>
                                     <?php foreach ($list as $article) { ?>
                                     <tr>
-                                        <td class="center">
-                                            <label class="position-relative">
-                                                <input type="checkbox" class="ace" />
-                                                <span class="lbl"></span>
-                                            </label>
-                                        </td>
+                                        <!--<td class="center">-->
+                                            <!--<label class="position-relative">-->
+                                                <!--<input type="checkbox" class="ace" />-->
+                                                <!--<span class="lbl"></span>-->
+                                            <!--</label>-->
+                                        <!--</td>-->
 
-                                        <td>
+                                        <td class="center">
                                             <a href="#"><?php echo $article['id'];?></a>
                                         </td>
-                                        <td><?php echo $article['module'];?></td>
-                                        <td><?php echo $article['article_count'];?></td>
-                                        <td><?php echo $article['update_time'];?></td>
+                                        <td class="center"><?php echo $article['module'];?></td>
+                                        <td class="center"><?php echo $article['update_time'];?></td>
 
-                                        <td>
+                                        <td class="center">
                                             <div class="hidden-sm hidden-xs btn-group">
 
                                                 <button class="btn btn-xs btn-info">
-                                                    <i class="ace-icon update_article fa fa-pencil bigger-120" update_id="<?php echo $article['id'];?>">添加/修改文章</i>
+                                                    <i class="ace-icon update_article fa fa-pencil bigger-120" article_id="<?php echo $article['last_article_id'];?>" module_id="<?php echo $article['id'];?>">添加/修改文章</i>
                                                 </button>
 
                                                 <button class="btn btn-xs btn-danger del_article" del_id="<?php echo $article['id'];?>">
@@ -117,7 +115,10 @@
                     </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.page-content-area -->
+            <p style="padding-left: 20px;padding-top:10px;padding-bottom: 10px;"><button class="btn btn-success fixed_time">定时发布</button> </p>
+
         </div><!-- /.page-content -->
+
     </div><!-- /.main-content -->
 
     <?php include VIEW_PATH . '/footer-copyright.html' ?>
@@ -174,8 +175,9 @@
         });
 
         $(".update_article").on(ace.click_event, function() {
-            var update_id = $(this).attr('update_id');
-            window.location.href = '/finance/article?id=' + update_id;
+            var module_id = $(this).attr('module_id');
+            var article_id = $(this).attr('article_id');
+            window.location.href = '/finance/article?module_id=' + module_id + '&article_id=' + article_id;
         });
 
 
@@ -184,7 +186,58 @@
         });
 
 
-
+        $(".fixed_time").on(ace.click_event, function() {
+            var is_fixed_publish = '<?php echo $is_fixed_publish;?>';
+            var message = '';
+            if (is_fixed_publish)
+            {
+                message = '<span style="color:red;">今天已经定时发布过, 确定要再次定时发布吗!!!</span>';
+            }
+            else
+            {
+                message = '确定要定时发布吗';
+            }
+            bootbox.dialog({
+                message: message,
+                buttons:
+                    {
+                        "danger" :
+                            {
+                                "label" : "确定发布",
+                                "className" : "btn-sm btn-info",
+                                "callback": function() {
+                                    $.ajax({
+                                        type : 'POST',
+                                        url : '/finance/publish',
+                                        data : {},
+                                        dataType: 'json',
+                                        beforeSend: function()
+                                        {
+                                            bootbox.dialog({ message: '<div class="text-center"><i class="fa fa-spin fa-spinner"></i> Loading...</div>' })
+                                        },
+                                        success : function (ret) {
+                                            if (ret.status) {
+                                                bootbox.alert(ret.msg, function(){
+                                                    window.location.href = '/finance/index';
+                                                });
+                                            } else {
+                                                bootbox.alert(ret.msg);
+                                            }
+                                        },
+                                        error : function() {
+                                            bootbox.alert("系统发生错误, 请联系管理员");
+                                        }
+                                    });
+                                }
+                            },
+                        "button" :
+                            {
+                                "label" : "取消",
+                                "className" : "btn-sm"
+                            }
+                    }
+            });
+        });
     });
 </script>
 </body>

@@ -18,20 +18,36 @@ class FinanceController extends AbstractController
 
     public function indexAction()
     {
-        $data = Models_Articleindex::all();
-        if (!empty($data)) {
-            $data = $data->toArray();
-            foreach ($data as &$article) {
-                $article['content'] = json_decode($article['content']);
-                $article['article_count']= count($article['content']);
-                unset($article['content']);
-            }
+        $modules = Models_Articleindex::all();
+
+        $modules = $modules->toArray();
+
+        $is_fixed_publish = false; // 今天是否定时发布过
+        foreach ($modules as &$module)
+        {
+            $module_id = $module['id'];
+            $last_article = DB::table('finance_article_preview')->where('module_id', $module_id)->orderBy('id', 'desc')->first();
+            $module['last_article_id'] = !empty($last_article) ? $last_article['id'] : '';
         }
 
+        foreach ($modules as $ori_module)
+        {
+            if (!empty($ori_module['release_article_id']))
+            {
+                $is_fixed_publish = true;
+                break;
+            }
+        }
         $this->getView()->assign(
             array(
                 'title' => '模块列表',
-                'list' => $data
+                'list' => $modules
+            )
+        );
+        $this->getView()->assign(
+            array(
+                'is_fixed_publish' => $is_fixed_publish,
+
             )
         );
         $this->getView()->display('finance/index.html');
@@ -123,22 +139,25 @@ class FinanceController extends AbstractController
     public function articleAction()
     {
         $request = $this->getRequest();
-        $module_id = Util_Common::get('id');
-        $article = DB::table('finance_article')->where('id', $module_id)->first();
-        if (!empty($article)) {
+        $module_id = Util_Common::get('module_id');
+        $article_id = Util_Common::get('article_id');
+        $module = DB::table('finance_article')->where('id', $module_id)->first();
+        $article = [];
+        if (!empty($article_id))
+        {
+            $article = DB::table('finance_article_preview')->where('id', $article_id)->first();
             $article['content'] = json_decode($article['content'], true);
         }
+        $article['module'] = $module['module'];
         if ($request->isPost()) {
-            $module = trim(Util_Common::post('module_name'));
             $module_id = trim(Util_Common::post('module_id'));
+            $article_id = trim(Util_Common::post('article_id'));
             $flag = trim(Util_Common::post('flag'));
             $content_json = trim(Util_Common::post('content'));
-            if (strpos($flag, 'add') !== false) {
-                $type = 'add';
-            } elseif (strpos($flag, 'update') !== false) {
-                $type = 'update';
-            } else {
-                $type = 'add';
+
+            if (!in_array($flag, ['add', 'update']))
+            {
+                _error_json_encoder('操作不合法');
             }
             $content_json = $this->_handlefont($content_json);
             $content_array = json_decode($content_json, true);
@@ -146,23 +165,31 @@ class FinanceController extends AbstractController
                 _error_json_encoder('数据不合法');
             }
             try {
-                // @todo, 数据校验
-                if ($type == 'add') {
-                    $ret = DB::table('finance_article')->insert([
-                        ['module' => $module, 'content' => $content_json, 'update_time' => date('Y-m-d H:i:s'), 'is_publish' => strpos($flag, 'publish') !== false ? 1 : 0]
-                    ]);
-                } elseif ($type == 'update') {
-                    // 将之前的模块都下线
-                    $ret = DB::table('finance_article')
-                        ->where('id', $module_id)
-                        ->update(['content' => $content_json, 'update_time' => date('Y-m-d H:i:s'), 'is_publish' => strpos($flag, 'publish') !== false ? 1 : 0]);
-                } else {
-                    $ret = DB::table('finance_article')->insert([
-                        ['module' => $module, 'content' => $content_json, 'update_time' => date('Y-m-d H:i:s'), 'is_publish' => strpos($flag, 'publish') !== false ? 1 : 0]
-                    ]);
+                $ret = true;
+                $message = '';
+                if ($flag == 'update')
+                {
+                    if (empty($article_id))
+                    {
+                        _error_json_encoder('应点击存储按钮，而不是更新按钮');
+                    }
+                    $ret = DB::table('finance_article_preview')->where('id', $article_id)->update(['module_id' => $module_id, 'content' => $content_json, 'update_time' => date('Y-m-d H:i:s')]);
+                    $message = '更新成功';
                 }
+                elseif ($flag == 'add')
+                {
+                    $ret = DB::table('finance_article_preview')->insert([
+                        ['module_id' => $module_id, 'content' => $content_json, 'update_time' => date('Y-m-d H:i:s'), 'create_time' => date('Y-m-d H:i:s')]
+                    ]);
+                    $message = '存储成功';
+                }
+
                 if ($ret !== false) {
-                    _success_json_encoder('保存成功');
+                    _success_json_encoder($message);
+                }
+                else
+                {
+                    _error_json_encoder('操作失败, 请联系管理员');
                 }
             } catch (\Exception $e) {
                 _error_json_encoder('添加失败' . $e->getMessage());
@@ -174,7 +201,8 @@ class FinanceController extends AbstractController
             array(
                 'title' => '今日财经文章',
                 'article' => $article,
-                'module_id' => $module_id
+                'module_id' => $module_id,
+                'article_id' => $article_id
             )
         );
         $this->getView()->display('finance/article.html');
@@ -252,5 +280,87 @@ class FinanceController extends AbstractController
         $this->getView()->display('finance/wechat.html');
 
     }
+
+
+    // 定时发布
+    public function publishAction()
+    {
+
+        $mid = DB::table('finance_article_preview')->select(DB::raw('max(id) as mid'))->groupBy('module_id')->get();
+        if (!empty($mid))
+        {
+            $mid = Tool::filter_by_field($mid, 'mid');
+        }
+
+        $articles = DB::table('finance_article_preview')->whereIn('id', $mid)->get();
+        if (empty($articles))
+        {
+            _error_json_encoder('暂时没有需要发布的文章');
+        }
+
+        $update_data = [];
+        foreach ($articles as $article)
+        {
+            $update_data[] = [
+                'id' => $article['module_id'],
+                'release_article_id' => $article['id']
+            ];
+        }
+
+        try
+        {
+            $ret = $this->updateBatch('finance_article', $update_data);
+        }
+        catch (\Exception $e)
+        {
+            _error_json_encoder($e->getMessage());
+        }
+        if ($ret !== false)
+        {
+            _success_json_encoder('定时发布成功');
+        }
+        else
+        {
+            _success_json_encoder('定时发布失败, 有可能发布的文章id没有变化');
+        }
+
+
+    }
+
+
+
+    public function updateBatch($tableName = "", $multipleData = array()){
+
+        if($tableName && !empty($multipleData))
+        {
+            $updateColumn = array_keys($multipleData[0]);
+            $referenceColumn = $updateColumn[0]; //e.g id
+            unset($updateColumn[0]);
+            $whereIn = "";
+            $q = "UPDATE ".$tableName." SET ";
+            foreach ( $updateColumn as $uColumn ) {
+                $q .=  $uColumn." = CASE ";
+
+                foreach( $multipleData as $data ) {
+                    $q .= "WHEN ".$referenceColumn." = ".$data[$referenceColumn]." THEN '".$data[$uColumn]."' ";
+                }
+                $q .= "ELSE ".$uColumn." END, ";
+            }
+            foreach( $multipleData as $data ) {
+                $whereIn .= "'".$data[$referenceColumn]."', ";
+            }
+            $q = rtrim($q, ", ")." WHERE ".$referenceColumn." IN (".  rtrim($whereIn, ', ').")";
+
+            // Update
+            return DB::update(DB::raw($q));
+
+        }
+        else
+        {
+            return false;
+        }
+
+    }
+
 
 }

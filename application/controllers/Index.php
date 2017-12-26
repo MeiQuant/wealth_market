@@ -30,9 +30,9 @@ class IndexController extends IndexabstractController
         $is_share = false;
         // 区域部分信息
         if (!empty($page_id)) {
-            $page_info = DB::table('finance_page')->where('is_publish', 1)->where('id', $page_id)->orderBy('id', 'desc')->first();
+            $page_info = DB::table('finance_page')->where('id', $page_id)->orderBy('id', 'desc')->first();
         } else {
-            $page_info = DB::table('finance_page')->where('is_publish', 1)->orderBy('id', 'desc')->first();
+            $page_info = DB::table('finance_page')->orderBy('id', 'desc')->first();
         }
         if (!empty($page_info)) {
             $stock_market = json_decode($page_info['stock_market'], true);
@@ -63,32 +63,38 @@ class IndexController extends IndexabstractController
 
 
         // 如果该用户已经设置过产品信息, 优先展示用户自己的产品
-        $product = DB::table('finance_product')->where('open_id', $user_id)->orderBy('id', 'desc')->first();
+        $user_product = DB::table('finance_product')->where('open_id', $user_id)->orderBy('id', 'desc')->first();
 
+        $product['company'] = $page_info['company'];
+        $product['asset_strategy'] = $page_info['asset_strategy'];
+        $product['introduce'] = $page_info['introduce'];
         if (!empty($user_product)) {
-            $product['company'] = isset($page_info['company']) ? $page_info['company'] : '';
-            $product['asset_strategy'] = isset($page_info['company']) ? $page_info['asset_strategy'] : '';
-            $product['introduce'] = isset($page_info['introduce']) ? $page_info['introduce'] : '';
+            $product['company'] = !empty($user_product['company']) ? $user_product['company'] : $product['company'];
+            $product['asset_strategy'] = !empty($user_product['asset_strategy']) ? $user_product['asset_strategy'] : $product['asset_strategy'];
+            $product['introduce'] = !empty($user_product['introduce']) ? $user_product['introduce'] : $product['introduce'];
         }
 
 
         // 文章部分
-        $wx_share_article_id = '';
-        $mid  = DB::table('finance_article')->select(DB::raw('max(id) as mid'))->where('is_publish', 2)->groupBy('module')->get();
-        if (!empty($mid))
+        $publish_module  = DB::table('finance_article')->get();
+        $module_id_name = [];
+        foreach ($publish_module as $module)
         {
-            $mid = Tool::filter_by_field($mid, 'mid');
-            $wx_share_article_id = implode(',', $mid);
+            $module_id_name[$module['id']] = $module['module'];
         }
-
+        $mid = Tool::filter_by_field($publish_module, 'online_article_id');
         $wx_share_page_id = $page_info['id'];
         // 分享过来的
         if (!empty($article_id)) {
             $mid = explode(',', $article_id);
         }
-        $articles = DB::table('finance_article')->whereIn('id', $mid)->get();
+        $wx_share_article_id = $mid;
+        $articles = DB::table('finance_article_preview')->whereIn('id', $mid)->orderBy('module_id', 'asc')->get();
+
+
         if (!empty($articles)) {
             foreach ($articles as &$article) {
+                $article['module'] =$module_id_name[$article['module_id']];
                 $article['content'] = json_decode($article['content'], true);
             }
         }

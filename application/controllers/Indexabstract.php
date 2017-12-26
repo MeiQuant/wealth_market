@@ -23,12 +23,16 @@ abstract class IndexabstractController extends Yaf_Controller_Abstract
 
     public $_redis = null;
 
+    public $_device = 'ios';
+
     /**
      * 微信端基类控制器, 定时获取用户open_id, 暂时未进行加密处理
      */
     public function init()
     {
         header("Content-Type:text/html;charset=utf-8");
+
+        $this->_device = get_device_type();
 
         $options = [
             'debug'  => true,
