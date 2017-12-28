@@ -34,8 +34,8 @@ abstract class IndexabstractController extends Yaf_Controller_Abstract
 
         $this->_device = get_device_type();
 
-        $url = explode('s=', $_SERVER['QUERY_STRING']);
-        $refer_url = urldecode($url[1]);
+        $url = $_SERVER['REQUEST_URI'];
+        $refer_url = urlencode($url);
         $options = [
             'debug'  => true,
             'app_id' => 'wx40d7d5323c90b1b1',
@@ -63,6 +63,11 @@ abstract class IndexabstractController extends Yaf_Controller_Abstract
 
         $open_id = (isset($_COOKIE['uid']) && !empty($_COOKIE['uid'])) ? $_COOKIE['uid'] : false;
         $open_id = Tool::cookie_decode($open_id);
+        if ($open_id == 'oQt5h0wz8SXSBN1MYMT7_D-oFzAA')
+        {
+            // 测试账号，测试微信授权登录回调函数
+            $open_id = '';
+        }
         if (!empty($open_id)) {
             $user = DB::table('finance_user')->where('open_id', $open_id)->first();
             if (empty($user)) {

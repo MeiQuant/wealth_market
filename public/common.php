@@ -19,7 +19,7 @@ define('EXIT_CODE_4003', 4003); // 管理界面手动点击按钮杀死cron的ex
 
 define('SEND_SMS_SWITCH', false);
 
-define('DEBUG', true);
+define('DEBUG', false);
 define('DEBUG_ADMIN', true); // 后台
 
 
