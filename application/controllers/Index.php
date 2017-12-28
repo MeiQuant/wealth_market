@@ -88,7 +88,7 @@ class IndexController extends IndexabstractController
         if (!empty($article_id)) {
             $mid = explode(',', $article_id);
         }
-        $wx_share_article_id = $mid;
+        $wx_share_article_id = implode(',', $mid);
         $articles = DB::table('finance_article_preview')->whereIn('id', $mid)->orderBy('module_id', 'asc')->get();
 
 

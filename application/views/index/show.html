@@ -101,7 +101,7 @@
                     <a class="edit_text" href="/user/index">编辑个人资料</a>
                 </div>
 
-                <a class="add_blue tc add_user">
+                <a class="add_blue tc" id="add_user" href="/product/index">
                     <i class="add_icon poa"></i>
                     <span>添加信息</span>
                 </a>
@@ -181,10 +181,13 @@
             <ul class="ul_text">
                 <?php if (!empty($article['content'])) { foreach ($article['content'] as $val) {?>
                  <li>
-                    <div><h2 class="second_tit"><i class="blue_dot"></i>&nbsp;<?php echo $val['title'];?></h2></div>
+                     <?php if (!empty($val['title'])) {?>
+                        <div><h2 class="second_tit"><i class="blue_dot"></i>&nbsp;<?php echo $val['title'];?></h2></div>
+                     <?php }?>
                     <div class="mt19">
-                        <span class="tag_icon"><?php echo $val['author'];?></span>
-
+                        <?php if (!empty($val['author'])) {?>
+                            <span class="tag_icon"><?php echo $val['author'];?></span>
+                        <?php }?>
                         <span class="ml10"><?php echo filter_tag($val['editor_content']);?></span>
                     </div>
                 </li>
@@ -221,7 +224,7 @@
 <div class="mask wx_mask" style="display: none;">
     <div class="wx_window">
         <div class="wx_box">
-            <img src="<?php echo $user['code'];?>" style="width:100%;" >
+            <img src="<?php echo $user['code'];?>" style="width:100%;height:3rem;overflow: hidden;" >
             <div class="wx_text tc">长按识别二维码，加我微信</div>
         </div>
         <div class="wx_hr"></div>
@@ -249,15 +252,9 @@
     })(document, window);
 </script>
 <script src="<?= BASE_URL ?>/js/jquery.min.js"></script>
-<script>
-    audiojs.events.ready(function() {
-        audiojs.createAll();
-    });
-</script>
 <script src="<?= BASE_URL ?>/js/check.js"></script>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" charset="utf-8">
-
     wx.config(<?php echo $js_sdk->config(array('onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo'), false) ?>);
 
     wx.ready(function(){
@@ -265,8 +262,9 @@
         var ouid = '<?php echo $ouid;?>';
         var wx_domain = '<?php echo urlencode("#mp.weixin.qq.com");?>';
         var page_id = '<?php echo $wx_share_page_id;?>';
+        var page_tw = '2';
         var article_id = '<?php echo $wx_share_article_id;?>';
-        var link = 'http://wealth-market.smallwolf.cn/index/show?page_id=' + page_id + '&article_id=' + article_id +'&rdn=' + rdn + '&ouid=' + ouid  + wx_domain; // 分享链接
+        var link = "http://wealth-market.smallwolf.cn/index/show?page_id=" + page_id + '&article_id=' + article_id +'&rdn=' + rdn + '&ouid=' + ouid  + wx_domain ; // 分享链接
         var title = "<?php if (isset($wx_share['title'])){echo $wx_share['title'];}?>";
         var imgUrl = "<?php echo $user['headimgurl']; ?>";
         var desc = "<?php if (isset($wx_share['description'])){echo $wx_share['description'];}?>";
@@ -310,9 +308,6 @@
 //    var window_height=parseInt($(window).height())*0.5;
 //    wx_height=window_height-parseInt(wx_height)*0.5;
 //    $('.wx_window').css('marginTop',wx_height);
-    $(".add_user").on('click', function(){
-       window.location.href = '/product/index';
-    });
 
     $(".pop_wechat").on('click', function(){
         $('.wx_mask').show();

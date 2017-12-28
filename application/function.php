@@ -250,7 +250,7 @@ function mysql_log()
 
 function filter_tag($str)
 {
-    return trim(trim(trim($str, '<p>'), '</p>'), '<br>');
+    return strip_tags($str, '<font>');
 }
 
 function get_device_type()

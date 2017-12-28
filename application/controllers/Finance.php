@@ -16,6 +16,10 @@ class FinanceController extends AbstractController
         parent::init();
     }
 
+    public function testAction()
+    {
+
+    }
     public function indexAction()
     {
         $modules = Models_Articleindex::all();

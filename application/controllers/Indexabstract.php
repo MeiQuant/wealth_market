@@ -34,6 +34,8 @@ abstract class IndexabstractController extends Yaf_Controller_Abstract
 
         $this->_device = get_device_type();
 
+        $url = explode('s=', $_SERVER['QUERY_STRING']);
+        $refer_url = urldecode($url[1]);
         $options = [
             'debug'  => true,
             'app_id' => 'wx40d7d5323c90b1b1',
@@ -46,7 +48,7 @@ abstract class IndexabstractController extends Yaf_Controller_Abstract
             ],
             'oauth' => [
                 'scopes'   => ['snsapi_userinfo'],
-                'callback' => 'http://wealth-market.smallwolf.cn/wechat/oauthcallback'
+                'callback' => 'http://wealth-market.smallwolf.cn/wechat/oauthcallback?refer=' . $refer_url
             ],
         ];
 

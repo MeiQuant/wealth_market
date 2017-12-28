@@ -72,11 +72,7 @@
 </script>
 
 <script>
-    $(function () {
-        var code1 = $(".code1");
-        var code_img = '<?php echo $code;?>';
-        code1.attr('src', code_img);
-    });
+
     var rdm = Date.parse(new Date());
     // 初始化Web Uploader
     var uploader = WebUploader.create({
@@ -211,4 +207,22 @@
     });
 
 </script>
+<script>
+
+    $(function () {
+        var code1 = $(".code1");
+        var background = '';
+        var code_img = '<?php echo $code;?>';
+        if (code_img == "" || code_img == undefined || code_img == null)
+        {
+            var base_url = '<?php  echo BASE_URL; ?>';
+            background = "url("+ base_url + " +images/index/QR_code2@2x.png) no-repeat center";
+        } else {
+            background = "url(" + code_img + ") no-repeat center";
+        }
+        code1.css('background', background);
+    });
+
+</script>
+
 </html>

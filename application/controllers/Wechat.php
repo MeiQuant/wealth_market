@@ -110,6 +110,7 @@ class WechatController extends Yaf_Controller_Abstract
 
     public function oauthcallbackAction()
     {
+        $refer_url = $_GET['refer'];
         $this->_app = new Application($this->_options);
         $oauth = $this->_app->oauth;
         $user = $oauth->user();
@@ -131,7 +132,7 @@ class WechatController extends Yaf_Controller_Abstract
                 }
             }
 
-            header('location:'. '/index/show?id=' . $info['openid'] . '#mp.weixin.qq.com');
+            header('location:'. $refer_url);
         }
     }
 
