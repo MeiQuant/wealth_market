@@ -30,11 +30,17 @@ class IndexController extends IndexabstractController
         $is_share = false;
         // 区域部分信息
         if (!empty($page_id)) {
-            $page_info = DB::table('finance_page')->where('id', $page_id)->orderBy('id', 'desc')->first();
+            $page_info = DB::table('finance_page_preview')->where('id', $page_id)->first();
         } else {
-            $page_info = DB::table('finance_page')->orderBy('id', 'desc')->first();
+            $online_page = DB::table('finance_page')->first();
+            if (!empty($online_page))
+            {
+                $page_id = $online_page['online_page_id'];
+            }
+            $page_info = DB::table('finance_page_preview')->where('id', $page_id)->first();
         }
-        if (!empty($page_info)) {
+        if (!empty($page_info))
+        {
             $stock_market = json_decode($page_info['stock_market'], true);
             foreach ($stock_market as $stock) {
                 $tmp_stock = explode('/', $stock);
@@ -43,8 +49,6 @@ class IndexController extends IndexabstractController
             }
         }
         unset($page_info['stock_market']);
-
-
 
         if (!empty($ouid) && ($ouid != $open_id) && isset($_GET['from']) && strpos(trim($_GET['from']), 'message') !== false) {
             // 分享过来的链接
@@ -68,7 +72,8 @@ class IndexController extends IndexabstractController
         $product['company'] = $page_info['company'];
         $product['asset_strategy'] = $page_info['asset_strategy'];
         $product['introduce'] = $page_info['introduce'];
-        if (!empty($user_product)) {
+        if (!empty($user_product))
+        {
             $product['company'] = !empty($user_product['company']) ? $user_product['company'] : $product['company'];
             $product['asset_strategy'] = !empty($user_product['asset_strategy']) ? $user_product['asset_strategy'] : $product['asset_strategy'];
             $product['introduce'] = !empty($user_product['introduce']) ? $user_product['introduce'] : $product['introduce'];
@@ -83,26 +88,27 @@ class IndexController extends IndexabstractController
             $module_id_name[$module['id']] = $module['module'];
         }
         $mid = Tool::filter_by_field($publish_module, 'online_article_id');
-        $wx_share_page_id = $page_info['id'];
+        $wx_share_page_id = $page_id;
         // 分享过来的
-        if (!empty($article_id)) {
+        if (!empty($article_id))
+        {
             $mid = explode(',', $article_id);
         }
         $wx_share_article_id = implode(',', $mid);
         $articles = DB::table('finance_article_preview')->whereIn('id', $mid)->orderBy('module_id', 'asc')->get();
 
 
-        if (!empty($articles)) {
-            foreach ($articles as &$article) {
+        if (!empty($articles))
+        {
+            foreach ($articles as &$article)
+            {
                 $article['module'] =$module_id_name[$article['module_id']];
                 $article['content'] = json_decode($article['content'], true);
             }
         }
 
-        // 分享文案
-        $wx_share = DB::table('finance_wechat')->first();
-
-        $this->getView()->assign(['wx_share_page_id' => $wx_share_page_id, 'wx_share_article_id' => $wx_share_article_id, 'wx_share' => $wx_share, 'user' => $user, 'page_info' => $page_info, 'product' => $product,  'articles' => $articles, 'js_sdk' => $this->_app->js, 'ouid' => $user_id, 'is_share' => $is_share]);
+//        print_r($page_info);die;
+        $this->getView()->assign(['wx_share_page_id' => $wx_share_page_id, 'wx_share_article_id' => $wx_share_article_id, 'user' => $user, 'page_info' => $page_info, 'product' => $product,  'articles' => $articles, 'js_sdk' => $this->_app->js, 'ouid' => $user_id, 'is_share' => $is_share]);
         $this->getView()->display('index/show.html');
     }
 

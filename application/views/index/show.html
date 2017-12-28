@@ -265,9 +265,9 @@
         var page_tw = '2';
         var article_id = '<?php echo $wx_share_article_id;?>';
         var link = "http://wealth-market.smallwolf.cn/index/show?page_id=" + page_id + '&article_id=' + article_id +'&rdn=' + rdn + '&ouid=' + ouid  + wx_domain ; // 分享链接
-        var title = "<?php if (isset($wx_share['title'])){echo $wx_share['title'];}?>";
+        var title = "<?php if (isset($page_info['wechat_title'])){echo $page_info['wechat_title'];}?>";
         var imgUrl = "<?php echo $user['headimgurl']; ?>";
-        var desc = "<?php if (isset($wx_share['description'])){echo $wx_share['description'];}?>";
+        var desc = "<?php if (isset($page_info['wechat_desc'])){echo $page_info['wechat_desc'];}?>";
         wx.onMenuShareTimeline({
             title: title,
             link:  link,

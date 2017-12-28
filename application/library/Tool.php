@@ -34,7 +34,7 @@ class Tool
         $ret = array();
         if (!empty($data)) {
             foreach ($data as $key => $value) {
-                isset($value[$filed]) && $ret[] = $value[$filed];
+                isset($value[$filed]) && !empty($value[$filed]) && $ret[] = $value[$filed];
             }
         }
         return $ret;

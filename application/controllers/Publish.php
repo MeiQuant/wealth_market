@@ -28,12 +28,19 @@ class PublishController extends Yaf_Controller_Abstract
        $ret_article = $this->updateBatch('finance_article', $update_article);
        if ($ret_article)
        {
-           print_r('时间: ' . date('Y-m-d H:i:s') . ' ，发布成功的模块为 ' . implode(',' , $module_name));
-           error_log('发布成功' . date('Y-m-d H:i:s') . PHP_EOL, 3, '/tmp/publish.log');
+           print_r('时间: ' . date('Y-m-d H:i:s') . ' ，发布成功的模块为 ' . implode(',' , $module_name) . PHP_EOL);
+           error_log('时间: ' . date('Y-m-d H:i:s') . ' ，发布成功的模块为 ' . implode(',' , $module_name) . PHP_EOL, 3, '/tmp/publish.log');
        }
 
 
        // 早上6点定时发布区域信息
+       $ret_page = DB::table('finance_page')->orderBy('id', 'desc')->limit(1)->update(['online_page_id' => DB::raw('release_page_id'), 'release_page_id' => '']);
+       if (!empty($ret_page))
+       {
+           print_r('时间: ' . date('Y-m-d H:i:s') . '各区域模块发布成功'. PHP_EOL);
+           error_log('时间: ' . date('Y-m-d H:i:s') . '各区域模块发布成功'. PHP_EOL, 3, '/tmp/publish.log');
+       }
+
    }
 
 

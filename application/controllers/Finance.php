@@ -63,7 +63,7 @@ class FinanceController extends AbstractController
     public function addAction()
     {
         $request = $this->getRequest();
-        $page = DB::table('finance_page')->orderBy('id', 'desc')->first();
+        $page = DB::table('finance_page_preview')->orderBy('id', 'desc')->first();
         $page_id = '';
         if (!empty($page)) {
             $page['stock_market'] = json_decode($page['stock_market'], true);
@@ -74,6 +74,11 @@ class FinanceController extends AbstractController
                 $data = $_POST;
                 $id = isset($data['hidden_page_id']) ? $data['hidden_page_id'] : '';
                 $flag = trim($data['flag']);
+                if (!in_array($flag, array('add', 'update', 'publish')))
+                {
+                    _error_json_encoder('操作不合法');
+                }
+
                 $data['stock_market'] = json_encode($data['stock_market']);
                 $insert_data = [
                     'audio' => trim($data['audio']),
@@ -83,42 +88,51 @@ class FinanceController extends AbstractController
                     'introduce' => trim($data['introduce']),
                     'qr_code' => trim($data['qr_code']),
                     'link' => trim($data['link']),
-                    'is_publish' => strpos($flag, 'publish') !== false ? 1 : 0
+                    'wechat_title' => trim($data['wechat_title']),
+                    'wechat_desc' => trim($data['wechat_desc']),
+
                 ];
 
+                $message = '';
+                if ($flag == 'update')
+                {
+                    if (empty($id))
+                    {
+                        _error_json_encoder('操作不合法');
+                    }
 
-                if (strpos($flag, 'add') !== false) {
-                    $type = 'add';
-                } elseif (strpos($flag, 'update') !== false) {
-                    $type = 'update';
-                } elseif (empty($id)) {
-                    $type = 'add';
-                } else {
-                    $type = 'add';
+                    $ret = DB::table('finance_page_preview')->where('id', $id)->update($insert_data);
+                    $message = '更新成功';
+
+                }
+                elseif ($flag == 'add')
+                {
+                    $ret = DB::table('finance_page_preview')->insert($insert_data);
+                    $message = '添加成功';
+                }
+                elseif ($flag == 'publish')
+                {
+                    // 定时发布, 把最后一篇文章定时发布
+                    $last_page = DB::table('finance_page_preview')->orderBy('id', 'desc')->first();
+                    if (empty($last_page))
+                    {
+                        _error_json_encoder('暂时没有定时发布的page页');
+                    }
+
+                    $page_id = $last_page['id'];
+                    $ret = DB::table('finance_page')->orderBy('id', 'desc')->limit(1)->update(['release_page_id' => $page_id]);
+                    $message = '定时发布成功';
                 }
 
-                if ($type == 'add') {
-                    $insert = Models_Page::create($insert_data);
-                    $ret = $insert->id;
-                } else {
-                    $update = DB::table('finance_page')
-                        ->where('id', $id)
-                        ->update($insert_data);
-
-                    $ret = $update;
+                if (!empty($ret))
+                {
+                    _success_json_encoder($message);
+                }
+                else
+                {
+                    _error_json_encoder('操作失败');
                 }
 
-                $msg = array(
-                    'update_preview' => '修改内容预览成功,等待发布',
-                    'update_publish' => '修改内容发布成功',
-                    'add_preview' => '新增内容预览成功, 等待发布',
-                    'add_publish' => '新增内容发布成功'
-                 );
-                if (!empty($ret)) {
-                    _success_json_encoder($msg[$flag]);
-                } else {
-                    throw new Exception('系统错误, 请联系管理员');
-                }
             } catch (Exception $e) {
                 _error_json_encoder($e->getMessage());
             }

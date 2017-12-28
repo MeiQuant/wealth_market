@@ -172,36 +172,50 @@
                                 </div>
                             </div>
 
+
+                            <h1>分享模块</h1>
+
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="wechat_title"> 分享标题：</label>
+
+                                <div class="col-sm-9">
+                                    <input type="text" id="wechat_title" value="<?php if(isset($page['wechat_title'])) {echo $page['wechat_title'];}?>" name="wechat_title" placeholder="分享标题" class="col-xs-10 col-sm-5" />
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="wechat_desc"> 分享文案：</label>
+
+                                <div class="col-sm-9">
+                                    <input type="text" id="wechat_desc" value="<?php if(isset($page['wechat_desc'])) {echo $page['wechat_desc'];}?>" name="wechat_desc" placeholder="分享文案" class="col-xs-10 col-sm-5" />
+                                </div>
+                            </div>
+
+
                             <input type="hidden" value="<?php if(isset($page['id'])) {echo $page['id'];}?>" name="hidden_page_id"/>
 
                             <div class="clearfix form-actions">
                                 <div class="col-md-offset-3 col-md-9">
-                                    <button class="btn btn-inverse add_article" flag="update_preview" type="button">
+                                    <button class="btn btn-inverse add_page" flag="update" type="button">
                                         <i class="ace-icon fa fa-check bigger-110"></i>
-                                        修改预览
+                                        修改
                                     </button>
-
-                                    <button class="btn btn-success add_article" flag="update_publish" type="button">
-                                        <i class="ace-icon fa fa-check bigger-110"></i>
-                                        修改发布
-                                    </button>
-
-                                    <button class="btn btn-inverse add_article" flag="add_preview" type="button">
-                                        <i class="ace-icon fa fa-check bigger-110"></i>
-                                        新增预览
-                                    </button>
-
-                                    <button class="btn btn-success add_article" flag="add_publish" type="button">
-                                        <i class="ace-icon fa fa-check bigger-110"></i>
-                                        新增发布
-                                    </button>
-
-
                                     &nbsp; &nbsp; &nbsp;
-                                    <button class="btn" type="reset">
-                                        <i class="ace-icon fa fa-undo bigger-110"></i>
-                                        重置
+                                    <button class="btn btn-success add_page" flag="add" type="button">
+                                        <i class="ace-icon fa fa-check bigger-110"></i>
+                                        存储
                                     </button>
+
+
+                                    &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
+                                    <button class="btn btn-info add_page" flag="publish" type="button">
+                                        <i class="ace-icon fa fa-check bigger-110"></i>
+                                        定时发布
+                                    </button>
+
+
                                 </div>
                             </div>
 
@@ -376,19 +390,25 @@
 
 
 
-    $(".add_article").on('click', function(){
+    $(".add_page").on('click', function(){
         var flag = $(this).attr('flag');
+//        var page_id = $("input[name=hidden_page_id]").val();
         $.ajax({
             url : '/finance/add',
             type : 'POST',
             data : $("form").serialize() + '&flag=' + flag,
             dataType: 'JSON',
+            beforeSend: function()
+            {
+                bootbox.dialog({ message: '<div class="text-center"><i class="fa fa-spin fa-spinner"></i> Loading...</div>' })
+            },
             success : function(msg) {
                 if (msg.status) {
-                    alert(msg.msg);
-                    window.location.href = '/finance/add';
+                    bootbox.alert(msg.msg, function(){
+                        window.location.href = '/finance/add';
+                    });
                 } else {
-                    alert(msg.msg);
+                    bootbox.alert("系统发生错误, 请联系管理员");
                     return ;
                 }
             },

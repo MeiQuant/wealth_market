@@ -22,7 +22,7 @@ class UserController extends IndexabstractController
     {
         $open_id = $this->_uid;
         $request = $this->getRequest();
-        if (strpos($_SERVER['HTTP_REFERER'], 'show') !== false) {
+        if (isset($_SERVER['HTTP_REFERER']) && strpos($_SERVER['HTTP_REFERER'], 'show') !== false) {
             $this->_redis->hmset($open_id . 'user_info', ['refer' => '']);
         }
         if ($request->isPost()) {
