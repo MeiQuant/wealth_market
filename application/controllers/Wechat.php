@@ -116,7 +116,8 @@ class WechatController extends Yaf_Controller_Abstract
         $user = $oauth->user();
         $info = $user->getOriginal();
         $open_id = $info['openid'];
-        if (!empty($info) && is_array($info)) {
+        if (!empty($info) && is_array($info))
+        {
             $ret = setcookie('uid', Tool::cookie_encode($open_id), time() + 24 * 3600, '/');
             $is_register_user = DB::table('finance_user')->where('open_id', $info['openid'])->select('id')->first();
             if (empty($is_register_user)) {
@@ -130,6 +131,12 @@ class WechatController extends Yaf_Controller_Abstract
                         ['nickname' => $info['nickname'], 'province' => $info['province'], 'city' => $info['city'], 'headimgurl' => $info['headimgurl'] ,'open_id' => $info['openid'], 'create_time' => $datetime, 'update_time' => $datetime]
                     ]);
                 }
+            }
+            else
+            {
+                $ret = DB::table('finance_user')
+                    ->where('open_id', $open_id)
+                    ->update(['nickname' => $info['nickname'], 'headimgurl' => $info['headimgurl']]);
             }
 
             header('location:'. $refer_url);

@@ -63,10 +63,10 @@ abstract class IndexabstractController extends Yaf_Controller_Abstract
 
         $open_id = (isset($_COOKIE['uid']) && !empty($_COOKIE['uid'])) ? $_COOKIE['uid'] : false;
         $open_id = Tool::cookie_decode($open_id);
-        if ($open_id == 'oQt5h0wz8SXSBN1MYMT7_D-oFzAA')
+        if ($open_id == 'oQt5h03tsXD7Wn6wWqzYDJ0umbEk')
         {
             // 测试账号，测试微信授权登录回调函数
-            $open_id = '';
+//            $open_id = '';
         }
         if (!empty($open_id)) {
             $user = DB::table('finance_user')->where('open_id', $open_id)->first();
