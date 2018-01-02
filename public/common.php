@@ -1,5 +1,6 @@
 <?php
 
+define('ADMIN_DOMAIN001', '.smallwolf.cn');
 define('DOMAIN_URL', 'http://wealth-market.smallwolf.cn');
 define("BASE_URL", 'http://static-wealth-market.smallwolf.cn/');
 define("IMG_URL", 'http://img-wealth-market.smallwolf.cn/');

@@ -16,7 +16,7 @@ abstract class AbstractController extends Yaf_Controller_Abstract
     public $_wechat;
 
     public $members = array(
-         'admin','wanghongjun', 'maxiaoqi', 'lihao'
+         'admin','wanghongjun', 'yhcfzc'
     );
 
     /**

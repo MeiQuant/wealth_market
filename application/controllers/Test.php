@@ -9,6 +9,7 @@ class TestController extends Yaf_Controller_Abstract
     public function indexAction()
     {
 
+        var_dump(sha1('SAAJcDZky0esBTCzBpvyRk74X81KUBtN' . 'meicankeji2017'));die;
         $session = Yaf_Session::getInstance();
         $session->set('uid', 12);
         $a = $session->get('uid');

