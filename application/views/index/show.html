@@ -188,7 +188,7 @@
                         <?php if (!empty($val['author'])) {?>
                             <span class="tag_icon"><?php echo $val['author'];?></span>
                         <?php }?>
-                        <span class="ml10"><?php echo filter_tag($val['editor_content']);?></span>
+                        <span class="<?php if (!empty($val['author'])){echo 'ml10';}?>"><?php echo filter_tag($val['editor_content']);?></span>
                     </div>
                 </li>
                 <?php }}?>

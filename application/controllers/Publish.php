@@ -4,7 +4,10 @@ use Illuminate\Database\Capsule\Manager as DB;
 
 class PublishController extends Yaf_Controller_Abstract
 {
-
+    public function testAction()
+    {
+        echo date('Y-m-d H:i:s', time()) . PHP_EOL;
+    }
 
    public function runAction()
    {
