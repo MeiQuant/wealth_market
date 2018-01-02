@@ -14,8 +14,10 @@
     <meta name="screen-orientation" content="portrait">
     <link href='<?= BASE_URL ?>/css/form.css' rel='stylesheet' type='text/css'>
     <link href='<?= BASE_URL ?>/css/webuploader_v2.css' rel='stylesheet' type='text/css'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/cropper/3.1.3/cropper.min.css" rel="stylesheet" type="text/css">
     <!--引入JS-->
     <script src="<?= BASE_URL ?>/js/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/cropper/3.1.3/cropper.min.js"></script>
     <script type="text/javascript" src="<?= BASE_URL ?>/js/webuploader.min.js"></script>
     <title>上传二维码</title>
 </head>
@@ -157,6 +159,7 @@
 //            $percent = $li.find('.progress span');
         $('.mask1').show();
         $('.pro_img').show();
+
         $('.pic_word').hide();
 
         // 避免重复创建
