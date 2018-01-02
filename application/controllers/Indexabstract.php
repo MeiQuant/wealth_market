@@ -48,7 +48,7 @@ abstract class IndexabstractController extends Yaf_Controller_Abstract
             ],
             'oauth' => [
                 'scopes'   => ['snsapi_userinfo'],
-                'callback' => 'http://wealth-market.smallwolf.cn/wechat/oauthcallback?refer=' . $refer_url
+                'callback' => DOMAIN_URL . '/wechat/oauthcallback?refer=' . $refer_url
             ],
         ];
 

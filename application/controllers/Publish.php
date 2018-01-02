@@ -14,6 +14,10 @@ class PublishController extends Yaf_Controller_Abstract
        $module_name = [];
        foreach ($articles as $article)
        {
+           if (empty($article['release_article_id']))
+           {
+               continue;
+           }
            if (!empty($article['release_article_id']))
            {
                $module_name[] = $article['module'];
@@ -25,21 +29,40 @@ class PublishController extends Yaf_Controller_Abstract
            ];
        }
 
-       $ret_article = $this->updateBatch('finance_article', $update_article);
-       if ($ret_article)
+       if (!empty($update_article))
        {
-           print_r('时间: ' . date('Y-m-d H:i:s') . ' ，发布成功的模块为 ' . implode(',' , $module_name) . PHP_EOL);
-           error_log('时间: ' . date('Y-m-d H:i:s') . ' ，发布成功的模块为 ' . implode(',' , $module_name) . PHP_EOL, 3, '/tmp/publish.log');
+           $ret_article = $this->updateBatch('finance_article', $update_article);
+           if ($ret_article)
+           {
+               print_r('时间: ' . date('Y-m-d H:i:s') . ' ，发布成功的文章模块为 ' . implode(',' , $module_name) . PHP_EOL);
+               error_log('时间: ' . date('Y-m-d H:i:s') . ' ，发布成功文章的模块为 ' . implode(',' , $module_name) . PHP_EOL, 3, '/tmp/publish.log');
+           }
+       }
+       else
+       {
+           print_r('时间: ' . date('Y-m-d H:i:s') . ' ，暂时没有要发布的文章模块' . PHP_EOL);
+           error_log('时间: ' . date('Y-m-d H:i:s') . ' ，暂时没有要发布的文章模块'  . PHP_EOL, 3, '/tmp/publish.log');
        }
 
 
-       // 早上6点定时发布区域信息
-       $ret_page = DB::table('finance_page')->orderBy('id', 'desc')->limit(1)->update(['online_page_id' => DB::raw('release_page_id'), 'release_page_id' => '']);
-       if (!empty($ret_page))
+       $publish_page = DB::table('finance_page')->first();
+       if (!empty($publish_page) && isset($publish_page['release_page_id']) && !empty($publish_page['release_page_id']))
        {
-           print_r('时间: ' . date('Y-m-d H:i:s') . '各区域模块发布成功'. PHP_EOL);
-           error_log('时间: ' . date('Y-m-d H:i:s') . '各区域模块发布成功'. PHP_EOL, 3, '/tmp/publish.log');
+           // 早上6点定时发布区域信息
+           $ret_page = DB::table('finance_page')->orderBy('id', 'desc')->limit(1)->update(['online_page_id' => DB::raw('release_page_id'), 'release_page_id' => '']);
+           if (!empty($ret_page))
+           {
+               print_r('时间: ' . date('Y-m-d H:i:s') . '各区域模块发布成功'. PHP_EOL);
+               error_log('时间: ' . date('Y-m-d H:i:s') . '各区域模块发布成功'. PHP_EOL, 3, '/tmp/publish.log');
+           }
        }
+       else
+       {
+           print_r('时间: ' . date('Y-m-d H:i:s') . '没有要发布的区域模块'. PHP_EOL);
+           error_log('时间: ' . date('Y-m-d H:i:s') . '没有要发布的区域模块'. PHP_EOL, 3, '/tmp/publish.log');
+       }
+
+
 
    }
 
