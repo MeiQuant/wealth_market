@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>MP3</title>
+    <script type="text/javascript" src="http://cdn.bootcss.com/jquery/1.8.3/jquery.min.js"></script>
+</head>
+<body>
+<div style="overflow: hidden;">
+    <audio src="http://oj1hxt5z0.bkt.clouddn.com/123.mp3" id="Jaudio" class="media-audio" autoplay preload loop="loop"></audio>
+</div>
+<script type="text/javascript">
+    function audioAutoPlay(id){
+        var audio = document.getElementById(id);
+        audio.play();
+        document.addEventListener("WeixinJSBridgeReady", function () {
+            audio.play();
+        }, false);
+        document.addEventListener('YixinJSBridgeReady', function() {
+            audio.play();
+        }, false);
+    }
+    audioAutoPlay('Jaudio');
+</script>
+</body>
+</html>

@@ -66,6 +66,8 @@ class IndexController extends IndexabstractController
         $user['introduce'] = !empty($user['introduce']) ? $user['introduce'] : $this->_format_introduct;
 
 
+        $title = $is_share ? $user['name'] . '的财富早餐' : '有恒财富早餐';
+
         // 如果该用户已经设置过产品信息, 优先展示用户自己的产品
         $user_product = DB::table('finance_product')->where('open_id', $user_id)->orderBy('id', 'desc')->first();
 
@@ -107,9 +109,42 @@ class IndexController extends IndexabstractController
             }
         }
 
+        $user = $this->_format_user_info($user);
 //        print_r($page_info);die;
-        $this->getView()->assign(['wx_share_page_id' => $wx_share_page_id, 'wx_share_article_id' => $wx_share_article_id, 'user' => $user, 'page_info' => $page_info, 'product' => $product,  'articles' => $articles, 'js_sdk' => $this->_app->js, 'ouid' => $user_id, 'is_share' => $is_share]);
+        $this->getView()->assign(['wx_share_page_id' => $wx_share_page_id, 'wx_share_article_id' => $wx_share_article_id, 'user' => $user, 'page_info' => $page_info, 'product' => $product,  'articles' => $articles, 'js_sdk' => $this->_app->js, 'ouid' => $user_id, 'is_share' => $is_share, 'title' => $title]);
         $this->getView()->display('index/show.html');
+    }
+
+
+
+    private function _format_user_info($user)
+    {
+        $city = ['北京', '天津', '上海', '重庆', '北京市', '天津市', '上海市', '重庆市'];
+        if (in_array($user['province'], $city))
+        {
+            if (strpos($user['province'], '市') !== false)
+            {
+                $user['province'] = mb_substr($user['province'], 0, mb_strpos($user['province'], '市'), 'utf-8');
+            }
+            if (strpos($user['city'], '区') === false)
+            {
+                $user['city'] = $user['city'] . '区';
+            }
+        }
+        else
+        {
+            if (strpos($user['province'], '省') !== false)
+            {
+                $user['province'] = mb_substr($user['province'], 0, mb_strpos($user['province'], '省'), 'utf-8');
+            }
+
+            if (strpos($user['city'], '市') === false)
+            {
+                $user['city'] = $user['city'] . '市';
+            }
+        }
+
+        return $user;
     }
 
 }

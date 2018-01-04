@@ -71,7 +71,7 @@ abstract class IndexabstractController extends Yaf_Controller_Abstract
         if (!empty($open_id)) {
             $user = DB::table('finance_user')->where('open_id', $open_id)->first();
             if (empty($user)) {
-                // 容错处理, 防止微信客户端有cookie, 但是数据库没信息
+                // 容错处理, 防止微信客户端有cookie, 或者伪造cookie, 或者数据库没信息
                 $open_id = false;
             }
         }

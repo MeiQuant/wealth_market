@@ -6,6 +6,8 @@ class PublishController extends Yaf_Controller_Abstract
 {
     public function testAction()
     {
+        $a = '北京市';
+        var_dump(mb_substr($a, 0, mb_strpos($a, '市'), 'utf-8'));die;
         echo date('Y-m-d H:i:s', time()) . PHP_EOL;
     }
 

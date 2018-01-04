@@ -50,7 +50,7 @@
         }
 
     </style>
-    <title>有恒财富早餐</title>
+    <title><?php echo $title;?></title>
 </head>
 <body  class="font_to_normal">
 <section>
@@ -81,7 +81,7 @@
                     <div>职位：<?=$user['job']?></div>
                     <?php } ?>
                     <?php if (!empty($user['city'])) { ?>
-                        <div>城市：<?=$user['city']?></div>
+                        <div>城市：<?php echo $user['province'] . ' ' . $user['city'];?></div>
                     <?php } ?>
                     <div>公司：<?php echo $user['company'];?></div>
                     <div>电话：<?php echo $user['phone'];?></div>
@@ -268,7 +268,7 @@
         var page_tw = '2';
         var article_id = '<?php echo $wx_share_article_id;?>';
         var link = "http://wealth-market.smallwolf.cn/index/show?page_id=" + page_id + '&article_id=' + article_id +'&rdn=' + rdn + '&ouid=' + ouid  + wx_domain ; // 分享链接
-        var title = "<?php if (isset($page_info['wechat_title'])){echo $page_info['wechat_title'];}?>";
+        var title = "<?php if (isset($page_info['wechat_title'])){echo $user['name'] . '的财富早餐' . $page_info['wechat_title'];}?>";
         var imgUrl = "<?php echo $user['headimgurl']; ?>";
         var desc = "<?php if (isset($page_info['wechat_desc'])){echo $page_info['wechat_desc'];}?>";
         wx.onMenuShareTimeline({
