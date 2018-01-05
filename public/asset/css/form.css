@@ -314,7 +314,7 @@ i{
     left:0;
     z-index: 1000;
 	background: #ffffff;
-	font-size: 0.32rem;
+	font-size: 0.26rem;
 	line-height: 0.45rem;
 	box-shadow: 0 5px 13px 0 rgba(0,0,0,0.16);
 }
@@ -367,14 +367,15 @@ i{
 	padding-top:0.9rem;
 }
 .text_name{
-	font-size: 0.38rem;
+	font-size: 0.35rem;
 	color: #000000;
 	line-height: 0.62rem;
 	padding:0;
 	margin:0;
+	font-weight: 600;
 }
 .text_index{
-	font-size: 0.24rem;
+	font-size: 0.20rem;
 	color: #3C3C3C;
 	line-height: 0.36rem;
 	margin-top:0.07rem;
@@ -414,8 +415,8 @@ i{
 	background:#ccc;
 }
 .inner_box2{
-	font-family: PingFangSC-Medium;
-	font-size: 0.24rem;
+	/*font-family: PingFangSC-Medium;*/
+	font-size: 0.20rem;
 	color: #3C3C3C;
 	line-height: 0.34rem;
 }
@@ -427,7 +428,7 @@ i{
 	background-size: contain;
 }
 .edit_text{
-	font-size: 0.3rem;
+	font-size: 0.22rem;
 	color: #06ADEC;
 	line-height: 0.34rem;
 }
@@ -481,11 +482,12 @@ i{
 .title { 
 	position: relative; 
 	z-index: 2; 
-	font-size: 0.38rem;
-	line-height: 0.62rem; 
+	font-size: 0.33rem;
+	line-height: 0.62rem;
 	text-align: center; 
 	color: #000000; 
-	overflow: hidden; 
+	overflow: hidden;
+	font-weight: 900;
 }
 .title .caption { 
 	position: relative; 
@@ -495,7 +497,7 @@ i{
 	position: absolute; 
 	top: 0.3rem; 
 	width: 0.7rem; 
-	height: 3px; 
+	height: 2px;
 	background-color: #12B1ED;
 }
 .title .caption .line-l { 
@@ -518,7 +520,7 @@ i{
 	width: 100%;
 	padding:0;
 	margin:0;
-	padding-bottom:0.45rem;
+	padding-bottom:0.25rem;
 }
 .flex-ul li{
 	-webkit-flex:1;
@@ -531,7 +533,7 @@ i{
 	border:none;
 }
 .li_tit{
-	font-size: 0.32rem;
+	font-size: 0.22rem;
 	line-height: 0.45rem;
 	color:#000000;
 }
@@ -548,11 +550,11 @@ i{
 .li_num3{
 	font-family: Helvetica;
 	/*font-size: 0.48rem;*/
-	font-size: 0.38rem;
+	font-size: 0.3rem;
 	line-height: 0.58rem;
 	color:#D62D32;
-	margin-top:0.18rem;
-	margin-bottom:0.23rem;
+	margin-top:0.1rem;
+	margin-bottom:0.1rem;
 	letter-spacing:0;
 }
 .li_small{
@@ -561,7 +563,7 @@ i{
 .li_num2{
 	font-family: Helvetica;
 	/*font-size: 0.26rem;*/
-	font-size: 0.23rem;
+	font-size: 0.2rem;
 	line-height: 0.31rem;
 	color: #999999;
 }
@@ -576,7 +578,8 @@ i{
 }
 .bottom_text1{
 	font-family: PingFangSC-Regular;
-	font-size: 0.28rem;
+	font-size: 0.22rem;
+	margin-top: 5px;
 	line-height: 0.4rem;
 	color: #B2B2B2;
 }
@@ -592,27 +595,28 @@ i{
 	background: #12B1ED;
 }
 .second_tit{
-	font-family: PingFangSC-Semibold;
-	font-size:0.32rem;
+	/*font-family: PingFangSC-Semibold;*/
+	font-size:0.28rem;
 	line-height: 0.5rem;
 	color: #000000;
 	padding:0;
 	margin:0;
 	margin-left: 0.1rem;
 	display: inline-block;
+	font-weight:800;
 }
 .ul_text{
 	padding:0;
 	margin:0;
 	font-family: PingFangSC-Regular;
-	font-size: 0.28rem;
+	font-size: 0.22rem;
 	color: #696969;
 	line-height: 0.5rem;
 	word-break: break-all;
 }
 .ul_text li{
 	list-style: none;
-	margin-top:0.5rem;
+	margin-top:0.3rem;
 }
 .tag_icon{
 	height:0.45rem;
@@ -623,7 +627,7 @@ i{
 	display: inline-block;
 	padding-left:0.05rem;
 	padding-right:0.05rem;
-	font-size: 0.28rem;
+	font-size: 0.22rem;
 }
 .red_fnt{
 	color:red;
@@ -655,7 +659,7 @@ i{
 }
 .intro_text{
 	font-family: PingFangSC-Regular;
-	font-size: 0.3rem;
+	font-size: 0.26rem;
 	color: #000000;
 	line-height: 0.46rem;
 	padding-top:0.31rem;
@@ -663,7 +667,7 @@ i{
 }
 .blue_text{
 	font-family: PingFangSC-Regular;
-	font-size: 0.3rem;
+	font-size: 0.26rem;
 	color: #00479D;
 	line-height: 0.46rem;
 }
@@ -679,7 +683,7 @@ i{
 	font-family: PingFangSC-Regular;
 	font-size: 0.3rem;
 	color: #12B1ED;
-	line-height: 0.34rem;
+	line-height: 0.3rem;
 	display: block;
 	width:100%;
 }
@@ -769,6 +773,10 @@ i{
     background: rgba(0, 0, 0, 0.5);
     font-size: 0.28rem;
     color:#ffffff;
+}
+
+.mt25 {
+	margin-top: 0.25rem;
 }
 
 

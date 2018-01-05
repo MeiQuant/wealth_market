@@ -50,6 +50,322 @@
         }
 
     </style>
+
+    <style type="text/css">
+        html {
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+
+        .db {
+            display: block;
+        }
+
+        .weixinAudio {
+            line-height: 1.5;
+        }
+
+        .audio_area {
+            display: inline-block;
+            width: 100%;
+            vertical-align: top;
+            margin: 0px 1px 0px 0;
+            font-size: 0;
+            position: relative;
+            font-weight: 400;
+            text-decoration: none;
+            -ms-text-size-adjust: none;
+            -webkit-text-size-adjust: none;
+            text-size-adjust: none;
+        }
+
+        .audio_wrp {
+            border: 1px solid #ebebeb;
+            background-color: #fcfcfc;
+            overflow: hidden;
+            padding: 12px 20px 12px 12px;
+        }
+
+        .audio_play_area {
+            float: left;
+            margin: 9px 22px 10px 5px;
+            font-size: 0;
+            width: 18px;
+            height: 25px;
+        }
+
+        .playing .audio_play_area .icon_audio_default {
+            display: block;
+        }
+
+        .audio_play_area .icon_audio_default {
+            background: transparent url(<?= BASE_URL ?>/images/index/iconloop.png) no-repeat 0 0;
+            width: 18px;
+            height: 25px;
+            vertical-align: middle;
+            display: inline-block;
+            -webkit-background-size: 54px 25px;
+            background-size: 54px 25px;
+            background-position: -36px center;
+        }
+
+        .audio_play_area .icon_audio_playing {
+            background: transparent url(<?= BASE_URL ?>/images/index/iconloop.png) no-repeat 0 0;
+            width: 18px;
+            height: 25px;
+            vertical-align: middle;
+            display: inline-block;
+            -webkit-background-size: 54px 25px;
+            background-size: 54px 25px;
+            -webkit-animation: audio_playing 1s infinite;
+            background-position: 0px center;
+            display: none;
+        }
+
+        .audio_area .pic_audio_default {
+            display: none;
+            width: 18px;
+        }
+
+        .tips_global {
+            color: #8c8c8c;
+        }
+
+        .audio_area .audio_length {
+            float: right;
+            font-size: 14px;
+            margin-top: 3px;
+            margin-left: 1em;
+        }
+
+        .audio_info_area {
+            overflow: hidden;
+        }
+
+        .audio_area .audio_title {
+            font-weight: 400;
+            font-size: 15px;
+            margin-top: -2px;
+            margin-bottom: -3px;
+            width: auto;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            word-wrap: normal;
+        }
+
+        .audio_area .audio_source {
+            font-size: 12px;
+        }
+
+        .audio_area .progress_bar {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            background-color: #0cbb08;
+            height: 2px;
+        }
+
+        .playing .audio_play_area .icon_audio_default {
+            display: none;
+        }
+
+        .playing .audio_play_area .icon_audio_playing {
+            display: inline-block;
+        }
+
+        @-webkit-keyframes audio_playing {
+            30% {
+                background-position: 0px center;
+            }
+            31% {
+                background-position: -18px center;
+            }
+            61% {
+                background-position: -18px center;
+            }
+            61.5% {
+                background-position: -36px center;
+            }
+            100% {
+                background-position: -36px center;
+            }
+        }
+    </style>
+    <style>
+        html {
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+            line-height: 1.6
+        }
+
+        body {
+            -webkit-touch-callout: none;
+            font-family: -apple-system-font, "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            background-color: #f3f3f3;
+            line-height: inherit
+        }
+
+        body.rich_media_empty_extra {
+            background-color: #fff
+        }
+
+        body.rich_media_empty_extra .rich_media_area_primary:before {
+            display: none
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-weight: 400;
+            font-size: 16px
+        }
+
+        * {
+            margin: 0;
+            padding: 0
+        }
+
+        a {
+            color: #607fa6;
+            text-decoration: none
+        }
+
+        .rich_media_inner {
+            font-size: 16px;
+            word-wrap: break-word;
+            -webkit-hyphens: auto;
+            -ms-hyphens: auto;
+            hyphens: auto
+        }
+
+        .rich_media_area_primary {
+            position: relative;
+            padding: 20px 15px 15px;
+            background-color: #fff
+        }
+
+        .rich_media_area_primary:before {
+            content: " ";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 1px;
+            border-top: 1px solid #e5e5e5;
+            -webkit-transform-origin: 0 0;
+            transform-origin: 0 0;
+            -webkit-transform: scaleY(0.5);
+            transform: scaleY(0.5);
+            top: auto;
+            bottom: -2px
+        }
+
+        .rich_media_area_primary .original_img_wrp {
+            display: inline-block;
+            font-size: 0
+        }
+
+        .rich_media_area_primary .original_img_wrp .tips_global {
+            display: block;
+            margin-top: .5em;
+            font-size: 14px;
+            text-align: right;
+            width: auto;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            word-wrap: normal
+        }
+
+        .meta_enterprise_tag img {
+            width: 30px;
+            height: 30px!important;
+            display: block;
+            position: relative;
+            margin-top: -3px;
+            border: 0
+        }
+        .rich_media_content * {
+            max-width: 100%!important;
+            box-sizing: border-box!important;
+            -webkit-box-sizing: border-box!important;
+            word-wrap: break-word!important
+        }
+
+        .rich_media_content p {
+            clear: both;
+            min-height: 1em;
+            /*white-space: pre-wrap*/
+        }
+
+        .rich_media_content em {
+            font-style: italic
+        }
+
+        .rich_media_content fieldset {
+            min-width: 0
+        }
+
+
+        .rich_media_content blockquote {
+            margin: 0;
+            padding-left: 10px;
+            border-left: 3px solid #dbdbdb
+        }
+
+        img {
+            height: auto!important
+        }
+
+        @media screen and (min-width:1025px) {
+            body {
+                font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif
+            }
+        }
+
+
+        .radius_avatar img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            -moz-border-radius: 50%;
+            -webkit-border-radius: 50%;
+            background-color: #eee
+        }
+
+
+        @-webkit-keyframes weuiLoading {
+            0% {
+                -webkit-transform: rotate3d(0, 0, 1, 0deg)
+            }
+            100% {
+                -webkit-transform: rotate3d(0, 0, 1, 360deg)
+            }
+        }
+
+        @keyframes weuiLoading {
+            0% {
+                -webkit-transform: rotate3d(0, 0, 1, 0deg)
+            }
+            100% {
+                -webkit-transform: rotate3d(0, 0, 1, 360deg)
+            }
+        }
+
+        .gif_img_wrp img {
+            min-height: 120px;
+            min-width: 120px
+        }
+
+        .gif_img_tips i {
+            vertical-align: middle;
+            margin: -0.2em .73em 0 -2px
+        }
+    </style>
     <title><?php echo $title;?></title>
 </head>
 <body  class="font_to_normal">
@@ -109,27 +425,34 @@
         </div>
     </div>
     <div class="middle_box pb26">
-        <div class="redio_box">
-            <div class="fl redio_btn" id="redio_btn"></div>
-            <div class="fl ml20 mt32" style="margin-top: 0;">
-                <div class="redio_tit full_in1"><?php echo date('Y.m.d', time());?> 有恒财富早餐</div>
-                <div class="redio_text full_in1">来自有恒财富管理研究院</div>
-                <div style="display: none;"><audio id="bgmusic" src="<?php echo $page_info['audio'];?>"  preload loop controls></audio></div>
-                <!--<audio controls="controls" class="audio_box mt10 dis-b">-->
-                    <!--<source src="<?php echo $page_info['audio'];?>" type="audio/mpeg" />-->
-                <!--</audio>-->
-                <!--<div style="margin-top:5px;"><audio src="http://kolber.github.io/audiojs/demos/mp3/juicy.mp3" preload="auto"></audio></div>-->
-                <!--<div class="process_box"></div>-->
-                <!--<div class="process_text">-->
-                    <!--<div class="fl">00:00</div>-->
-                    <!--<div class="fr">10:10</div>-->
-                    <!--<div class="cf"></div>-->
-                <!--</div>-->
-                <!--<div class=""></div>-->
-            </div>
-            <div class="cf"></div>
-        </div>
-        <div class="title mt60 mb54">
+        <p class="weixinAudio">
+            <audio src="http://moeya.oss-cn-hangzhou.aliyuncs.com/h5/5a362906d41fe.mp3" id="media" width="1" height="1" preload></audio>
+            <span id="audio_area" class="db audio_area">
+						<span class="audio_wrp db">
+						<span class="audio_play_area">
+							<i class="icon_audio_default"></i>
+							<i class="icon_audio_playing"></i>
+						</span>
+                            <span id="audio_length" class="audio_length tips_global">3:07</span>
+                            <span class="db audio_info_area">
+							<strong class="db audio_title"><?php echo date('Y.m.d', time());?> 有恒财富早餐</strong>
+							<span class="audio_source tips_global" style="display:inline-block;padding-top:8px;">来自有恒财富管理研究院</span>
+                            </span>
+                            <span id="audio_progress" class="progress_bar" style="width: 0%;"></span>
+                            </span>
+                            </span>
+        </p>
+        <!--<div class="redio_box">-->
+            <!--<div class="fl redio_btn" id="redio_btn"></div>-->
+            <!--<div class="fl ml20 mt32" style="margin-top: 0;">-->
+                <!--<div class="redio_tit full_in1"><?php echo date('Y.m.d', time());?> 有恒财富早餐</div>-->
+                <!--<div class="redio_text full_in1">来自有恒财富管理研究院</div>-->
+                <!--<div style="display: none;"><audio id="bgmusic" src="<?php echo $page_info['audio'];?>"  preload loop controls></audio></div>-->
+                <!---->
+            <!--</div>-->
+            <!--<div class="cf"></div>-->
+        <!--</div>-->
+        <div class="title mt25 mb54">
 					<span class="caption">
 						<span class="line line-l"></span>大盘指数<span class="line line-r"></span>
 					</span>
@@ -173,7 +496,7 @@
 
     <?php if (!empty($articles)) { foreach ($articles as $article) {?>
         <div class="middle_box mt13 pb50">
-            <div class="title mt60">
+            <div class="title mt30">
                         <span class="caption">
                             <span class="line line-l"></span><?php echo $article['module'];?><span class="line line-r"></span>
                         </span>
@@ -207,7 +530,7 @@
                 <div class="tc red_fnt1"><?php echo $product['company'];?></div>
                 <div class="intro_text inner_box1">
                     <div>资产配置策略：</div>
-                    <div>
+                    <div style="font-size:0.22rem;color:#696969;">
                         <?php echo $product['asset_strategy'];?>
                     </div>
                 </div>
@@ -217,17 +540,18 @@
             </div>
         <?php }?>
         <!--<div class="code_img"></div>-->
-        <div class="tc">
-            <img src="<?php echo $page_info['qr_code'];?>" style="width:3.05rem;height:3.05rem;margin:0.43rem auto 0.2rem auto;" />
+        <div class="tc" style="">
+            <img src="<?php echo $page_info['qr_code'];?>" style="width:3.05rem;height:3.05rem;margin:0.43rem auto -0.3rem auto;" />
+            <a class="blue_text1 tc" href="<?php echo $page_info['link'];?>">扫码免费制作 → 名片早餐</a>
         </div>
-        <a class="blue_text1 tc" href="<?php echo $page_info['link'];?>">扫码免费制作 → 名片早餐</a>
+
     </div>
 </section>
 
 <div class="mask wx_mask" style="display: none;">
     <div class="wx_window">
         <div class="wx_box">
-            <img src="<?php echo $user['code'];?>" style="width:100%;height:4.5rem;overflow: hidden;" >
+            <img src="<?php echo $user['code'];?>" style="width:100%;height:3.0rem;overflow: hidden;" >
             <div class="wx_text tc">长按识别二维码，加我微信</div>
         </div>
         <div class="wx_hr"></div>
@@ -297,9 +621,7 @@
                 audio.pause();
             }
         });
-        document.getElementById('bgmusic').on('click', function(){
-//           alert(1);
-        });
+
 
     });
     wx.error(function(res){
@@ -307,11 +629,6 @@
 </script>
 
 <script>
-//    var wx_height=$('.wx_window').height();
-//    var window_height=parseInt($(window).height())*0.5;
-//    wx_height=window_height-parseInt(wx_height)*0.5;
-//    $('.wx_window').css('marginTop',wx_height);
-
     $(".pop_wechat").on('click', function(){
         $('.wx_mask').show();
 
@@ -320,8 +637,70 @@
     $(".ok_btn").on('click', function(){
         $('.wx_mask').hide();
     });
+</script>
 
+<script src="<?= BASE_URL ?>/js/weixinAudio.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+    // 修改了返回的对象,以前的无法接收
+    $(document).ready(function() {
+        console.log('页面初始化完成...');
+        console.log('开始获取总时长...');
+        var is_loop_flag = false;
+        function getAudioSeconds(string) {
+            string = string % 60;
+            string = addZero(Math.floor(string), 2);
+            (string < 60) ? string = string: string = "00";
+            return string;
+        }
+        //获取时间分
+        function getAudioMinutes(string) {
+            string = string / 60;
+            string = addZero(Math.floor(string), 2);
+            (string < 60) ? string = string: string = "00";
+            return string;
+        }
+        function addZero(word, howManyZero) {
+            var word = String(word);
+            while (word.length < howManyZero) word = "0" + word;
+            return word;
+        }
+        function getMediaTotalTime()
+        {
+            var totalTime = $("#media")[0].duration;
+            if(!isNaN(totalTime))
+            {
+
+                minutes 	=  getAudioMinutes(totalTime);
+                seconds 	=  getAudioSeconds(totalTime);
+                audioTime 	=  minutes + ":" + seconds;
+                $("#audio_length").text(audioTime);
+
+                is_loop_flag = true;
+            }
+        }
+        var is_loop_timer = setInterval(getMediaTotalTime,1000);
+
+        if(is_loop_flag)
+        {
+            clearInterval(is_loop_timer);
+        }
+        console.log('setTotalTime,done...');
+        var weixinAudioObj = $('.weixinAudio').weixinAudio();
+        //console.log(weixinAudioObj.getAudioDurationTime());
+        // 添加单一播放的逻辑
+        $('.weixinAudio').on('click',function(event) {
+            var $this = $(this);
+            var currentIndex = $this.index();
+            // 遍历所有对象，找到非当前点击，执行pause()方法;
+            $.each(weixinAudioObj,function(i, el) {
+                if(i != 'weixinAudio'+currentIndex){
+                    el.pause();
+                }
+            });
+        });
+    });
 
 </script>
+
 </body>
 </html>
