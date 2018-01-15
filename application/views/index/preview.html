@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, maximum-scale=2, minimum-scale=1, user-scalable=no">
+    <meta name="full-screen" content="yes">
+    <meta name="browsermode" content="application">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="x5-page-mode" content="app">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="screen-orientation" content="portrait">
+    <link href='<?= BASE_URL ?>/css/form.css' rel='stylesheet' type='text/css'>
+    <style type="text/css">
+        .audio_box{
+            padding:0;
+            overflow: hidden;
+            width: 85%;
+            height: 0.6rem;
+        }
+        .wx_window{
+            width: 90%;
+            position: absolute;
+            top: 1.4rem;
+            left: 50%;
+            margin-left: -45%;
+            background: #ffffff;
+            border-radius: 0.08rem;
+        }
+        .wx_box{
+            width:90%;
+            margin-left:auto;
+            margin-right:auto;
+            position:relative;
+            top:0.4rem;
+        }
+        .wx_text{
+            margin-top:0.05rem;
+            color:#dcdcdc;
+            font-size: 0.32rem
+        }
+        .wx_hr{
+            width:98%;
+            height:1px;
+            margin-left:1%;
+            margin-top:0.4rem;
+            border-bottom:1px solid #DCDCDC;
+        }
+
+    </style>
+
+    <style type="text/css">
+        html {
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+
+        .db {
+            display: block;
+        }
+
+        .weixinAudio {
+            line-height: 1.5;
+        }
+
+        .audio_area {
+            display: inline-block;
+            width: 100%;
+            vertical-align: top;
+            margin: 0px 1px 0px 0;
+            font-size: 0;
+            position: relative;
+            font-weight: 400;
+            text-decoration: none;
+            -ms-text-size-adjust: none;
+            -webkit-text-size-adjust: none;
+            text-size-adjust: none;
+        }
+
+        .audio_wrp {
+            border: 1px solid #ebebeb;
+            background-color: #fcfcfc;
+            overflow: hidden;
+            padding: 12px 20px 12px 12px;
+        }
+
+        .audio_play_area {
+            float: left;
+            margin: 9px 22px 10px 5px;
+            font-size: 0;
+            width: 18px;
+            height: 25px;
+        }
+
+        .playing .audio_play_area .icon_audio_default {
+            display: block;
+        }
+
+        .audio_play_area .icon_audio_default {
+            background: transparent url(<?= BASE_URL ?>/images/index/iconloop.png) no-repeat 0 0;
+            width: 18px;
+            height: 25px;
+            vertical-align: middle;
+            display: inline-block;
+            -webkit-background-size: 54px 25px;
+            background-size: 54px 25px;
+            background-position: -36px center;
+        }
+
+        .audio_play_area .icon_audio_playing {
+            background: transparent url(<?= BASE_URL ?>/images/index/iconloop.png) no-repeat 0 0;
+            width: 18px;
+            height: 25px;
+            vertical-align: middle;
+            display: inline-block;
+            -webkit-background-size: 54px 25px;
+            background-size: 54px 25px;
+            -webkit-animation: audio_playing 1s infinite;
+            background-position: 0px center;
+            display: none;
+        }
+
+        .audio_area .pic_audio_default {
+            display: none;
+            width: 18px;
+        }
+
+        .tips_global {
+            color: #8c8c8c;
+        }
+
+        .audio_area .audio_length {
+            float: right;
+            font-size: 14px;
+            margin-top: 3px;
+            margin-left: 1em;
+        }
+
+        .audio_info_area {
+            overflow: hidden;
+        }
+
+        .audio_area .audio_title {
+            font-weight: 400;
+            font-size: 15px;
+            margin-top: -2px;
+            margin-bottom: -3px;
+            width: auto;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            word-wrap: normal;
+        }
+
+        .audio_area .audio_source {
+            font-size: 12px;
+        }
+
+        .audio_area .progress_bar {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            background-color: #0cbb08;
+            height: 2px;
+        }
+
+        .playing .audio_play_area .icon_audio_default {
+            display: none;
+        }
+
+        .playing .audio_play_area .icon_audio_playing {
+            display: inline-block;
+        }
+
+        @-webkit-keyframes audio_playing {
+            30% {
+                background-position: 0px center;
+            }
+            31% {
+                background-position: -18px center;
+            }
+            61% {
+                background-position: -18px center;
+            }
+            61.5% {
+                background-position: -36px center;
+            }
+            100% {
+                background-position: -36px center;
+            }
+        }
+    </style>
+    <style>
+        html {
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+            line-height: 1.6
+        }
+
+        body {
+            -webkit-touch-callout: none;
+            font-family: -apple-system-font, "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            background-color: #f3f3f3;
+            line-height: inherit
+        }
+
+        body.rich_media_empty_extra {
+            background-color: #fff
+        }
+
+        body.rich_media_empty_extra .rich_media_area_primary:before {
+            display: none
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-weight: 400;
+            font-size: 16px
+        }
+
+        * {
+            margin: 0;
+            padding: 0
+        }
+
+        a {
+            color: #607fa6;
+            text-decoration: none
+        }
+
+        .rich_media_inner {
+            font-size: 16px;
+            word-wrap: break-word;
+            -webkit-hyphens: auto;
+            -ms-hyphens: auto;
+            hyphens: auto
+        }
+
+        .rich_media_area_primary {
+            position: relative;
+            padding: 20px 15px 15px;
+            background-color: #fff
+        }
+
+        .rich_media_area_primary:before {
+            content: " ";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 1px;
+            border-top: 1px solid #e5e5e5;
+            -webkit-transform-origin: 0 0;
+            transform-origin: 0 0;
+            -webkit-transform: scaleY(0.5);
+            transform: scaleY(0.5);
+            top: auto;
+            bottom: -2px
+        }
+
+        .rich_media_area_primary .original_img_wrp {
+            display: inline-block;
+            font-size: 0
+        }
+
+        .rich_media_area_primary .original_img_wrp .tips_global {
+            display: block;
+            margin-top: .5em;
+            font-size: 14px;
+            text-align: right;
+            width: auto;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            word-wrap: normal
+        }
+
+        .meta_enterprise_tag img {
+            width: 30px;
+            height: 30px!important;
+            display: block;
+            position: relative;
+            margin-top: -3px;
+            border: 0
+        }
+        .rich_media_content * {
+            max-width: 100%!important;
+            box-sizing: border-box!important;
+            -webkit-box-sizing: border-box!important;
+            word-wrap: break-word!important
+        }
+
+        .rich_media_content p {
+            clear: both;
+            min-height: 1em;
+            /*white-space: pre-wrap*/
+        }
+
+        .rich_media_content em {
+            font-style: italic
+        }
+
+        .rich_media_content fieldset {
+            min-width: 0
+        }
+
+
+        .rich_media_content blockquote {
+            margin: 0;
+            padding-left: 10px;
+            border-left: 3px solid #dbdbdb
+        }
+
+        /*img {*/
+        /*height: auto!important*/
+        /*}*/
+
+        @media screen and (min-width:1025px) {
+            body {
+                font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif
+            }
+        }
+
+
+        .radius_avatar img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            -moz-border-radius: 50%;
+            -webkit-border-radius: 50%;
+            background-color: #eee
+        }
+
+
+        @-webkit-keyframes weuiLoading {
+            0% {
+                -webkit-transform: rotate3d(0, 0, 1, 0deg)
+            }
+            100% {
+                -webkit-transform: rotate3d(0, 0, 1, 360deg)
+            }
+        }
+
+        @keyframes weuiLoading {
+            0% {
+                -webkit-transform: rotate3d(0, 0, 1, 0deg)
+            }
+            100% {
+                -webkit-transform: rotate3d(0, 0, 1, 360deg)
+            }
+        }
+
+        .gif_img_wrp img {
+            min-height: 120px;
+            min-width: 120px
+        }
+
+        .gif_img_tips i {
+            vertical-align: middle;
+            margin: -0.2em .73em 0 -2px
+        }
+    </style>
+    <title><?php echo $title;?></title>
+</head>
+<body  class="font_to_normal">
+<section>
+    <?php if ($is_share) {?>
+        <div class="top_fixed">
+            <div class="person_img fl mt15 ml30">
+                <img src="<?php echo $user['headimgurl'];?>" class="person_img">
+            </div>
+            <div class="want_to_do fl ml20">想投资，咨询我？</div>
+            <div class="fr contact mr20">
+                <?php if (!empty($user['phone'])) {?>
+                <a href="tel:<?php echo $user['phone'];?>"><span class="contact_way ml20">电话</span></a>
+                <?php  }?>
+                <?php if (!empty($user['code'])) {?>
+                <span class="contact_way pop_wechat ml20">微信</span>
+                <?php }?>
+            </div>
+            <div class="cf"></div>
+        </div>
+        <div class="top_space"></div>
+        <?php }?>
+        <?php if ($type != 1) { ?>
+        <div class="middle_box pb26">
+            <div class="title mt25 mb54">
+                <span class="caption">
+                    <span class="line line-l"></span>大盘指数<span class="line line-r"></span>
+                </span>
+            </div>
+            <div style="border:1px solid #ececec;padding:5px;">
+                <ul class="flex-ul tc inner_box1">
+                    <?php if (!empty($page_info['stock'])) {  foreach ($page_info['stock'] as $key => $val) { if ($key <= 2) {?>
+                    <li>
+                        <div class="li_tit"><?php echo $val[0];?></div>
+                        <div class="<?php if ($val[2] < 0) {echo 'li_num1';} else {echo 'li_num3';}?>">
+                            <span><?php echo $val[1][0];?>.</span>
+                            <span class="li_small"><?php echo $val[1][1];?></span><!--此处需要截取小数点后面2位显示-->
+                        </div>
+                        <div class="li_num2">
+                            <div class="fl ml10"><?php echo $val[2];?></div>
+                            <div class="fr mr10"><?php echo $val[3];?></div>
+                            <div class="cf"></div>
+                        </div>
+                    </li>
+                    <?php }}}?>
+                </ul>
+                <ul class="flex-ul tc">
+                    <?php if (!empty($page_info['stock'])) {  foreach ($page_info['stock'] as $key => $val) { if ($key > 2) {?>
+                    <li>
+                        <div class="li_tit"><?php echo $val[0];?></div>
+                        <div class="<?php if ($val[2] < 0) {echo 'li_num1';} else {echo 'li_num3';}?>">
+                            <span><?php echo $val[1][0];?>.</span>
+                            <span class="li_small"><?php echo $val[1][1];?></span><!--此处需要截取小数点后面2位显示-->
+                        </div>
+                        <div class="li_num2">
+                            <div class="fl ml10"><?php echo $val[2];?></div>
+                            <div class="fr mr10"><?php echo $val[3];?></div>
+                            <div class="cf"></div>
+                        </div>
+                    </li>
+                    <?php }}}?>
+                </ul>
+            </div>
+            <div class="bottom_text1 tc">截止昨天收盘报价</div>
+        </div>
+
+        <?php if (!empty($articles)) { foreach ($articles as $article) {?>
+        <div class="middle_box mt13 pb50">
+            <div class="title mt30">
+                            <span class="caption">
+                                <span class="line line-l"></span><?php echo $article['module'];?><span class="line line-r"></span>
+                            </span>
+            </div>
+            <ul class="ul_text">
+                <?php if (!empty($article['content'])) { foreach ($article['content'] as $val) {?>
+                <li>
+                    <?php if (!empty($val['title'])) {?>
+                    <div><h2 class="second_tit"><i class="blue_dot"></i>&nbsp;<?php echo $val['title'];?></h2></div>
+                    <?php }?>
+                    <div class="mt19">
+                        <?php if (!empty($val['author'])) {?>
+                        <span class="tag_icon"><?php echo $val['author'];?></span>
+                        <?php }?>
+                        <span class="<?php if (!empty($val['author'])){echo 'ml10';}?>"><?php echo filter_tag($val['editor_content']);?></span>
+                    </div>
+                </li>
+                <?php }}?>
+
+            </ul>
+        </div>
+    <?php }} }?>
+    <?php if (!empty($product['company']) && ($type == 1)) { ?>
+    <div class="bottom_box mt13 pb50">
+
+        <div class="title mt60">
+                        <span class="caption">
+                            <span class="line line-l"></span>今日推荐<span class="line line-r"></span>
+                        </span>
+        </div>
+        <div class="mt50 intro_box">
+            <div class="tc red_fnt1"><?php echo $product['company'];?></div>
+            <div class="intro_text inner_box1">
+                <div>资产配置策略：</div>
+                <div style="font-size:0.22rem;color:#696969;">
+                    <?php echo $product['asset_strategy'];?>
+                </div>
+            </div>
+            <div class="blue_text mt20">
+                推荐理由：<?php echo $product['introduce'];?>
+            </div>
+        </div>
+    </div>
+    <?php }?>
+
+</section>
+
+
+
+<script>
+    (function (doc, win) {
+        var docEl = doc.documentElement,
+            resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+            recalc = function () {
+                var clientWidth = docEl.clientWidth;
+                if (!clientWidth) return;
+                if(clientWidth>=640){
+                    docEl.style.fontSize = '100px';
+                }else{
+                    docEl.style.fontSize = 100 * (clientWidth / 640) + 'px';
+                }
+            };
+
+        if (!doc.addEventListener) return;
+        win.addEventListener(resizeEvt, recalc, false);
+        doc.addEventListener('DOMContentLoaded', recalc, false);
+    })(document, window);
+</script>
+<script src="<?= BASE_URL ?>/js/jquery.min.js"></script>
+<script src="<?= BASE_URL ?>/js/check.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js" type="text/javascript" charset="utf-8"></script>
+
+
+<script>
+    $(".pop_wechat").on('click', function(){
+        $('.wx_mask').show();
+
+    });
+
+    $(".ok_btn").on('click', function(){
+        $('.wx_mask').hide();
+    });
+</script>
+
+<script src="<?= BASE_URL ?>/js/weixinAudio.js" type="text/javascript" charset="utf-8"></script>
+
+
+</body>
+</html>

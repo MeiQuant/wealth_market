@@ -2,15 +2,14 @@
 
 use Illuminate\Database\Capsule\Manager as DB;
 
-class IndexController extends IndexabstractController
+class PreviewController extends Yaf_Controller_Abstract
 {
 
     private $_format_introduct = '有多年金融行业经验，具有丰富的理财业务知识，熟知各项理财产品，能根据市场变化，和客户个人情况，为其提供个性化服务。';
 
     public function init()
     {
-        $this->_callback_request_uri = isset($_SERVER['REQUEST_URI'])? $_SERVER['REQUEST_URI'] : '';
-        parent::init();
+
     }
 
 
@@ -20,6 +19,7 @@ class IndexController extends IndexabstractController
 //        var_dump(DOMAIN_URL . urldecode($refer_url));die;
         header('Location: '. DOMAIN_URL . urldecode($refer_url));
     }
+
     public function indexAction()
     {
         $this->redirect('/admin/index');
@@ -30,10 +30,8 @@ class IndexController extends IndexabstractController
     public function showAction()
     {
         $request = $this->getRequest();
-        $ouid = $this->filter_param('ouid');
-        $page_id = Util_Common::get('page_id');
-        $article_id = Util_Common::get('article_id');
-        $open_id = $this->_uid;
+        $ouid = 'oQt5h03tsXD7Wn6wWqzYDJ0umbEk';
+        $type = Util_Common::get('type');
         $is_share = false;
         // 区域部分信息
         if (!empty($page_id)) {
@@ -42,7 +40,7 @@ class IndexController extends IndexabstractController
             $online_page = DB::table('finance_page')->first();
             if (!empty($online_page))
             {
-                $page_id = $online_page['online_page_id'];
+                $page_id = !empty($online_page['release_page_id']) ? $online_page['release_page_id'] : (!empty($online_page['online_page_id']) ? $online_page['online_page_id'] : '');
             }
             $page_info = DB::table('finance_page_preview')->where('id', $page_id)->first();
         }
@@ -57,18 +55,10 @@ class IndexController extends IndexabstractController
         }
         unset($page_info['stock_market']);
 
-        // && isset($_GET['from']) && strpos(trim($_GET['from']), 'message') !== false)
-        if (!empty($ouid) && ($ouid != $open_id)) {
-            // 分享过来的链接
-            $user_id = $ouid;
-            $is_share = true;
 
-        } else {
-            $user_id  = $this->_uid;
-        }
-
-
-
+        // 分享过来的链接
+        $user_id = $ouid;
+        $is_share = true;
 
         // 个人信息
         $user = DB::table('finance_user')->where('open_id', $user_id)->first();
@@ -79,7 +69,7 @@ class IndexController extends IndexabstractController
         $title = $is_share ? $user['name'] . '的财富早餐' : '有恒财富早餐';
 
         // 如果该用户已经设置过产品信息, 优先展示用户自己的产品
-        $user_product = DB::table('finance_product')->where('open_id', $user_id)->orderBy('id', 'desc')->first();
+        $user_product = array();
 
         $product['company'] = $page_info['company'];
         $product['asset_strategy'] = $page_info['asset_strategy'];
@@ -100,6 +90,11 @@ class IndexController extends IndexabstractController
             $module_id_name[$module['id']] = $module['module'];
         }
         $mid = Tool::filter_by_field($publish_module, 'online_article_id');
+        $release_article_id = Tool::filter_by_field($publish_module, 'release_article_id');
+        if (!empty($release_article_id))
+        {
+            $mid = $release_article_id;
+        }
         $wx_share_page_id = $page_id;
         // 分享过来的
         if (!empty($article_id))
@@ -119,10 +114,10 @@ class IndexController extends IndexabstractController
             }
         }
 
+        $is_share = false;
         $user = $this->_format_user_info($user);
-//        print_r($page_info);die;
-        $this->getView()->assign(['wx_share_page_id' => $wx_share_page_id, 'wx_share_article_id' => $wx_share_article_id, 'user' => $user, 'page_info' => $page_info, 'product' => $product,  'articles' => $articles, 'js_sdk' => $this->_app->js, 'ouid' => $user_id, 'is_share' => $is_share, 'title' => $title]);
-        $this->getView()->display('index/show.html');
+        $this->getView()->assign(['wx_share_page_id' => $wx_share_page_id, 'type' => $type, 'wx_share_article_id' => $wx_share_article_id, 'user' => $user, 'page_info' => $page_info, 'product' => $product,  'articles' => $articles, 'js_sdk' => '', 'ouid' => $user_id, 'is_share' => $is_share, 'title' => $title]);
+        $this->getView()->display('index/preview.html');
     }
 
 
