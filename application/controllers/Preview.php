@@ -114,9 +114,22 @@ class PreviewController extends Yaf_Controller_Abstract
             }
         }
 
+        $types = [1 => [1], 2 => [2, 3, 4], 3 => [5, 6]];
+
+
+        $html_article = [];
+        foreach ($articles as $_article)
+        {
+            if (in_array($_article['module_id'], $types[$type]))
+            {
+                $html_article[] = $_article;
+            }
+        }
+
+
         $is_share = false;
         $user = $this->_format_user_info($user);
-        $this->getView()->assign(['wx_share_page_id' => $wx_share_page_id, 'type' => $type, 'wx_share_article_id' => $wx_share_article_id, 'user' => $user, 'page_info' => $page_info, 'product' => $product,  'articles' => $articles, 'js_sdk' => '', 'ouid' => $user_id, 'is_share' => $is_share, 'title' => $title]);
+        $this->getView()->assign(['wx_share_page_id' => $wx_share_page_id, 'type' => $type, 'wx_share_article_id' => $wx_share_article_id, 'user' => $user, 'page_info' => $page_info, 'product' => $product,  'articles' => $html_article, 'js_sdk' => '', 'ouid' => $user_id, 'is_share' => $is_share, 'title' => $title, 'type' => $type]);
         $this->getView()->display('index/preview.html');
     }
 
