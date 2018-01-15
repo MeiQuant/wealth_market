@@ -13,6 +13,13 @@ class IndexController extends IndexabstractController
         parent::init();
     }
 
+
+    public function testAction()
+    {
+        $refer_url = '%2Findex%2Fshow%3Fpage_id%3D6%26article_id%3D1%2C2%2C3%2C4%2C5%2C6%26rdn%3D1515985236000%26ouid%3DoQt5h03B6WoEM7ri3sn7y7erFiyY%2523mp.weixin.qq.com%26from%3Dgroupmessage%26isappinstalled%3D0&code=021KvjtW0DvnnV10NupW0KajtW0KvjtH&state=a75eff8fc23fa7e223256e39bd7e1aaf';
+//        var_dump(DOMAIN_URL . urldecode($refer_url));die;
+        header('Location: '. DOMAIN_URL . urldecode($refer_url));
+    }
     public function indexAction()
     {
         $this->redirect('/admin/index');
@@ -50,7 +57,8 @@ class IndexController extends IndexabstractController
         }
         unset($page_info['stock_market']);
 
-        if (!empty($ouid) && ($ouid != $open_id) && isset($_GET['from']) && strpos(trim($_GET['from']), 'message') !== false) {
+        // && isset($_GET['from']) && strpos(trim($_GET['from']), 'message') !== false)
+        if (!empty($ouid) && ($ouid != $open_id)) {
             // 分享过来的链接
             $user_id = $ouid;
             $is_share = true;

@@ -139,7 +139,7 @@ class WechatController extends Yaf_Controller_Abstract
                     ->update(['nickname' => $info['nickname'], 'headimgurl' => $info['headimgurl']]);
             }
 
-            header('location:'. $refer_url);
+            header('Location: '. DOMAIN_URL . urldecode($refer_url));
         }
     }
 
