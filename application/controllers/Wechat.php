@@ -27,7 +27,7 @@ class WechatController extends Yaf_Controller_Abstract
             ],
             'oauth' => [
                 'scopes'   => ['snsapi_userinfo'],
-                'callback' => 'http://wealth-market.smallwolf.cn/wechat/oauthcallback'
+                'callback' => 'http://wealth-market.youheng.com.cn/wechat/oauthcallback'
             ],
         ];
 
@@ -82,7 +82,7 @@ class WechatController extends Yaf_Controller_Abstract
             [
                 "type" => "view",
                 "name" => "免费制作",
-                "url"  => "http://wealth-market.smallwolf.cn/index/show"
+                "url"  => "http://wealth-market.youheng.com.cn/index/show"
             ],
             [
                 "name"       => "有恒推荐",

@@ -1,11 +1,11 @@
 <?php
 
-define('ADMIN_DOMAIN001', '.smallwolf.cn');
-define('DOMAIN_URL', 'http://wealth-market.smallwolf.cn');
-define("BASE_URL", 'http://static-wealth-market.smallwolf.cn/');
-define("IMG_URL", 'http://img-wealth-market.smallwolf.cn/');
-define('UPLOAD_URL', 'http://wealth-market.smallwolf.cn/upload/upload');
-define('UPLOAD_ADMIN_URL', 'http://wealth-market.smallwolf.cn/uploadadmin/upload');
+define('ADMIN_DOMAIN001', '.youheng.com.cn');
+define('DOMAIN_URL', 'http://wealth-market.youheng.com.cn');
+define("BASE_URL", 'http://static-wealth-market.youheng.com.cn/');
+define("IMG_URL", 'http://img-wealth-market.youheng.com.cn/');
+define('UPLOAD_URL', 'http://wealth-market.youheng.com.cn/upload/upload');
+define('UPLOAD_ADMIN_URL', 'http://wealth-market.youheng.com.cn/uploadadmin/upload');
 define('UPLOAD_DIR', '/data/upload_file/');
 
 
