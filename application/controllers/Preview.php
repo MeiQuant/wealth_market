@@ -114,7 +114,7 @@ class PreviewController extends Yaf_Controller_Abstract
             }
         }
 
-        $types = [1 => [1], 2 => [2, 3, 4], 3 => [5, 6]];
+        $types = [1 => [1], 2 => [2, 3, 4], 3 => [5, 6], 4 => []];
 
 
         $html_article = [];
